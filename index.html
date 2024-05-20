@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
   <link rel="icon" href="./assets/img1.jpg">
-  <title>Portfolio Landing Page</title>
+  <title>NK DevFolio</title>
   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css'>
   <link rel='stylesheet'
     href='https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Poppins:wght@100;300;400;500;600;700;800;900&family=Ubuntu:wght@300;400;500;700&display=swap"rel="stylesheet'>
@@ -18,7 +18,7 @@
 
 <body>
 
-  <div class="hero-image">
+ 
     <!-- navbar -->
     <div class="navbar">
       <div class="nav-left">
@@ -26,7 +26,7 @@
         <!-- <img src="./assets/react.jpg" alt="hero-img"> -->
       </div>
       <div class="nav-right">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav"> <!--me-auto mb-2 mb-lg-0-->
           <li class="nav-item">
             <a class="nav-link" href="#home"><i class="fa-solid fa-house-chimney"></i>Home</a>
           </li>
@@ -42,22 +42,15 @@
           <li class="nav-item">
             <a class="nav-link" href="#contact"><i class="fa-regular fa-address-card"></i>Contact</a>
           </li>
-
         </ul>
-        <div class="hamburger"><i class="fa-solid fa-bars"></i></div>
-        <div class="dark-mode">
-          <button class="dark"><i class="fa-regular fa-moon"></i></button>
-        </div>
-        <div class="menu-btn">
-          <i class="fas fa-bars"></i>
-        </div>
       </div>
     </div>
 
 
-
+    
     <!-- Home -->
     <section class="home" id="home">
+      <div class="hero-image">
       <div class="main">
         <div class="main-text">
           <div class="text-1">Hello there!</div>
@@ -295,7 +288,7 @@
           <div class="box">
             <img src="https://source.unsplash.com/720x600/?portfolio" alt="">
             <div class="text">Portfolio</div>
-            <p>My Personal Develper Portfolio <br><code>HTML CSS JavaScript</code></p>
+            <p>Devfolio <br><code>HTML CSS JavaScript</code></p>
             <button><a href="https://github.com/Nkovaturient?tab=repositories">Github<i
                   class="fa-brands fa-github"></i></a></button>
           </div>
@@ -319,14 +312,14 @@
                   class="fa-brands fa-github"></i></a></button>
           </div>
         </div>
-        <!-- <div class="card">
+        <div class="card">
               <div class="box">
                 <img src="https://source.unsplash.com/720x600/?app-clone" alt="">
-                <div class="text">Clone</div>
-                <p>#Project Details:- Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <div class="text">Astrophile Yard</div>
+                <p>MERN stack -Astronomy based web app fetching data from NASA APIs + cosmic archives, facts and images.</p>
                 <button><a href="https://github.com/Nkovaturient/WanderLust-App.git">Github<i class="fa-brands fa-github"></i></a></button>
               </div>
-            </div> -->
+            </div>
         <!-- <div class="card">
               <div class="box">
                 <img src="https://source.unsplash.com/720x600/?code,demo" alt="">
@@ -370,14 +363,6 @@
               </div>
             </a>
 
-            <!-- <div class="row">
-                <i class="fa-solid fa-location-dot"></i>
-                <div class="info">
-                  <div class="head"> Address</div>
-                  <div class="sub-title">Lucknow, Uttar Pradesh</div>
-                </div>
-              </div> -->
-
             <div class="row">
               <i class="fa-solid fa-envelope"></i>
               <div class="info">
@@ -407,23 +392,23 @@
         <!-- ReachOut -->
         <div class="column right">
           <div class="text">Message me! &hearts;</div>
-          <form action="#">
+          <form>
             <div class="fields">
               <div class="field name">
-                <input type="text" placeholder="name" required>
+                <input  id="name" type="text" placeholder="name" required>
               </div>
               <!-- <div class="field email">
                   <input type="email" placeholder="email" required>
                 </div> -->
             </div>
             <div class="field">
-              <input type="text" placeholder="email" required>
+              <input id="email" type="email" placeholder="email" required>
             </div>
             <div class="field textarea">
-              <textarea cols="30" rows="10" placeholder="Message.." required></textarea>
+              <textarea id="msg" cols="30" rows="10" placeholder="Message.." required></textarea>
             </div>
             <div class="button-area">
-              <button type="submit">Send message</button>
+              <button id="contact-btn" type="submit">Send message</button>
             </div>
           </form>
         </div>

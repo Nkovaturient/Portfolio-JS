@@ -24,6 +24,7 @@ body{
 
 .navbar{
   position: fixed;
+  /* position: sticky; */
   z-index: 99;
   top: 0;
     background-color: rgb(20, 20, 20);
@@ -472,6 +473,7 @@ color: #e40b0b; }
     perspective: 1000px;
      cursor:pointer;
      height: fit-content;
+     margin-bottom: 5rem; 
   }
 
   .card-container{
@@ -631,7 +633,7 @@ color: #e40b0b; }
 /*skill*/
 
 .skills-section{
-  margin-top: 5rem;
+  /* margin-top: 5rem; */
   /* background-color: #0a0707; */
   width: 100vw;
   height: 410px;
@@ -958,9 +960,10 @@ animation: animate 5s linear infinite;
 /*  Projects  */
 .projects {
   height: 550px;
-  /* width: 100vw; */
+  width: 1520px;
   /* background-color: red; */
   margin-top: 15rem;
+  margin-bottom: 2.65rem;
 }
 .projects .title{
   position: relative;
@@ -980,11 +983,12 @@ animation: animate 5s linear infinite;
 .projects .carousel{
   height: 50vw;
   min-width: 80vw;
-  overflow: scroll;
+  overflow-x: auto;
   /* background-color: red; */
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   align-items: center;
+  height: fit-content;
   color: rgb(240, 240, 53);
   margin-left: 3rem;
   margin-right: 4rem;
@@ -994,21 +998,22 @@ animation: animate 5s linear infinite;
   display: none;
 }
 .projects .carousel .card {
-  width: 90%;
-  height: 100%;
+  width: 85%;
+  height: 90%;
   background: none;
   background: #222;
   border-radius: 6px;
   padding: 25px 35px;
   text-align: center;
-  overflow: hidden;
+  /* overflow: hidden; */
   transition: all 0.3s ease;
   margin-left: 0.75rem;
+ 
 }
 
 .projects .carousel .card:hover {
   /* background: #54e4ee; */
-   background: #769fc7;
+   background: #5ef051;
   color: #fff;
 }
 
@@ -1103,6 +1108,8 @@ border: 3px solid #1e3551;
   position: relative;
   text-align: center;
   margin: 1.1rem 0 1.5rem 0;
+  color: #dcfe50;
+  font-size: 2.43rem;
 }
 
 .contact-content{
@@ -1312,6 +1319,8 @@ footer {
   padding: 6px 16px;
   color: #82cbf0;
   text-align: center;
+  height: 70px;
+  font-size: 1.35rem;
 }
 
 footer span a {
@@ -1332,10 +1341,10 @@ footer span a:hover {
 /*responsive media query*/
 /*smartphone*/
 @media only screen and (max-width: 768px) { 
- .nav-item{
+ /* .nav-item{
   display: none;
 
-}
+} */
 .hamburger{
   display: block;
   text-align: end;
@@ -1403,6 +1412,111 @@ footer span a:hover {
   
 }
 
+@media only screen and (min-width: 360px) and (max-width: 640px) {
+  
+  .navbar{
+    height: 270px;
+    width: 740px;
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .navbar .nav-left{
+    display: block;
+    margin-top: 2rem;
+  }
+  .navbar .nav-left a{
+    font-size: 1.65rem;
+    
+  }
+  .navbar .nav-right{
+    width: fit-content;
+  }
+  .nav-right .navbar-nav{
+    width: fit-content;
+    margin: 4rem;
+  }
+
+  /*home section*/
+  .hero-image{
+    width: 740px;
+    background: url(./assets/img1.jpg);
+    background-size: cover;
+   /* z-index: 999; */
+  }
+
+  .main{
+    width: 100%;
+    height: 660px;
+    margin-top: 15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+  .main .main-text{
+    width: 500px;
+    /* background-color: aqua; */
+    font-size: 1.45rem;
+  }
+  /* .main-text .social-links{
+    font-size: 1.35rem;
+  } */
+
+  /*about*/
+  .about .card{
+    width: 740px;
+
+  }
+  .about .about-me-in{
+    width: fit-content;
+  }
+  /*skills*/
+  .skills-section{
+    /* background-color: aqua; */
+    width: 740px;
+    height: fit-content;
+  }
+  /*projects*/
+  #projects{
+    width: 740px;
+    height: fit-content;
+  }
+  #projects .title{
+    font-size: 2.54rem;
+  }
+  #projects .carousel{
+    display: flex;
+    flex-direction: column;
+  }
+  /*contacts*/
+  #contact{
+    width: 740px;
+  }
+  #contact .max-width{
+    background-color: #0a0707;
+    width: 100%;
+    height: 100%;  
+  }
+
+  #contact .column .left {
+    width: fit-content;
+  }
+  #contact .left .social-menu ul{
+    margin-left: 5.6rem;
+  }
+  /*footer*/
+  footer{
+    /* background-color: aqua; */
+    width: 740px;
+    height: 58px;
+    text-align: center;
+    font-size: 1.65rem;
+  }
+
+}
 /*tablet*/
 @media only screen and (min-width: 767px) and (max-width: 768px) { 
 

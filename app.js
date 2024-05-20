@@ -120,3 +120,11 @@ $(document).ready(function () {
     }
   });
 });
+
+//**FORMS */
+// const form=document.querySelector("form");
+// const msgbtn=document.querySelector("#contact-btn");
+
+// msgbtn.addEventListener("click", (e)=>{
+//    console.log("clicked!");
+// })
