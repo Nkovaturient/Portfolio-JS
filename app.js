@@ -1,3 +1,18 @@
+/**GSAP animations */
+var tl=gsap.timeline()
+tl.from(".brand", {
+  y: 20,
+  // opacity:0,
+  duration:1.2,
+  delay:1,
+})
+tl.from(".nav-item a", {
+  y: -40,
+  opaicty: 0,
+  stagger:0.5,
+  duration:1.2
+})
+
 /*dark mode */
 const btn=document.querySelector(".dark");
 const nav=document.querySelector('.navbar');
@@ -80,18 +95,6 @@ $(document).ready(function () {
     loop: true
   });
 
-  // var typed = new Typed(".typing", {
-  //   strings: [
-  //     "Full Stack Web Developer",
-  //     "Programmer",
-  //     "Tech-Savvy",
-  //     "Astrophile"
-  //   ],
-  //   typeSpeed: 100,
-  //   backSpeed: 60,
-  //   loop: true
-  // });
-
   //  Owl Carousel  //
 
   $(".carousel").owlCarousel({
@@ -121,10 +124,3 @@ $(document).ready(function () {
   });
 });
 
-//**FORMS */
-// const form=document.querySelector("form");
-// const msgbtn=document.querySelector("#contact-btn");
-
-// msgbtn.addEventListener("click", (e)=>{
-//    console.log("clicked!");
-// })
