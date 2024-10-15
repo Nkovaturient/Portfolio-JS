@@ -11,5 +11,3 @@
   
 ![portfolio-JS](https://github.com/Nkovaturient/Portfolio-JS/assets/127786136/5b5dfaa2-8bf6-490c-8965-a2a68e659f46)
 
-# updates
-- Responsiveness to be included in projects and contacts section 🧑‍🏭
