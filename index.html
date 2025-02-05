@@ -18,32 +18,54 @@
 <body>
 
     <!-- navbar -->
-    <div class="navbar">
-      <div class="nav-left">
-        <a href="#home" class="brand">Neha Kumari</a>
-        <!-- <img src="./assets/react.jpg" alt="hero-img"> -->
-      </div>
-      <div class="nav-right">
-        <ul class="navbar-nav"> <!--me-auto mb-2 mb-lg-0-->
-          <li class="nav-item">
-            <a class="nav-link" href="#home"><i class="fa-solid fa-house-chimney"></i>Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#about"><i class="fa-solid fa-user-secret"></i>About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#projects"><i class="fa-solid fa-palette"></i>Projects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#skills"><i class="fa-solid fa-shield-halved"></i>Skills</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#contact"><i class="fa-regular fa-address-card"></i>Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
+<nav class="navbar">
+  <div class="nav-left">
+    <a href="#home" class="brand">Neha Kumari</a>
+  </div>
+  
+  <div class="nav-right">
+    <button class="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
     
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#home">
+          <i class="fa-solid fa-house-chimney"></i>
+          <span>Home</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#about">
+          <i class="fa-solid fa-user-secret"></i>
+          <span>About</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#skills">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>Skills</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#projects">
+          <i class="fa-solid fa-palette"></i>
+          <span>Projects</span>
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="#contact">
+          <i class="fa-regular fa-address-card"></i>
+          <span>Contact</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
     <!-- Home -->
     <section class="home" id="home">
       <div class="hero-image">
@@ -173,7 +195,7 @@
 
   <!-- Skills -->
   <section class="skills" id="skills">
-    <!--include in carousel form projects technologies, debator, communication, soft skills-->
+    
     <div class="skills-section">
       <div id="scroller">
         <div id="scroller-in">
@@ -265,76 +287,114 @@
 
 
   <!-- Projects -->
-  <section class="projects" id="projects">
-      <h2 class="title">My Projects</h2>
-      
-       <div class="carousel">
-        <div class="card">
-          <div class="box">
-            <img src="./assets/wanderlust.png" alt="">
-            <div class="text">WanderLust</div>
-            <p>Wanderlust is a go-to destination for finding cozy, comfortable, and convenient short-term rentals around
-              the globe.</p>
-            <!-- <p>Online lodging marketplace for short term rentals</p> -->
-            <button><a href="https://github.com/Nkovaturient/WanderLust-App.git">Github<i
-                  class="fa-brands fa-github"></i></a></button>
-          </div>
-        </div>
-        <div class="card">
-          <div class="box">
-            <img src="./assets/cloudCast.png" alt="">
-            <div class="text">CloudCast</div>
-            <p>Devfolio <br><code>HTML CSS JavaScript</code></p>
-            <button><a href="https://github.com/Nkovaturient?tab=repositories">Github<i
-                  class="fa-brands fa-github"></i></a></button>
-          </div>
-        </div>
-        <div class="card">
-          <div class="box">
-            <img src="./assets/div2.png" alt="project">
-            <div class="text">DiveIn-Book Store App</div>
-            <p>Dive-In- Online BookStore App to access all your listed and favorite books at one place
-              <br><code>MongoDB Nodejs React Express HTML JavaScript</code></p>
-            <button><a href="https://github.com/Nkovaturient/BookStore-App.git">Github<i
-                  class="fa-brands fa-github"></i></a></button>
-          </div>
-        </div>
-        <div class="card">
-          <div class="box">
-            <img src="./assets/API-project.png" alt="">
-            <div class="text">API Project</div>
-            <p> Fetching and Handling RESTful APIs <br><code>HTML CSS JavaScript</code></p>
-            <button><a href="https://github.com/Nkovaturient/APIs-Project.git">Github<i
-                  class="fa-brands fa-github"></i></a></button>
-          </div>
-        </div>
-        <div class="card">
-              <div class="box">
-                <img src="https://source.unsplash.com/720x600/?app-clone" alt="">
-                <div class="text">Astrophile Yard</div>
-                <p>MERN stack -Astronomy based web app fetching data from NASA APIs + cosmic archives, facts and images.</p>
-                <button><a href="https://github.com/Nkovaturient/WanderLust-App.git">Github<i class="fa-brands fa-github"></i></a></button>
+<section class="projects" id="projects">
+  <h2 class="title">My Projects</h2>
+  
+  <div class="carousel-container">
+      <button class="carousel-button prev" aria-label="Previous slide">❮</button>
+      <div class="carousel-wrapper">
+          <div class="carousel-track">
+
+            <div class="project-card highlight-card">
+              <img src="./assets/excel1.png" alt="WanderLust Project">
+              <div class="project-content">
+                  <h3>GSSoC Extended '24 Contributor</h3>
+                  <p>Active contributor in GirlScript Summer of Code Extended 2024. Focused on quality contributions over quantity.</p>
+                  <div class="tech-stack">
+                      <span>Open Source</span>
+                      <span>GSSoC'24</span>
+                      <span>Hacktoberfest</span>
+                  </div>
+                  <div class="contribution-stats">
+                      <span>37 Followers</span>
+                      <span>54 Following</span>
+                      <span>72 Repositories</span>
+                  </div>
               </div>
+          </div>
+
+              <div class="project-card">
+                <img src="./assets/wanderlust.png" alt="WanderLust Project">
+                <div class="project-content">
+                    <h3>WanderLust</h3>
+                    <p>An Airbnb-inspired marketplace for short-term rentals, featuring property listings, booking management, and user reviews.</p>
+                    <div class="tech-stack">
+                        <span>MERN Stack</span>
+                        <span>MapBox</span>
+                    </div>
+                    <a href="https://github.com/Nkovaturient/WanderLust-App" class="project-link">
+                        <i class="fa-brands fa-github"></i> View Project
+                    </a>
+                </div>
             </div>
-        <!-- <div class="card">
-              <div class="box">
-                <img src="https://source.unsplash.com/720x600/?code,demo" alt="">
-                <div class="text">Demo</div>
-                <p>#Project Details:- Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <button><a href="https://github.com/Nkovaturient/WanderLust-App.git">Github<i class="fa-brands fa-github"></i></a></button>
+
+              <div class="project-card">
+                <img src="./assets/astroyard.png" alt="AstrophileYard Project">
+                <div class="project-content">
+                    <h3>AstrophileYard</h3>
+                    <p>A dedicated platform for space enthusiasts to share astro-imagery and connect with fellow astrophiles. Features image upload, community interaction, and space exploration content.</p>
+                    <div class="tech-stack">
+                        <span>JavaScript</span>
+                        <span>Node.js</span>
+                        <span>Express</span>
+                    </div>
+                    <a href="https://github.com/Nkovaturient/AstrophileYard-Web-App" class="project-link">
+                        <i class="fa-brands fa-github"></i> View Project
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+              <img src="./assets/xp3.png" alt="Xpensigium Project">
+              <div class="project-content">
+                  <h3>Xpensigium</h3>
+                  <p>Cast Xpensigium on your expenses! A magical expense tracker for seamless household budget management with intuitive visualization and tracking features.</p>
+                  <div class="tech-stack">
+                      <span>MERN Stack</span>
+                      <span>Chart.js</span>
+                  </div>
+                  <a href="https://github.com/Nkovaturient/Xpensigium-Expense-Tracker-Web-App" class="project-link">
+                      <i class="fa-brands fa-github"></i> View Project
+                  </a>
               </div>
-            </div> -->
-        <div class="card">
-          <div class="box">
-            <img src="https://source.unsplash.com/720x600/?code,demo" alt="">
-            <div class="text">+View More!</div>
-            <p>WeatherApp, TodoList App and other projects made by me!</p>
-            <button><a href="https://github.com/Nkovaturient">Glance at my Github<i
-                  class="fa-brands fa-github"></i></a></button>
           </div>
+
+          <div class="project-card">
+            <img src="./assets/xomato.png" alt="Xomato Project">
+            <div class="project-content">
+                <h3>Xomato</h3>
+                <p>End-to-end MERN stack food delivery platform with user authentication, real-time order tracking, and seamless payment integration.</p>
+                <div class="tech-stack">
+                    <span>MERN Stack</span>
+                    <span>Redux</span>
+                    <span>JWT</span>
+                </div>
+                <a href="https://github.com/Nkovaturient/Xomato-Food-Delivery-App" class="project-link">
+                    <i class="fa-brands fa-github"></i> View Project
+                </a>
+            </div>
         </div>
+              
+        <div class="project-card">
+          <img src="./assets/resumiarmus.png" alt="Resumiarmus Project">
+          <div class="project-content">
+              <h3>Resumiarmus</h3>
+              <p>Your magical resume builder with fine-tuned templates. Create professional resumes with this MERN stack application featuring user authentication.</p>
+              <div class="tech-stack">
+                  <span>MERN Stack</span>
+                  <span>PDF Generation</span>
+              </div>
+              <a href="https://github.com/Nkovaturient/Resumiarmus-Your-Resume-Builder-Web-App" class="project-link">
+                  <i class="fa-brands fa-github"></i> View Project
+              </a>
+          </div>
       </div>
-  </section>
+
+          </div>
+      </div>
+      <button class="carousel-button next" aria-label="Next slide">❯</button>
+  </div>
+</section>
 
   <!-- Contact -->
   <section class="contact" id="contact">
@@ -414,7 +474,7 @@
   <!-- Footer -->
   <footer>
     <span>
-      <a href="#home"> Neha Kumari</a> || <span class="far fa-copyright"></span> 2024 All Rights Reserved.
+      <a href="#home"> Neha Kumari</a> || <span class="far fa-copyright"></span> 2025 All Rights Reserved.
     </span>
   </footer>
 
