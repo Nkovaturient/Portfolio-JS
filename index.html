@@ -75,7 +75,7 @@
           <div class="text-1">Hello there!</div>
           <div class="text-2 roboto-slab-name">Neha Kumari</div>
           <div class="text-3">I'm <span id="typing"></span></div> <br>
-          <a href="./assets/Neha_Kumari_Resume__.pdf" class="cv">Download my Resume!&nbsp;<i
+          <a href="./assets/Neha_Kumari_CV.pdf" class="cv">Download my Resume!&nbsp;<i
               class="fa-solid fa-download"></i></a>
 
           <div class="social-links">
@@ -149,46 +149,142 @@
 
   <!-- About Me  -->
   <section class="about" id="about">
-    <div class="card">
-      <div class="card-container">
-        <div class="card-face front-face"> <!--display it horizontal use flex= 1 0 200 grow, shrink, basis -->
-
-          <div class="profile-img">
-            <img src="./assets/profile2.jpg" alt="dp">
-          </div>
-
-          <div class="short-about">
-            <h2>Neha Kumari</h2>
-            <h3>Full Stack Web + Open Source Developer</h3>
-            <p>Seeking for an entry-level opportunity with
-              an esteemed organization where I can implement
-              my knowledge, enhancing my requisite skills and
-              adeptly contributing to the project vision.
-              Penchant for mastering new technologies.</p>
-            <ul>
-              <li>Flex- Fast Paced Learner</li>
-              <li>Exceptional Communication Skills</li>
-              <li>Problem Solver</li>
-              <li>Demonstrated Leadership Abilities</li>
-              <li>Keen wit tailored for Web Development</li>
-              <li>Effective Time Management</li>
-              <li>Curious and Observant</li>
-            </ul>
+    <div class="about-wrapper">
+      <div class="about-header">
+        <h2 class="section-title gradient-text">About Me</h2>
+        <p class="section-subtitle">Full Stack Developer & Open Source Contributor</p>
+      </div>
+      
+      <div class="about-content">
+        <div class="about-card main-card">
+          <div class="profile-section">
+            <div class="profile-image-container">
+              <img src="./assets/profile2.jpg" alt="Neha Kumari" class="profile-img">
+              <div class="status-indicator"></div>
+            </div>
+            <div class="profile-info">
+              <h3>Neha Kumari</h3>
+              <span class="role">Full Stack Developer</span>
+              <div class="stats-row">
+                <div class="stat">
+                  <span class="stat-number">72+</span>
+                  <span class="stat-label">Repositories</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-number">37</span>
+                  <span class="stat-label">Followers</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-number">GSSoC'24</span>
+                  <span class="stat-label">Contributor</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="card-face back-face">
-          <div class="about-container">
-            <img src="./assets/profile1.jpg" alt="profile">
-            <div class="about-me-in">
-              <h2>Education </h2>
-              <p>CGPA- <code>8.09</code> <br>
-                XII(ISC)- <code>98.25%</code> <br>
-                ⭐ A vehement Web Developer plenary dedicated in my 'Skill & Personality Development'— who defiantly
-                believes in — ♪• "Actions" over "Dawdle" •♪ ⭐
-              </p>
-            </div>
 
-            <img src="./assets/excel1.png" alt="proimg">
+        <div class="about-grid">
+          <div class="about-card">
+            <div class="card-icon">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <h4>Technical Expertise</h4>
+            <p>Passionate MERN Stack developer with expertise in building scalable web applications. Proficient in modern JavaScript frameworks, database design, and cloud deployment.</p>
+            <div class="tech-highlights">
+              <span>React.js</span>
+              <span>Node.js</span>
+              <span>MongoDB</span>
+              <span>Express.js</span>
+            </div>
+          </div>
+
+          <div class="about-card">
+            <div class="card-icon">
+              <i class="fa-solid fa-heart"></i>
+            </div>
+            <h4>Open Source Passion</h4>
+            <p>Active contributor to GirlScript Summer of Code Extended 2024 and Hacktoberfest. Committed to building inclusive tech communities and contributing to meaningful projects.</p>
+            <div class="achievement-badges">
+              <span class="badge">GSSoC'24 Extended</span>
+              <span class="badge">Hacktoberfest</span>
+            </div>
+          </div>
+
+          <div class="about-card">
+            <div class="card-icon">
+              <i class="fa-solid fa-rocket"></i>
+            </div>
+            <h4>Project Portfolio</h4>
+            <p>Built comprehensive applications including WanderLust (Airbnb clone), Xomato (food delivery), and Xpensigium (expense tracker) - showcasing end-to-end development skills.</p>
+            <div class="project-count">
+              <span>5+ Major Projects</span>
+            </div>
+          </div>
+
+          <div class="about-card">
+            <div class="card-icon">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h4>Education & Growth</h4>
+            <p>Computer Science student with exceptional academic performance (CGPA: 8.09, XII: 98.25%). Dedicated to continuous learning and skill enhancement in cutting-edge technologies.</p>
+            <div class="education-highlight">
+              <span>🎓 CS Student</span>
+              <span>📊 Top Performer</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-highlight">
+          <h4>Core Competencies</h4>
+          <div class="skills-tags">
+            <span class="skill-tag primary">Full Stack Development</span>
+            <span class="skill-tag">MERN Stack</span>
+            <span class="skill-tag">API Development</span>
+            <span class="skill-tag">Database Design</span>
+            <span class="skill-tag">Version Control</span>
+            <span class="skill-tag">Problem Solving</span>
+            <span class="skill-tag">Open Source</span>
+            <span class="skill-tag">Agile Development</span>
+          </div>
+        </div>
+
+        <div class="personality-traits">
+          <h4>What Drives Me</h4>
+          <div class="traits-grid">
+            <div class="trait">
+              <i class="fa-solid fa-bolt"></i>
+              <span>Fast Learner</span>
+            </div>
+            <div class="trait">
+              <i class="fa-solid fa-users"></i>
+              <span>Team Player</span>
+            </div>
+            <div class="trait">
+              <i class="fa-solid fa-lightbulb"></i>
+              <span>Problem Solver</span>
+            </div>
+            <div class="trait">
+              <i class="fa-solid fa-target"></i>
+              <span>Goal Oriented</span>
+            </div>
+            <div class="trait">
+              <i class="fa-solid fa-comments"></i>
+              <span>Great Communicator</span>
+            </div>
+            <div class="trait">
+              <i class="fa-solid fa-clock"></i>
+              <span>Time Manager</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="call-to-action">
+          <p class="cta-text">Ready to collaborate on innovative projects and create impactful solutions!</p>
+          <div class="cta-buttons">
+            <a href="https://www.linkedin.com/in/neha-kumari711/" class="cta-btn primary">Let's Connect</a>
+            <a href="./assets/Neha_Kumari_CV.pdf" class="cta-btn secondary" target="_blank">
+              <i class="fa-solid fa-download"></i> Download Resume
+            </a>
           </div>
         </div>
       </div>
