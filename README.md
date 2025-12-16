@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🌌 Cosmic Portfolio</h1>
+  <h1>🌌 Cosmic inspired Devfolio</h1>
   <p>Forged from the Pulsars field.</p>
 
   <p>
@@ -10,15 +10,8 @@
   </p>
 </div>
 
-## ✨ Experience
-- Animated starfield hero with subtle parallax and witty microcopy
-- MetaMask-inspired identity card with 3D tilt and live GitHub stats
-- Cosmic journey timeline that lights milestones on scroll
-- Skills constellation (canvas) plus categorized pods for clarity
-- Projects rendered as star systems with live GitHub metadata.
-- Open-source "signal waves" pulled from recent GitHub events
-- "Send Signal" contact form using EmailJS with calm status feedback
-- Mobile-first, transform/opacity animations, and reduced-motion respect
+<img width="1696" height="853" alt="Screenshot 2025-12-17 at 2 39 03 AM" src="https://github.com/user-attachments/assets/cabdd07e-6f5c-4545-ab6b-41427b4eeb09" />
+
 
 ## 🧩 Sections
 - Interstellar · name, role typing, social orbits
@@ -29,24 +22,12 @@
 - Open Source · wave canvas + recent activity
 - Contact · EmailJS-powered "Send Signal"
 
-## 🛠️ Tech & Constraints
+## 🛠️ Tech
 - Vanilla JS first, GSAP + Typed.js for motion/typing
 - Canvas starfield + constellation, CSS transforms for performance
 - GitHub API for projects and signals, fallback copy when offline
 - EmailJS service
 
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-## 🚀 Run locally
-```bash
-# from /Users/matrix/Documents/Mood/Portfolio-JS
-npx serve .    # or any static server
-```
-Open http://localhost:3000 (or the printed port).
-
-- ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-- ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-- ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-
-## 📸 Preview
-
-![portfolio-JS](https://github.com/Nkovaturient/Portfolio-JS/assets/127786136/5b5dfaa2-8bf6-490c-8965-a2a68e659f46)
+## Built from the core remnants of supernovae.
