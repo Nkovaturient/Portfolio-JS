@@ -1,608 +1,242 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neha Kumari · Cosmic Devfolio</title>
   <link rel="icon" href="./assets/img1.jpg">
-  <title>NK DevFolio</title>
-  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css'>
-  <link rel='stylesheet'
-    href='https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Poppins:wght@100;300;400;500;600;700;800;900&family=Ubuntu:wght@300;400;500;700&display=swap"rel="stylesheet'>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css'>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="./style.css">
 </head>
-
 <body>
+  <canvas id="starfield" aria-hidden="true"></canvas>
 
-  <!-- navbar -->
-  <nav class="navbar">
-    <div class="nav-left">
-      <a href="#home" class="brand">Neha Kumari</a>
-    </div>
-
-    <div class="nav-right">
+  <header class="shell">
+    <nav class="nav">
+      <a class="brand" href="#hero">Neha Kumari</a>
       <button class="hamburger" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
-
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#home">
-            <i class="fa-solid fa-house-chimney"></i>
-            <span>Home</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#about">
-            <i class="fa-solid fa-user-secret"></i>
-            <span>About</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#skills">
-            <i class="fa-solid fa-shield-halved"></i>
-            <span>Skills</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#projects">
-            <i class="fa-solid fa-palette"></i>
-            <span>Projects</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#contact">
-            <i class="fa-regular fa-address-card"></i>
-            <span>Contact</span>
-          </a>
-        </li>
+      <ul class="nav-links">
+        <li><a href="#hero">Interstellar</a></li>
+        <li><a href="#identity">Matrix</a></li>
+        <li><a href="#journey">Journey</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#open-source">Open Source</a></li>
+        <li><a href="#contact">Signal</a></li>
       </ul>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
-  <!-- Home -->
-  <section class="home" id="home">
-    <div class="hero-image">
-      <div class="main">
-        <div class="main-text">
-          <div class="text-1">Hello there!</div>
-          <div class="text-2 roboto-slab-name">Neha Kumari</div>
-          <div class="text-3">I'm <span id="typing"></span></div> <br>
-          <a href="./assets/Neha_Kumari_CV.pdf" class="cv">Download my Resume!&nbsp;<i
-              class="fa-solid fa-download"></i></a>
-
-          <div class="social-links">
-            <ul>
-              <li><a href="https://github.com/Nkovaturient"><i class="fa-brands fa-github git"></i></a>
-              </li>
-              <li><a href="https://www.linkedin.com/in/neha-kumari711/"><i class="fa-brands fa-linkedin lin"></i></a>
-              </li>
-              <li><a href="https://www.instagram.com/nehakumari2593"><i
-                    class="fa-brands fa-square-instagram ig"></i></a></li>
-              <li><a href="https://x.com/matriX_Nk"><i class="fa-brands fa-x-twitter tw"></i></a></li>
-            </ul>
+  <main>
+    <section id="hero" class="section hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <p class="eyebrow">Curious. Calm. Confident.</p>
+          <h1><span id="typed"></span></h1>
+          <p class="lede">I ship code. Occasionally, it ships me. Building thoughtful web and open-source experiences that feel like drifting through space, not scrolling a brochure.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="./assets/Neha_Kumari_CV.pdf" target="_blank" rel="noopener">Download Resume</a>
+            <a class="button ghost" href="#projects">Explore Projects</a>
+          </div>
+          <div class="social">
+            <a href="https://github.com/Nkovaturient" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/neha-kumari711/" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://x.com/matriX_Nk" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+            <!-- <a href="https://www.instagram.com/nehakumari2593" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a> -->
           </div>
         </div>
-
-        <div class="hero-carousel">
-          <ul class="slides">
-            <input type="radio" name="radio-buttons" id="img-1" checked />
-            <li class="slide-container">
-              <div class="slide-image">
-                <img src="./assets/excel1.png">
-              </div>
-              <div class="carousel-controls">
-                <label for="img-3" class="prev-slide">
-                  <span>‹</span>
-                </label>
-                <label for="img-2" class="next-slide">
-                  <span>›</span>
-                </label>
-              </div>
-            </li>
-            <input type="radio" name="radio-buttons" id="img-2" />
-            <li class="slide-container">
-              <div class="slide-image">
-                <img src="./assets/holopin.png">
-              </div>
-              <div class="carousel-controls">
-                <label for="img-1" class="prev-slide">
-                  <span>‹</span>
-                </label>
-                <label for="img-3" class="next-slide">
-                  <span>›</span>
-                </label>
-              </div>
-            </li>
-            <input type="radio" name="radio-buttons" id="img-3" />
-            <li class="slide-container">
-              <div class="slide-image">
-                <img src="./assets/resumiarmus.png">
-              </div>
-              <div class="carousel-controls">
-                <label for="img-2" class="prev-slide">
-                  <span>‹</span>
-                </label>
-                <label for="img-1" class="next-slide">
-                  <span>›</span>
-                </label>
-              </div>
-            </li>
-            <div class="carousel-dots">
-              <label for="img-1" class="carousel-dot" id="img-dot-1"></label>
-              <label for="img-2" class="carousel-dot" id="img-dot-2"></label>
-              <label for="img-3" class="carousel-dot" id="img-dot-3"></label>
-            </div>
-          </ul>
-        </div>
-
-      </div>
-  </section>
-  </div>
-
-  <!-- About Me  -->
-  <section class="about" id="about">
-    <div class="about-wrapper">
-      <div class="about-header">
-        <h2 class="section-title gradient-text">About Me</h2>
-        <p class="section-subtitle">Full Stack Developer & Open Source Contributor</p>
-      </div>
-      
-      <div class="about-content">
-        <div class="about-card main-card">
-          <div class="profile-section">
-            <div class="profile-image-container">
-              <img src="./assets/profile2.jpg" alt="Neha Kumari" class="profile-img">
-              <div class="status-indicator"></div>
-            </div>
-            <div class="profile-info">
-              <h3>Neha Kumari</h3>
-              <span class="role">Full Stack Developer</span>
-              <div class="stats-row">
-                <div class="stat">
-                  <span class="stat-number">72+</span>
-                  <span class="stat-label">Repositories</span>
-                </div>
-                <div class="stat">
-                  <span class="stat-number">37</span>
-                  <span class="stat-label">Followers</span>
-                </div>
-                <div class="stat">
-                  <span class="stat-number">GSSoC'24</span>
-                  <span class="stat-label">Contributor</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="about-grid">
-          <div class="about-card">
-            <div class="card-icon">
-              <i class="fa-solid fa-code"></i>
-            </div>
-            <h4>Technical Expertise</h4>
-            <p>Passionate MERN Stack developer with expertise in building scalable web applications. Proficient in modern JavaScript frameworks, database design, and cloud deployment.</p>
-            <div class="tech-highlights">
-              <span>React.js</span>
-              <span>Node.js</span>
-              <span>MongoDB</span>
-              <span>Express.js</span>
-            </div>
-          </div>
-
-          <div class="about-card">
-            <div class="card-icon">
-              <i class="fa-solid fa-heart"></i>
-            </div>
-            <h4>Open Source Passion</h4>
-            <p>Active contributor to GirlScript Summer of Code Extended 2024 and Hacktoberfest. Committed to building inclusive tech communities and contributing to meaningful projects.</p>
-            <div class="achievement-badges">
-              <span class="badge">GSSoC'24 Extended</span>
-              <span class="badge">Hacktoberfest</span>
-            </div>
-          </div>
-
-          <div class="about-card">
-            <div class="card-icon">
-              <i class="fa-solid fa-rocket"></i>
-            </div>
-            <h4>Project Portfolio</h4>
-            <p>Built comprehensive applications including WanderLust (Airbnb clone), Xomato (food delivery), and Xpensigium (expense tracker) - showcasing end-to-end development skills.</p>
-            <div class="project-count">
-              <span>5+ Major Projects</span>
-            </div>
-          </div>
-
-          <div class="about-card">
-            <div class="card-icon">
-              <i class="fa-solid fa-graduation-cap"></i>
-            </div>
-            <h4>Education & Growth</h4>
-            <p>Computer Science student with exceptional academic performance (CGPA: 8.09, XII: 98.25%). Dedicated to continuous learning and skill enhancement in cutting-edge technologies.</p>
-            <div class="education-highlight">
-              <span>🎓 CS Student</span>
-              <span>📊 Top Performer</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="skills-highlight">
-          <h4>Core Competencies</h4>
-          <div class="skills-tags">
-            <span class="skill-tag primary">Full Stack Development</span>
-            <span class="skill-tag">MERN Stack</span>
-            <span class="skill-tag">API Development</span>
-            <span class="skill-tag">Database Design</span>
-            <span class="skill-tag">Version Control</span>
-            <span class="skill-tag">Problem Solving</span>
-            <span class="skill-tag">Open Source</span>
-            <span class="skill-tag">Agile Development</span>
-          </div>
-        </div>
-
-        <div class="personality-traits">
-          <h4>What Drives Me</h4>
-          <div class="traits-grid">
-            <div class="trait">
-              <i class="fa-solid fa-bolt"></i>
-              <span>Fast Learner</span>
-            </div>
-            <div class="trait">
-              <i class="fa-solid fa-users"></i>
-              <span>Team Player</span>
-            </div>
-            <div class="trait">
-              <i class="fa-solid fa-lightbulb"></i>
-              <span>Problem Solver</span>
-            </div>
-            <div class="trait">
-              <i class="fa-solid fa-target"></i>
-              <span>Goal Oriented</span>
-            </div>
-            <div class="trait">
-              <i class="fa-solid fa-comments"></i>
-              <span>Great Communicator</span>
-            </div>
-            <div class="trait">
-              <i class="fa-solid fa-clock"></i>
-              <span>Time Manager</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="call-to-action">
-          <p class="cta-text">Ready to collaborate on innovative projects and create impactful solutions!</p>
-          <div class="cta-buttons">
-            <a href="https://www.linkedin.com/in/neha-kumari711/" class="cta-btn primary">Let's Connect</a>
-            <a href="./assets/Neha_Kumari_CV.pdf" class="cta-btn secondary" target="_blank">
-              <i class="fa-solid fa-download"></i> Download Resume
-            </a>
+        <div class="hero-orbit">
+          <div class="orbital-card">
+            <div class="orbital-glow"></div>
+            <img src="./assets/profile2.jpg" alt="Portrait of Neha Kumari" class="hero-avatar">
+            <p class="orbital-quote">“Programming the matrix of my existence.”</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Skills -->
-  <section class="skills" id="skills">
-
-    <div class="skills-section">
-      <div id="scroller">
-        <div id="scroller-in">
-          <h4>Skills-Flair</h4>
-          <h4>Upskilling</h4>
-          <h4>Exploring</h4>
-        </div>
-        <div id="scroller-in">
-          <h4>Skills-Flair</h4>
-          <h4>Upskilling</h4>
-          <h4>Exploring</h4>
-        </div>
+      <div class="parallax-hints">
+        <span>Levitate on my portfolio fabric.</span>
       </div>
-      <div class="skills-container">
-        <div class="skills-card" id="card1">
+    </section>
 
-          <div class="overlay">
-            <h3 class="skill-name">MongoDB</h3>
-            <p class="skill-level">78%</p>
-            <p class="skill-info">Projects- Wanderlust-Online Lodging WanderLust-Online-lodging-marketplace,
-              DiveIn-BookStore App</p>
+    <section id="identity" class="section identity">
+      <div class="section-header">
+        <p class="eyebrow">Identity Artifact</p>
+        <h2>Devil is in the details.</h2>
+        <p class="lede">The tree that would grow to heaven must send its roots to hell.</p>
+      </div>
+      <div class="identity-grid">
+        <div class="meta-card" data-tilt>
+          <div class="meta-layer"></div>
+          <div class="meta-core">
+            <div class="meta-face">
+              <p class="eyebrow">Neha Kumari</p>
+              <h3>Full-stack & Open Source</h3>
+              <p class="microcopy">Learn the Rules like a pro so that you can break them like an artist.</p>
+            </div>
+            <div class="meta-meta">
+              <span>Principles: Metacognition, Curiosity, Grit, Hard(Smart) Work, Discipline(100%)</span>
+              <span>Philosophy: less surface area, more signal(quality >>>> qty)</span>
+              <span>Timezone: UTC+5:30 · Available async</span>
+            </div>
+            <div class="meta-tags">
+              <span>Web2 + Web3</span>
+              <span>Smart Contract Developer</span>
+              <span>AI, LLM, GenAI, ML(a-bit)</span>
+              <span>Bookworm, Music, Astrophile, Cinephile</span>
+            </div>
           </div>
         </div>
-        <div class="skills-card" id="card2">
-          <div class="overlay">
-            <h3 class="skill-name">Express</h3>
-            <p class="skill-level">78%</p>
-            <p class="skill-info">Projects-WanderLust, BookStoreApp, ChatApplication, Astrophile Yard</p>
+        <div class="identity-stats">
+          <div>
+            <p class="stat-number" id="stat-repos">—</p>
+            <p class="stat-label">Public Repos</p>
           </div>
-        </div>
-        <div class="skills-card" id="card3">
-          <div class="overlay">
-            <h3 class="skill-name">React</h3>
-            <p class="skill-level">65%</p>
-            <p class="skill-info">Todo List, DiveIn-BookStore App, Weather Widget, Crypto Exchange Rate, Counter,
-              Comments Display</p>
+          <div>
+            <p class="stat-number" id="stat-followers">—</p>
+            <p class="stat-label">Followers</p>
           </div>
-        </div>
-        <div class="skills-card" id="card4">
-          <div class="overlay">
-            <h3 class="skill-name">Node.js</h3>
-            <p class="skill-level">81%</p>
-            <p class="skill-info">Projects-WanderLust, BookStoreApp, ChatApplication, Astrophile Yard</p>
-          </div>
-        </div>
-        <div class="skills-card" id="card5">
-          <div class="overlay">
-            <h3 class="skill-name">MySql</h3>
-            <p class="skill-level">63%</p>
-            <p class="skill-info">Projects made- ChatApp-messaging application</p>
-          </div>
-        </div>
-        <div class="skills-card" id="card6">
-          <div class="overlay">
-            <h3 class="skill-name">JavaScript</h3>
-            <p class="skill-level">85%</p>
-            <p class="skill-info">Personal Portfolio, Calculator, Weather App, IP Generator, Todo List, API Project</p>
-          </div>
-        </div>
-        <div class="skills-card" id="card7">
-          <div class="overlay">
-            <h3 class="skill-name">HTML</h3>
-            <p class="skill-level">95%</p>
-            <p class="skill-info">Apna College Clone, Spotify Clone, Personal Portfolio, Calculator, Weather App, IP
-              Generator, Todo List</p>
-          </div>
-        </div>
-        <div class="skills-card" id="card8">
-          <div class="overlay">
-            <h3 class="skill-name">CSS</h3>
-            <p class="skill-level">74%</p>
-            <p class="skill-info">Portfolio, Calculator, Weather App, IP Generator, Todo List, Colorify</p>
-          </div>
-        </div>
-        <div class="skills-card" id="card9">
-          <div class="overlay">
-            <h3 class="skill-name">Bootstrap</h3>
-            <p class="skill-level">69%</p>
-            <p class="skill-info">WanderLust, Astrophile yard</p>
-          </div>
-        </div>
-        <div class="skills-card" id="card10">
-          <div class="overlay">
-            <h3 class="skill-name">TailwindCSS</h3>
-            <p class="skill-level">61%</p>
-            <p class="skill-info">Projects made- Crypto Exchange Rate App, DiveIn-BookStore App </p>
+          <div>
+            <p class="stat-number">GSSoC'24</p>
+            <p class="stat-label">Contributor</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-
-  <!-- Projects -->
-  <section class="projects" id="projects">
-    <h2 class="title">My Projects</h2>
-
-    <div class="carousel-container">
-      <button class="carousel-button prev" aria-label="Previous slide">❮</button>
-      <div class="carousel-wrapper">
-        <div class="carousel-track">
-
-          <div class="project-card highlight-card">
-            <img src="./assets/excel1.png" alt="WanderLust Project">
-            <div class="project-content">
-              <h3>GSSoC Extended '24 Contributor</h3>
-              <p>Active contributor in GirlScript Summer of Code Extended 2024. Focused on quality contributions over
-                quantity.</p>
-              <div class="tech-stack">
-                <span>Open Source</span>
-                <span>GSSoC'24</span>
-                <span>Hacktoberfest</span>
-              </div>
-              <div class="contribution-stats">
-                <span>37 Followers</span>
-                <span>54 Following</span>
-                <span>72 Repositories</span>
-              </div>
-            </div>
+    <section id="journey" class="section journey">
+      <div class="section-header">
+        <p class="eyebrow">Cosmic Trail</p>
+        <h2>Journey illuminated</h2>
+        <p class="lede">The only journey is the one within.</p>
+      </div>
+      <div class="timeline">
+        <article class="timeline-node">
+          <div class="node-core"></div>
+          <div>
+            <p class="eyebrow">2025 · Present</p>
+            <h3>Building Thoughtful Full-stack Systems</h3>
+            <p class="microcopy">Exploring resilient web architectures and subtle motion that feels earned.</p>
           </div>
-
-          <div class="project-card">
-            <img src="./assets/wanderlust.png" alt="WanderLust Project">
-            <div class="project-content">
-              <h3>WanderLust</h3>
-              <p>An Airbnb-inspired marketplace for short-term rentals, featuring property listings, booking management,
-                and user reviews.</p>
-              <div class="tech-stack">
-                <span>MERN Stack</span>
-                <span>MapBox</span>
-              </div>
-              <a href="https://github.com/Nkovaturient/WanderLust-App" class="project-link">
-                <i class="fa-brands fa-github"></i> View Project
-              </a>
-            </div>
+        </article>
+        <article class="timeline-node">
+          <div class="node-core"></div>
+          <div>
+            <p class="eyebrow">2024</p>
+            <h3>Open Source Contributions</h3>
+            <p class="microcopy">GSSoC Extended '24 and community PRs—quality over vanity metrics.</p>
           </div>
-
-          <div class="project-card">
-            <img src="./assets/astroyard.png" alt="AstrophileYard Project">
-            <div class="project-content">
-              <h3>AstrophileYard</h3>
-              <p>A dedicated platform for space enthusiasts to share astro-imagery and connect with fellow astrophiles.
-                Features image upload, community interaction, and space exploration content.</p>
-              <div class="tech-stack">
-                <span>JavaScript</span>
-                <span>Node.js</span>
-                <span>Express</span>
-              </div>
-              <a href="https://github.com/Nkovaturient/AstrophileYard-Web-App" class="project-link">
-                <i class="fa-brands fa-github"></i> View Project
-              </a>
-            </div>
+        </article>
+        <article class="timeline-node">
+          <div class="node-core"></div>
+          <div>
+            <p class="eyebrow">2023</p>
+            <h3>Shipping Product Clones with Personality</h3>
+            <p class="microcopy">WanderLust, Xomato, Xpensigium—learning by rebuilding, refining, and deploying.</p>
           </div>
-
-          <div class="project-card">
-            <img src="./assets/xp3.png" alt="Xpensigium Project">
-            <div class="project-content">
-              <h3>Xpensigium</h3>
-              <p>Cast Xpensigium on your expenses! A magical expense tracker for seamless household budget management
-                with intuitive visualization and tracking features.</p>
-              <div class="tech-stack">
-                <span>MERN Stack</span>
-                <span>Chart.js</span>
-              </div>
-              <a href="https://github.com/Nkovaturient/Xpensigium-Expense-Tracker-Web-App" class="project-link">
-                <i class="fa-brands fa-github"></i> View Project
-              </a>
-            </div>
+        </article>
+        <article class="timeline-node">
+          <div class="node-core"></div>
+          <div>
+            <p class="eyebrow">Before</p>
+            <h3>Curiosity-first Learning</h3>
+            <p class="microcopy">Breaking things carefully, documenting what fails, and keeping the logs honest.</p>
           </div>
+        </article>
+      </div>
+    </section>
 
-          <div class="project-card">
-            <img src="./assets/xomato.png" alt="Xomato Project">
-            <div class="project-content">
-              <h3>Xomato</h3>
-              <p>End-to-end MERN stack food delivery platform with user authentication, real-time order tracking, and
-                seamless payment integration.</p>
-              <div class="tech-stack">
-                <span>MERN Stack</span>
-                <span>Redux</span>
-                <span>JWT</span>
-              </div>
-              <a href="https://github.com/Nkovaturient/Xomato-Food-Delivery-App" class="project-link">
-                <i class="fa-brands fa-github"></i> View Project
-              </a>
-            </div>
+    <section id="skills" class="section skills">
+      <div class="section-header">
+        <p class="eyebrow">Skills Constellation</p>
+        <h2>Orbiting competencies</h2>
+        <p class="lede">Our deepest fear is not that we are inadequate. Our deepest fear is that we are powerful beyond measure.</p>
+      </div>
+      <div class="skills-shell">
+        <canvas id="skills-constellation" aria-hidden="true"></canvas>
+        <div class="skills-tags">
+          <div class="skill-pod">
+            <p class="eyebrow">Frontend</p>
+            <p class="microcopy">HTML, CSS, JS, React, Nextjs, Svelte, Tailwind CSS, RESTful APIs</p>
           </div>
-
-          <div class="project-card">
-            <img src="./assets/resumiarmus.png" alt="Resumiarmus Project">
-            <div class="project-content">
-              <h3>Resumiarmus</h3>
-              <p>Your magical resume builder with fine-tuned templates. Create professional resumes with this MERN stack
-                application featuring user authentication.</p>
-              <div class="tech-stack">
-                <span>MERN Stack</span>
-                <span>PDF Generation</span>
-              </div>
-              <a href="https://github.com/Nkovaturient/Resumiarmus-Your-Resume-Builder-Web-App" class="project-link">
-                <i class="fa-brands fa-github"></i> View Project
-              </a>
-            </div>
+          <div class="skill-pod">
+            <p class="eyebrow">Backend</p>
+            <p class="microcopy">Node, Express, MongoDB, Redis, Python</p>
           </div>
-
+          <div class="skill-pod">
+            <p class="eyebrow">Web3 / P2P</p>
+            <p class="microcopy">Blockchain, Smart Contracts, Solidity, Ethereum, Libp2p, Storacha, Randamu, Dcipher</p>
+          </div>
+          <div class="skill-pod">
+            <p class="eyebrow">Tooling & Infra</p>
+            <p class="microcopy">Github, CI, observability basics, Netlify/Vercel, Agentic/LLM-Tools</p>
+          </div>
         </div>
       </div>
-      <button class="carousel-button next" aria-label="Next slide">❯</button>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact -->
-  <section class="contact" id="contact">
-    <div class="max-width">
-      <h2 class="title">Get In Touch!</h2>
-      <div class="contact-content">
-        <div class="column left">
-          <div class="text">Connect With Me</div>
-          <p>Feel free to contact me. I am always open to discuss new projects, creative ideas or opportunities to be a
-            part of your visions. Email me with any inquiries. I'll be glad to answer your questions and set up a 101
-            meeting with you.</p>
-          <div class="icons">
+    <section id="projects" class="section projects">
+      <div class="section-header">
+        <p class="eyebrow">Star Systems</p>
+        <h2>Projects Drifting in Orbit</h2>
+        <p class="lede">Crystallizing my ideas into reality.</p>
+      </div>
+      <div class="project-track" id="project-track">
+        <!-- Populated by JS -->
+      </div>
+    </section>
 
-            <a href="#">
-              <div class="row">
-                <i class="fa-solid fa-user-large"></i>
-                <div class="info">
-                  <div class="head">Name</div>
-                  <div class="sub-title"><a href="#" style="text-decoration: none; color: #333;"> Neha Kumari</a></div>
-                </div>
-              </div>
-            </a>
-
-            <div class="row">
-              <i class="fa-solid fa-envelope"></i>
-              <div class="info">
-                <div class="head">Email</div>
-                <div class="sub-title"><a href="mailto:#" style="text-decoration: none; color: #333;">
-                    nehakumarisde@gmail.com</a></div>
-              </div>
-            </div>
-
-            <br>
-
-            <!-- Social -->
-            <div class="social-menu">
-              <ul>
-                <li><a href="https://github.com/Nkovaturient?tab=repositories"><i class="fa-brands fa-github"></i></a>
-                </li>
-                <li><a href="https://www.linkedin.com/in/neha-kumari711/"><i class="fa-brands fa-linkedin-in"></i></a>
-                </li>
-                <li><a href="https://www.instagram.com/nehakumari2593?igsh=bGlqN2FzZjJ0ZGVk"><i
-                      class="fa-brands fa-instagram"></i></a></li>
-                <li><a href="https://twitter.com/ha73329109"><i class="fa-brands fa-twitter"></i></a></li>
-              </ul>
-            </div>
-          </div>
+    <section id="open-source" class="section signals">
+      <div class="section-header">
+        <p class="eyebrow">Signal Waves</p>
+        <h2>Open source & collaboration</h2>
+        <p class="lede">Learn. Build. Collaborate. Repeat.</p>
+      </div>
+      <div class="signal-grid">
+        <div class="signal-canvas">
+          <canvas id="signal-waves" aria-hidden="true"></canvas>
         </div>
-
-        <!-- ReachOut -->
-        <div class="column right">
-          <div class="text">Message me! &hearts;</div>
-          <form>
-            <div class="fields">
-              <div class="field name">
-                <input id="name" type="text" placeholder="name" required />
-              </div>
-              <!-- <div class="field email">
-                  <input type="email" placeholder="email" required>
-                </div> -->
-            </div>
-            <div class="field">
-              <input id="email" type="email" placeholder="email" required />
-            </div>
-            <div class="field textarea">
-              <textarea id="msg" cols="30" rows="10" placeholder="Message.." required></textarea>
-            </div>
-            <div class="button-area">
-              <button id="contact-btn" type="submit">Send message</button>
-            </div>
-          </form>
+        <div class="signal-list" id="signal-list">
+          <p class="microcopy">Fetching GitHub pulse…</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer>
-    <span>
-      <a href="#home"> Neha Kumari</a> || <span class="far fa-copyright"></span> 2025 All Rights Reserved.
-    </span>
+    <section id="contact" class="section contact">
+      <div class="section-header">
+        <p class="eyebrow">Send Signal</p>
+        <h2>Transmit a calm message</h2>
+        <p class="lede">I reply with clarity, not fireworks.</p>
+      </div>
+      <form class="contact-form" id="contact-form">
+        <div class="input-group">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your name" required>
+        </div>
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required>
+        </div>
+        <div class="input-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" placeholder="What should we build together?" required></textarea>
+        </div>
+        <button class="button primary" type="submit" id="contact-btn">Send</button>
+        <p class="microcopy" id="contact-status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Neha Kumari · “We are all made of Star-stuff.” 🌌🌟</p>
   </footer>
 
-
-
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-  </script>
-  <script type="text/javascript">
-    (function () {
-      // https://dashboard.emailjs.com/admin/account
-      emailjs.init({
-        publicKey: "6cpSKOFj-GdJ9gdD7",
-      });
-    })();
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-    integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js'></script>
-  <script src="app.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="./app.js" defer></script>
 </body>
-
 </html>
