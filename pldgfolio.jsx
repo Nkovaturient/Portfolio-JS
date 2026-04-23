@@ -547,6 +547,20 @@ function PLDGPortfolio() {
           </span>
         </div>
         <div style={{ display: 'flex', gap: 7, alignItems: 'center' }}>
+          <a
+            href="./index.html#projects"
+            style={{
+              fontSize: scaled(10),
+              color: 'rgba(255,255,255,0.62)',
+              border: '0.5px solid rgba(255,255,255,0.2)',
+              borderRadius: 20,
+              padding: '3px 11px',
+              fontWeight: 600,
+              letterSpacing: '0.04em',
+            }}
+          >
+            Main Portfolio ←
+          </a>
           {/* {userStats.repos && (
             <span
               style={{

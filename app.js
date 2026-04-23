@@ -127,6 +127,26 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   });
 })();
 
+// Build Lab subtle parallax cards
+(function initBuildLabParallax() {
+  if (prefersReducedMotion) return;
+  const cards = document.querySelectorAll('.lab-card');
+  cards.forEach((card) => {
+    card.addEventListener('pointermove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      const rotateY = (x - 0.5) * 4;
+      const rotateX = (0.5 - y) * 4;
+      card.style.transform = `perspective(900px) translateY(-2px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener('pointerleave', () => {
+      card.style.transform = 'perspective(900px) translateY(0) rotateX(0) rotateY(0)';
+    });
+  });
+})();
+
 // Timeline illumination
 (function initTimeline() {
   const nodes = document.querySelectorAll('.timeline-node');
@@ -214,6 +234,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
       description: 'Local music assistant that finds and plays tracks with drand randomness and LLM hints.',
       stack: ['Python', 'Javascript', 'Electron', 'Whisper', 'Ollama', 'Local Assistant', 'n8n', 'Libp2p', 'Audio', 'mpv', 'yt-dlp'],
       url: 'https://github.com/Nkovaturient/Muse-onic',
+      image: './assets/img1.jpg',
       highlight: true
     },
     {
@@ -221,6 +242,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
       description: 'Shield against MEV—encrypt, randomize, and settle trades fairly.',
       stack: ['TypeScript', 'DeFi', 'Web3', 'MEV', 'Crypto', 'Smart Contracts', 'Solidity', 'Ethereum', 'Randamu', 'Dcipher'],
       url: 'https://github.com/Nkovaturient/GhostLock-MEV-Reaper',
+      image: './assets/img2.jpg',
       highlight: true
     },
     {
@@ -228,31 +250,36 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
       description: 'Delegate time-limited, usage-bound access to secrets using UCANs without revealing them.',
       stack: ['JavaScript', 'UCAN', 'Storacha', 'Lit-protocol', 'Security', 'Web3'],
       url: 'https://github.com/Nkovaturient/SecretShare',
+      image: './assets/img3.jpg',
       highlight: true
     },
     {
       name: 'VRForge',
       description: 'Split bills, spawn anime characters, or demo drand-powered randomness.',
       stack: ['JavaScript', 'drand', 'vrf', 'UI', 'APIs'],
-      url: 'https://github.com/Nkovaturient/VRForge'
+      url: 'https://github.com/Nkovaturient/VRForge',
+      image: './assets/img4.jpg'
     },
     {
       name: 'Tripmate-Planner',
       description: 'Collaborative trip planner with smart scheduling.',
       stack: ['TypeScript', 'Maps', 'Planning', 'Web', 'Serpapi', 'Storacha', 'ElizaOS'],
-      url: 'https://github.com/Nkovaturient/Tripmate-Planner'
+      url: 'https://github.com/Nkovaturient/Tripmate-Planner',
+      image: './assets/img1.jpg'
     },
     {
       name: 'Xpensigium',
       description: 'Household expense tracker with charts and calm UX.',
       stack: ['MERN', 'Chartsj', 'JWT', 'Node', 'Tailwind CSS'],
-      url: 'https://github.com/Nkovaturient/Xpensigium-Expense-Tracker-Web-App'
+      url: 'https://github.com/Nkovaturient/Xpensigium-Expense-Tracker-Web-App',
+      image: './assets/img2.jpg'
     },
     {
       name: 'AstrophileYard',
       description: 'Cosmic hub for stargazers—APOD, gallery, and community sharing.',
       stack: ['JavaScript', 'APIs', 'Community', 'NASA API', 'Passportjs', 'JWT', 'Express', 'Geolocation'],
-      url: 'https://github.com/Nkovaturient/AstrophileYard-Web-App'
+      url: 'https://github.com/Nkovaturient/AstrophileYard-Web-App',
+      image: './assets/img3.jpg'
     }
   ];
 
@@ -265,6 +292,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
       const card = document.createElement('article');
       card.className = 'project-card';
       card.innerHTML = `
+        <img class="project-thumb" src="${item.image || './assets/img4.jpg'}" alt="${item.name} project visual" loading="lazy">
         <h3>${item.name}</h3>
         <p class="project-meta">${item.description}</p>
         <div class="badges">
@@ -324,26 +352,149 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   drawWaves();
   window.addEventListener('resize', resize);
 
-  // Static highlights of active/merged PRs & key issues
-  renderSignals([
-    { type: 'PR (Open)', repo: 'libp2p/py-libp2p', time: 'Open', note: 'Fix QUIC stream direction, CID routing/promotion races.' },
-    { type: 'PR (Open)', repo: 'storacha/console-toolkit', time: 'Open', note: 'feat(toolkit-examples): dmail + web3mail integration guide.' },
-    { type: 'PR (Open)', repo: 'Repello-AI/Agent-Wiz', time: 'Open', note: 'Enhance Agent UI viz for agentic flows.' },
-    { type: 'PR (Merged)', repo: 'libp2p/js-libp2p-examples', time: 'Merged', note: 'Add WebRTC private→public example via QR/signaling.' },
-    { type: 'Issue (Open)', repo: 'storacha/console-toolkit', time: 'Updated', note: 'Docs & examples site for Storacha console toolkit.' },
-    { type: 'Issue (In Progress)', repo: 'ipfs/helia', time: 'In Progress', note: 'Remote pinning service: aggregate error handling.' },
-  ]);
+  try {
+    const freshSignals = await fetchSignals(handle);
+    if (!freshSignals.length) throw new Error('No recent signal items found');
+    localStorage.setItem('portfolio_signals_cache', JSON.stringify(freshSignals));
+    renderSignals(freshSignals);
+  } catch (err) {
+    const cached = safeReadSignalCache();
+    if (cached.length) {
+      renderSignals(cached);
+    } else {
+      renderSignals([
+        {
+          type: 'Signal',
+          repo: 'GitHub Activity',
+          note: 'Live feed is temporarily unavailable. Refresh soon to sync latest PRs and issues.',
+          time: 'Fallback',
+        },
+      ]);
+    }
+  }
+
+  async function fetchSignals(user) {
+    const res = await fetch(`https://api.github.com/users/${user}/events/public?per_page=40`, {
+      headers: { Accept: 'application/vnd.github+json' },
+    });
+    if (!res.ok) throw new Error(`GitHub API failed with ${res.status}`);
+    const events = await res.json();
+    if (!Array.isArray(events)) return [];
+
+    const mapped = events
+      .map(mapEventToSignal)
+      .filter(Boolean);
+
+    const deduped = [];
+    const seen = new Set();
+    for (const item of mapped) {
+      const key = `${item.type}|${item.repo}|${item.note}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        deduped.push(item);
+      }
+      if (deduped.length >= 8) break;
+    }
+    return deduped;
+  }
+
+  function safeReadSignalCache() {
+    try {
+      const raw = localStorage.getItem('portfolio_signals_cache');
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function mapEventToSignal(event) {
+    const repo = event?.repo?.name || 'Unknown repo';
+    const created = event?.created_at ? formatWhen(event.created_at) : 'recent';
+    const payload = event?.payload || {};
+
+    if (event.type === 'PullRequestEvent' && payload.pull_request) {
+      const pr = payload.pull_request;
+      const action = payload.action || 'updated';
+      const merged = pr.merged_at ? 'Merged' : action;
+      return {
+        type: `PR (${capitalize(merged)})`,
+        repo,
+        note: truncate(pr.title || 'Pull request activity', 110),
+        time: created,
+        url: pr.html_url,
+      };
+    }
+
+    if (event.type === 'IssuesEvent' && payload.issue) {
+      const issue = payload.issue;
+      return {
+        type: `Issue (${capitalize(payload.action || issue.state || 'updated')})`,
+        repo,
+        note: truncate(issue.title || 'Issue activity', 110),
+        time: created,
+        url: issue.html_url,
+      };
+    }
+
+    if (event.type === 'IssueCommentEvent' && payload.issue) {
+      return {
+        type: 'Issue Comment',
+        repo,
+        note: truncate(payload.issue.title || 'Commented on issue', 110),
+        time: created,
+        url: payload.comment?.html_url || payload.issue?.html_url,
+      };
+    }
+
+    if (event.type === 'PushEvent' && Array.isArray(payload.commits) && payload.commits.length) {
+      const commit = payload.commits[0];
+      return {
+        type: 'Push',
+        repo,
+        note: truncate(commit.message || 'Pushed new commits', 110),
+        time: created,
+        url: commit.sha ? `https://github.com/${repo}/commit/${commit.sha}` : `https://github.com/${repo}`,
+      };
+    }
+
+    return null;
+  }
+
+  function formatWhen(isoDate) {
+    const delta = Date.now() - new Date(isoDate).getTime();
+    const hours = Math.max(1, Math.floor(delta / (1000 * 60 * 60)));
+    if (hours < 24) return `${hours}h ago`;
+    const days = Math.floor(hours / 24);
+    return `${days}d ago`;
+  }
+
+  function capitalize(value) {
+    if (!value) return 'Updated';
+    return value.charAt(0).toUpperCase() + value.slice(1);
+  }
+
+  function truncate(text, max) {
+    if (!text || text.length <= max) return text || '';
+    return `${text.slice(0, max - 1)}…`;
+  }
 
   function renderSignals(items) {
     list.innerHTML = '';
     items.forEach(item => {
       const div = document.createElement('div');
       div.className = 'signal-item';
-      div.innerHTML = `
+      const content = `
         <h4>${item.type.replace('Event','')}</h4>
         <p class="microcopy">${item.repo}</p>
         <p class="microcopy">${item.note}</p>
         <p class="microcopy">${item.time}</p>
+      `;
+      div.innerHTML = `
+        ${item.url
+          ? `<a class="signal-item-link" href="${item.url}" target="_blank" rel="noopener noreferrer">${content}</a>`
+          : content}
       `;
       list.appendChild(div);
     });

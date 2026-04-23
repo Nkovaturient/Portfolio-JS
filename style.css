@@ -54,6 +54,12 @@ main {
   margin: 0 auto;
 }
 
+header.shell {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+
 .section {
   width: min(92vw, var(--max-width));
   margin: 0 auto;
@@ -85,8 +91,7 @@ p.microcopy {
 }
 
 .nav {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 3;
   display: flex;
   align-items: center;
@@ -267,6 +272,44 @@ p.microcopy {
   font-size: 0.9rem;
 }
 
+.build-lab {
+  display: grid;
+  gap: 16px;
+}
+
+.lab-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.lab-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.03);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transform-style: preserve-3d;
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.lab-card:hover {
+  border-color: rgba(60, 242, 255, 0.35);
+  box-shadow: var(--glow);
+}
+
+.lab-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.05) contrast(1.04);
+}
+
+.lab-card .microcopy {
+  padding: 10px 12px 12px;
+}
+
 .section-header { margin-bottom: 24px; }
 
 .identity-grid {
@@ -397,6 +440,15 @@ p.microcopy {
   transform-style: preserve-3d;
 }
 
+.project-thumb {
+  width: 100%;
+  height: 132px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+}
+
 .project-card:hover {
   box-shadow: var(--glow);
   transform: translateY(-6px) rotateX(6deg) rotateY(-6deg);
@@ -451,6 +503,26 @@ p.microcopy {
 }
 
 .signal-item h4 { margin-bottom: 6px; }
+
+.signal-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.signal-item-link {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  border-radius: 8px;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.signal-item-link:hover {
+  transform: translateX(2px);
+  opacity: 0.96;
+}
 
 .contact-form {
   border: 1px solid var(--border);
