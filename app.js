@@ -15,10 +15,11 @@ navLinks.querySelectorAll('a').forEach(link => {
     if (!window.Typed) return false;
     new Typed('#typed', {
       strings: [
-        'Full-stack Developer.',
-        'Open Source Contributor.',
-        'Explorer.',
-        'Tech Enthusiast.',
+        "AI-Enthusiast",
+        'Full-stack Dev',
+        'Open Source Contributor',
+        'Explorer',
+        'Tech Enthusiast',
         'Astrophile.',
       ],
       typeSpeed: 38,

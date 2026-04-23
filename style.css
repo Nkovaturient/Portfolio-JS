@@ -150,7 +150,7 @@ p.microcopy {
 
 .hero-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
   align-items: center;
   gap: 32px;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
@@ -161,7 +161,7 @@ p.microcopy {
 }
 
 .hero-text h1 {
-  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  font-size: clamp(2.1rem, 4vw, 3.4rem);
   margin: 10px 0;
 }
 
