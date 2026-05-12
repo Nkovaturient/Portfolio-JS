@@ -312,6 +312,20 @@ p.microcopy {
 
 .section-header { margin-bottom: 24px; }
 
+.section-header h2 .heading-inline-link {
+  color: var(--cyan);
+  text-decoration: underline;
+  text-decoration-color: var(--cyan-dim);
+  text-underline-offset: 0.15em;
+  transition: color 180ms ease, text-decoration-color 180ms ease;
+}
+
+.section-header h2 .heading-inline-link:hover,
+.section-header h2 .heading-inline-link:focus-visible {
+  color: var(--white);
+  text-decoration-color: var(--cyan);
+}
+
 .identity-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

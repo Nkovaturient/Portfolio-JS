@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neha Kumari — Portfolio</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  :root {
+    --bg: #0f1117; --bg2: #161b27; --bg3: #1e2535;
+    --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+    --text: #e8edf5; --text2: #8b95a8; --text3: #5a6478;
+    --green: #1D9E75; --green-bg: rgba(29,158,117,0.12); --green-border: rgba(29,158,117,0.35);
+    --blue: #3b82f6; --blue-bg: rgba(59,130,246,0.12); --blue-border: rgba(59,130,246,0.35);
+    --amber: #f59e0b; --amber-bg: rgba(245,158,11,0.12); --amber-border: rgba(245,158,11,0.35);
+    --purple: #8b5cf6; --purple-bg: rgba(139,92,246,0.12); --purple-border: rgba(139,92,246,0.35);
+    --red: #ef4444; --red-bg: rgba(239,68,68,0.10);
+    --radius: 10px; --radius-sm: 6px;
+    font-size: 14px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, -apple-system, sans-serif; min-height: 100vh; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ── WRAPPER ── */
+  .pf { max-width: 860px; margin: 0 auto; padding-bottom: 3rem; }
+
+  /* ── HERO ── */
+  .hero { display: grid; grid-template-columns: auto 1fr auto; gap: 1.25rem; align-items: flex-start; padding: 1.5rem 1.5rem 1.25rem; border-bottom: 0.5px solid var(--border); }
+  .avatar { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg,#1D9E75,#0e5c43); display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; color: #c2eed9; flex-shrink: 0; border: 1.5px solid var(--green-border); letter-spacing: 1px; }
+  .hero-info { display: flex; flex-direction: column; gap: 3px; }
+  .hero-name { font-size: 20px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
+  .hero-title { font-size: 12.5px; color: var(--text2); }
+  .hero-tagline { font-size: 12px; color: var(--text3); margin-top: 3px; font-style: italic; }
+  .hero-loc { font-size: 11.5px; color: var(--text3); margin-top: 5px; display: flex; align-items: center; gap: 4px; }
+  .hero-stats { display: flex; flex-direction: column; gap: 5px; align-items: flex-end; }
+  .stat-pill { background: var(--bg2); border: 0.5px solid var(--border); border-radius: 20px; padding: 3px 10px; font-size: 11px; color: var(--text2); white-space: nowrap; display: flex; align-items: center; gap: 4px; }
+  .stat-pill .ti { color: var(--green); font-size: 12px; }
+  .open-badge { background: var(--green-bg); border: 0.5px solid var(--green-border); border-radius: 20px; padding: 3px 10px; font-size: 11px; color: #6ddeb4; display: flex; align-items: center; gap: 5px; }
+  .open-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  /* ── NAV ── */
+  .nav { display: flex; gap: 2px; padding: 0.65rem 1.5rem; border-bottom: 0.5px solid var(--border); overflow-x: auto; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav-btn { background: transparent; border: 0.5px solid transparent; border-radius: var(--radius-sm); padding: 5px 12px; font-size: 12.5px; font-weight: 500; color: var(--text2); cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 5px; transition: all 0.15s; }
+  .nav-btn .ti { font-size: 13px; }
+  .nav-btn:hover { background: var(--bg2); border-color: var(--border); color: var(--text); }
+  .nav-btn.active { background: var(--green-bg); border-color: var(--green-border); color: #6ddeb4; }
+
+  /* ── SECTIONS ── */
+  .section { display: none; padding: 1.25rem 1.5rem; }
+  .section.active { display: block; }
+  .sec-label { font-size: 10.5px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 0.9rem; }
+
+  /* ── LINKS ── */
+  .link-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; }
+  .link-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 0.9rem; display: flex; flex-direction: column; gap: 6px; transition: border-color 0.15s; }
+  .link-card:hover { border-color: var(--border2); }
+  .link-icon { font-size: 20px; color: var(--green); }
+  .link-label { font-size: 12.5px; font-weight: 500; color: var(--text); }
+  .link-url { font-size: 10.5px; color: var(--text3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* ── PROJECTS ── */
+  .proj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+  .proj-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; display: flex; flex-direction: column; gap: 7px; transition: border-color 0.15s; }
+  .proj-card:hover { border-color: var(--border2); }
+  .proj-card.winner { border-color: var(--amber-border); }
+  .proj-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 6px; }
+  .proj-name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .proj-desc { font-size: 11.5px; color: var(--text2); line-height: 1.55; }
+  .proj-tags { display: flex; flex-wrap: wrap; gap: 3px; }
+  .tag { font-size: 10.5px; padding: 2px 7px; background: var(--bg3); border-radius: 20px; color: var(--text2); border: 0.5px solid var(--border); }
+  .proj-links { display: flex; gap: 8px; margin-top: auto; padding-top: 7px; border-top: 0.5px solid var(--border); }
+  .proj-link { font-size: 11px; color: var(--green); display: flex; align-items: center; gap: 3px; }
+  .proj-link:hover { text-decoration: underline; }
+  .badge { font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 500; white-space: nowrap; flex-shrink: 0; }
+  .b-live { background: var(--green-bg); color: #6ddeb4; border: 0.5px solid var(--green-border); }
+  .b-oss { background: var(--blue-bg); color: #93c5fd; border: 0.5px solid var(--blue-border); }
+  .b-wip { background: var(--amber-bg); color: #fcd34d; border: 0.5px solid var(--amber-border); }
+  .b-win { background: rgba(245,158,11,0.18); color: #fbbf24; border: 0.5px solid var(--amber-border); }
+
+  /* ── PLATFORMS ── */
+  .plat-list { display: flex; flex-direction: column; gap: 8px; }
+  .plat-item { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1.1rem; display: flex; gap: 1rem; align-items: flex-start; }
+  .plat-icon-wrap { font-size: 22px; color: var(--green); flex-shrink: 0; margin-top: 1px; }
+  .plat-body { flex: 1; min-width: 0; }
+  .plat-name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .plat-role { font-size: 11.5px; color: var(--text2); margin-top: 2px; line-height: 1.5; }
+  .plat-stat { font-size: 11px; color: var(--text3); margin-top: 4px; }
+  .plat-badge { font-size: 10px; padding: 2px 9px; border-radius: 20px; font-weight: 500; white-space: nowrap; flex-shrink: 0; }
+  .pb-built { background: var(--green-bg); color: #6ddeb4; border: 0.5px solid var(--green-border); }
+  .pb-contrib { background: var(--purple-bg); color: #c4b5fd; border: 0.5px solid var(--purple-border); }
+
+  /* ── RESEARCH ── */
+  .paper-list { display: flex; flex-direction: column; gap: 10px; }
+  .paper-item { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; display: flex; gap: 1rem; align-items: flex-start; }
+  .paper-yr { font-size: 10.5px; font-weight: 600; color: #6ddeb4; background: var(--green-bg); padding: 3px 8px; border-radius: 5px; border: 0.5px solid var(--green-border); white-space: nowrap; margin-top: 2px; }
+  .paper-body { display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0; }
+  .paper-title { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.4; }
+  .paper-venue { font-size: 11px; color: var(--text2); }
+  .paper-award { font-size: 11px; color: #fcd34d; margin-top: 2px; display: flex; align-items: center; gap: 4px; }
+  .paper-desc { font-size: 11.5px; color: var(--text3); line-height: 1.5; margin-top: 3px; }
+
+  /* ── HACKATHONS ── */
+  .hack-grid { display: flex; flex-direction: column; gap: 10px; }
+  .hack-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; display: flex; gap: 1rem; align-items: flex-start; }
+  .hack-card.gold { border-color: var(--amber-border); }
+  .hack-rank { min-width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .hack-body { flex: 1; min-width: 0; }
+  .hack-name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .hack-org { font-size: 11.5px; color: var(--text2); margin-top: 2px; }
+  .hack-project { font-size: 11.5px; color: var(--text3); margin-top: 3px; }
+  .hack-prizes { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+  .hack-prize { font-size: 10.5px; padding: 2px 9px; border-radius: 20px; font-weight: 500; }
+  .hp-cash { background: var(--green-bg); color: #6ddeb4; border: 0.5px solid var(--green-border); }
+  .hp-nft { background: var(--purple-bg); color: #c4b5fd; border: 0.5px solid var(--purple-border); }
+  .hp-place { background: var(--amber-bg); color: #fcd34d; border: 0.5px solid var(--amber-border); }
+  .hp-track { background: var(--blue-bg); color: #93c5fd; border: 0.5px solid var(--blue-border); }
+
+  /* ── HONORS ── */
+  .hon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 9px; }
+  .hon-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; display: flex; flex-direction: column; gap: 5px; }
+  .hon-icon { font-size: 22px; margin-bottom: 2px; }
+  .hon-title { font-size: 12.5px; font-weight: 600; color: var(--text); }
+  .hon-issuer { font-size: 11px; color: var(--text2); }
+  .hon-date { font-size: 10.5px; color: var(--text3); }
+  .hon-desc { font-size: 11px; color: var(--text3); line-height: 1.5; margin-top: 2px; }
+
+  /* ── ROLES ── */
+  .role-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 1.25rem; }
+  .role-tag { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius-sm); padding: 7px 14px; font-size: 12.5px; color: var(--text); display: flex; align-items: center; gap: 6px; }
+  .role-tag .ti { color: var(--green); font-size: 14px; }
+  .pref-list { display: flex; flex-direction: column; gap: 7px; }
+  .pref-row { display: flex; align-items: center; gap: 10px; font-size: 12.5px; }
+  .pref-k { color: var(--text2); width: 130px; flex-shrink: 0; }
+  .pref-v { color: var(--text); font-weight: 500; }
+
+  /* ── RESUME ── */
+  .res-cards { display: flex; flex-direction: column; gap: 9px; }
+  .res-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; display: flex; align-items: center; gap: 1rem; transition: border-color 0.15s; }
+  .res-card:hover { border-color: var(--border2); }
+  .res-icon { font-size: 26px; color: var(--green); flex-shrink: 0; }
+  .res-info { flex: 1; }
+  .res-title { font-size: 13px; font-weight: 600; color: var(--text); }
+  .res-role { font-size: 11px; color: var(--green); margin-top: 1px; font-weight: 500; }
+  .res-sub { font-size: 11px; color: var(--text2); margin-top: 3px; }
+  .res-btn { background: var(--bg3); border: 0.5px solid var(--border2); border-radius: var(--radius-sm); padding: 7px 14px; font-size: 12px; color: var(--text); cursor: pointer; display: flex; align-items: center; gap: 5px; white-space: nowrap; transition: all 0.15s; text-decoration: none; }
+  .res-btn:hover { border-color: var(--green-border); color: #6ddeb4; }
+
+  /* ── BOOK ── */
+  .book-card { background: var(--bg2); border: 0.5px solid var(--amber-border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; max-width: 300px; }
+  .book-spine { height: 6px; background: linear-gradient(90deg, var(--amber), #d97706); }
+  .book-body { padding: 1rem 1.1rem; display: flex; flex-direction: column; gap: 6px; }
+  .book-title { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.4; }
+  .book-pub { font-size: 11px; color: var(--text2); }
+  .book-link { margin-top: 6px; padding-top: 8px; border-top: 0.5px solid var(--border); font-size: 11px; color: var(--amber); display: flex; align-items: center; gap: 4px; text-decoration: none; }
+  .book-link:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    .hero { grid-template-columns: auto 1fr; }
+    .hero-stats { display: none; }
+    .proj-grid, .hon-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="pf">
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="avatar">NK</div>
+  <div class="hero-info">
+    <div class="hero-name">Neha Kumari</div>
+    <div class="hero-title">Full Stack Engineer · Web3 &amp; AI Systems · Open-Source Builder</div>
+    <div class="hero-tagline">"Building a cosmic verse of my creation through code & systems that make a difference."</div>
+    <div class="hero-loc"><i class="ti ti-map-pin"></i> Lucknow, India · Remote-first </div>
+  </div>
+  <div class="hero-stats">
+    <div class="open-badge"><span class="open-dot"></span> Open to opportunities</div>
+    <div class="stat-pill"><i class="ti ti-trophy"></i> 4× Hackathon awards</div>
+    <div class="stat-pill"><i class="ti ti-git-branch"></i> Protocol Labs PLDG Cohorts 2–6</div>
+    <div class="stat-pill"><i class="ti ti-file-text"></i> 4 research works · 1 book</div>
+  </div>
+</div>
+
+<!-- ── NAV ── -->
+<div class="nav" role="tablist">
+  <button class="nav-btn active" data-tab="links" role="tab"><i class="ti ti-link"></i>Links</button>
+  <button class="nav-btn" data-tab="projects" role="tab"><i class="ti ti-code"></i>Projects</button>
+  <button class="nav-btn" data-tab="platforms" role="tab"><i class="ti ti-building"></i>Platforms</button>
+  <button class="nav-btn" data-tab="hackathons" role="tab"><i class="ti ti-trophy"></i>Hackathons</button>
+  <button class="nav-btn" data-tab="honors" role="tab"><i class="ti ti-award"></i>Honors</button>
+  <button class="nav-btn" data-tab="research" role="tab"><i class="ti ti-microscope"></i>Research</button>
+  <button class="nav-btn" data-tab="books" role="tab"><i class="ti ti-book"></i>Book</button>
+  <button class="nav-btn" data-tab="roles" role="tab"><i class="ti ti-briefcase"></i>Roles</button>
+  <button class="nav-btn" data-tab="resume" role="tab"><i class="ti ti-id"></i>Resume</button>
+</div>
+
+<!-- ═══════════════════════════ LINKS ═══════════════════════════ -->
+<div class="section active" id="tab-links">
+  <div class="sec-label">Profiles &amp; Social Handles</div>
+  <div class="link-grid">
+    <a class="link-card" href="https://github.com/Nkovaturient" target="_blank">
+      <div class="link-icon"><i class="ti ti-brand-github"></i></div>
+      <div class="link-label">GitHub</div>
+      <div class="link-url">github.com/Nkovaturient</div>
+    </a>
+    <a class="link-card" href="https://www.linkedin.com/in/neha-kumari711" target="_blank">
+      <div class="link-icon"><i class="ti ti-brand-linkedin"></i></div>
+      <div class="link-label">LinkedIn</div>
+      <div class="link-url">neha-kumari711</div>
+    </a>
+    <a class="link-card" href="https://nehakumari711.netlify.app/" target="_blank">
+      <div class="link-icon"><i class="ti ti-world"></i></div>
+      <div class="link-label">Portfolio</div>
+      <div class="link-url">nehakumari711.netlify.app</div>
+    </a>
+    <a class="link-card" href="https://x.com/matriX_Nk" target="_blank">
+      <div class="link-icon"><i class="ti ti-brand-x"></i></div>
+      <div class="link-label">X / Twitter</div>
+      <div class="link-url">@matriX_Nk</div>
+    </a>
+    <a class="link-card" href="https://peerlist.io/nehakumari" target="_blank">
+      <div class="link-icon"><i class="ti ti-device-laptop"></i></div>
+      <div class="link-label">Peerlist</div>
+      <div class="link-url">peerlist.io/nehakumari</div>
+    </a>
+    <a class="link-card" href="https://hashnode.com/@matriXnk" target="_blank">
+      <div class="link-icon"><i class="ti ti-pencil"></i></div>
+      <div class="link-label">Hashnode Blog</div>
+      <div class="link-url">@matriXnk</div>
+    </a>
+    <a class="link-card" href="https://www.youtube.com/@Alterok-imagine" target="_blank">
+      <div class="link-icon"><i class="ti ti-brand-youtube"></i></div>
+      <div class="link-label">YouTube</div>
+      <div class="link-url">@Alterok-imagine</div>
+    </a>
+    <a class="link-card" href="https://www.amazon.in/dp/B0GY85H7TZ" target="_blank">
+      <div class="link-icon"><i class="ti ti-book"></i></div>
+      <div class="link-label">Amazon Book</div>
+      <div class="link-url">amazon.in · Published</div>
+    </a>
+    <a class="link-card" href="mailto:nehakumarisde@gmail.com">
+      <div class="link-icon"><i class="ti ti-mail"></i></div>
+      <div class="link-label">Email</div>
+      <div class="link-url">nehakumarisde@gmail.com</div>
+    </a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ PROJECTS ═══════════════════════════ -->
+<div class="section" id="tab-projects">
+  <div class="sec-label">Projects — Web3 · AI · Full Stack</div>
+  <div class="proj-grid">
+
+    <div class="proj-card winner">
+      <div class="proj-top"><div class="proj-name">Rachax402</div><span class="badge b-win">🏆 $504</span></div>
+      <div class="proj-desc">Autonomous agent-to-agent coordination marketplace. AI agents discover services on-chain via ERC-8004, pay via x402 protocol, execute tasks, and post verifiable reputation — zero human in the loop.</div>
+      <div class="proj-tags"><span class="tag">TypeScript</span><span class="tag">Solidity</span><span class="tag">x402</span><span class="tag">Storacha</span><span class="tag">Base</span><span class="tag">Coinbase Agentkit</span></div>
+      <div class="proj-links">
+        <a class="proj-link" href="https://github.com/Nkovaturient/Rachax402" target="_blank"><i class="ti ti-brand-github"></i>GitHub</a>
+        <span style="font-size:10px;color:var(--text3)">PLDG Frontiers Hackathon · ETH Agents Track</span>
+      </div>
+    </div>
+
+    <div class="proj-card winner">
+      <div class="proj-top"><div class="proj-name">GhostLock MEV Reaper</div><span class="badge b-win">🏆 $750</span></div>
+      <div class="proj-desc">DeFi MEV-shielding trade interface that encrypts transactional intents, randomizes settlement using drand VRF, and facilitates batch auctions — protecting users from price manipulation.</div>
+      <div class="proj-tags"><span class="tag">Next.js</span><span class="tag">Solidity</span><span class="tag">ethers.js</span><span class="tag">wagmi</span><span class="tag">VRF</span><span class="tag">Base Sepolia</span></div>
+      <div class="proj-links">
+        <a class="proj-link" href="https://github.com/Nkovaturient/GhostLock-MEV-Reaper" target="_blank"><i class="ti ti-brand-github"></i>GitHub</a>
+        <span style="font-size:10px;color:var(--text3)">Loops Hacker House · Dcipher Track</span>
+      </div>
+    </div>
+
+    <div class="proj-card winner">
+      <div class="proj-top"><div class="proj-name">LLMesh</div><span class="badge b-win">🥉 $50</span></div>
+      <div class="proj-desc">Browser-based P2P AI mesh where an embedded LLM (Ollama/OpenAI) joins the network as its own node through Libp2p's GossipSub layer — weaving AI intelligence directly into a decentralized peer network.</div>
+      <div class="proj-tags"><span class="tag">Libp2p</span><span class="tag">Ollama</span><span class="tag">GossipSub</span><span class="tag">JavaScript</span></div>
+      <div class="proj-links">
+        <a class="proj-link" href="https://github.com/Nkovaturient/LLMesh" target="_blank"><i class="ti ti-brand-github"></i>GitHub</a>
+        <span style="font-size:10px;color:var(--text3)">Libp2p × AI Hackathon · 3rd Place</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top"><div class="proj-name">SecretShare</div><span class="badge b-live">Live</span></div>
+      <div class="proj-desc">Decentralized secret-sharing DApp with time-limited UCAN authorization, IPFS-based storage, and wallet-based auth using ethers.js and wagmi. Built entirely solo.</div>
+      <div class="proj-tags"><span class="tag">Next.js</span><span class="tag">UCAN</span><span class="tag">Storacha</span><span class="tag">LIT Protocol</span><span class="tag">ethers.js</span></div>
+      <div class="proj-links"><a class="proj-link" href="https://github.com/Nkovaturient/SecretShare" target="_blank"><i class="ti ti-brand-github"></i>GitHub</a></div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top"><div class="proj-name">Tripmate Planner</div><span class="badge b-live">Live</span></div>
+      <div class="proj-desc">Multi-agentic AI travel planning system powered by ElizaOS + Storacha plugin. Real-time agentic communication via WebSockets and Telegram — from user intent to structured multi-agent execution.</div>
+      <div class="proj-tags"><span class="tag">ElizaOS</span><span class="tag">OpenRouter</span><span class="tag">Storacha</span><span class="tag">Python</span><span class="tag">WebSockets</span></div>
+      <div class="proj-links"><a class="proj-link" href="https://github.com/Nkovaturient/Tripmate-Planner" target="_blank"><i class="ti ti-brand-github"></i>GitHub</a></div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top"><div class="proj-name">Museonic</div><span class="badge b-live">Live</span></div>
+      <div class="proj-desc">Local-first, privacy-minded desktop assistant that turns spontaneous audio — a hum, a lyric, a muttered line — into immediate music playback using Whisper + Ollama.</div>
+      <div class="proj-tags"><span class="tag">Electron</span><span class="tag">Whisper</span><span class="tag">Ollama</span><span class="tag">Python</span><span class="tag">React</span><span class="tag">yt-dlp</span></div>
+      <div class="proj-links"><a class="proj-link" href="https://github.com/Nkovaturient/Muse-onic" target="_blank"><i class="ti ti-brand-github"></i>GitHub</a></div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top"><div class="proj-name">VRForge</div><span class="badge b-live">Live</span></div>
+      <div class="proj-desc">Interactive randomness DApp leveraging drand's decentralized verifiable randomness — applicable to fair-draw NFT minting and DeFi mechanics. 3D UI powered by Three.js + Framer Motion.</div>
+      <div class="proj-tags"><span class="tag">React</span><span class="tag">Three.js</span><span class="tag">drand</span><span class="tag">Framer Motion</span><span class="tag">TypeScript</span></div>
+      <div class="proj-links"><a class="proj-link" href="https://github.com/Nkovaturient/VRForge" target="_blank"><i class="ti ti-brand-github"></i>GitHub</a></div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top"><div class="proj-name">Lattice</div><span class="badge b-wip">WIP</span></div>
+      <div class="proj-desc">Decentralized infrastructure layer project combining P2P networking with on-chain coordination — exploring lattice-based cryptographic primitives for Web3 systems.</div>
+      <div class="proj-tags"><span class="tag">Libp2p</span><span class="tag">Solidity</span><span class="tag">TypeScript</span></div>
+      <div class="proj-links"><a class="proj-link" href="https://github.com/Nkovaturient/Lattice" target="_blank"><i class="ti ti-brand-github"></i>GitHub</a></div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top"><div class="proj-name">TrialBridge</div><span class="badge b-wip">WIP</span></div>
+      <div class="proj-desc">Cross-chain trial and dispute resolution infrastructure — bridging on-chain evidence with verifiable claims and decentralized arbitration logic.</div>
+      <div class="proj-tags"><span class="tag">Solidity</span><span class="tag">IPFS</span><span class="tag">TypeScript</span></div>
+      <div class="proj-links"><a class="proj-link" href="https://github.com/Nkovaturient/TrialBridge" target="_blank"><i class="ti ti-brand-github"></i>GitHub</a></div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top"><div class="proj-name">ChainPulse</div><span class="badge b-wip">WIP</span></div>
+      <div class="proj-desc">Real-time on-chain analytics and event monitoring platform for EVM chains — surfaces MEV activity, gas anomalies, and smart contract events in a developer-friendly dashboard.</div>
+      <div class="proj-tags"><span class="tag">Next.js</span><span class="tag">ethers.js</span><span class="tag">WebSockets</span><span class="tag">PostgreSQL</span></div>
+      <div class="proj-links"><a class="proj-link" href="https://github.com/Nkovaturient/ChainPulse" target="_blank"><i class="ti ti-brand-github"></i>GitHub</a></div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top"><div class="proj-name">Game of Thrones</div><span class="badge b-oss">OSS</span></div>
+      <div class="proj-desc">Interactive web-based strategy game built with decentralized ownership mechanics — on-chain asset claims, player reputations, and verifiable randomness for game events.</div>
+      <div class="proj-tags"><span class="tag">React</span><span class="tag">Solidity</span><span class="tag">IPFS</span><span class="tag">TypeScript</span></div>
+      <div class="proj-links"><a class="proj-link" href="https://github.com/Nkovaturient/Game-of-Thrones" target="_blank"><i class="ti ti-brand-github"></i>GitHub</a></div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top"><div class="proj-name">AstrophileYard</div><span class="badge b-live">Live</span></div>
+      <div class="proj-desc">Full-stack product built solo in 42 days during Buildspace. Weekly public demos, iterated on real community feedback. Demonstrated founder-mode execution speed and end-to-end ownership in 2024.</div>
+      <div class="proj-tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Full Stack</span></div>
+      <div class="proj-links"><a class="proj-link" href="https://github.com/Nkovaturient/AstrophileYard" target="_blank"><i class="ti ti-brand-github"></i>GitHub</a></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════ PLATFORMS ═══════════════════════════ -->
+<div class="section" id="tab-platforms">
+  <div class="sec-label">Platforms Built</div>
+  <div class="plat-list" style="margin-bottom:1.25rem">
+
+    <div class="plat-item">
+      <div class="plat-icon-wrap"><i class="ti ti-music"></i></div>
+      <div class="plat-body">
+        <div class="plat-name">Museonic</div>
+        <div class="plat-role">Founder &amp; Builder — Local-first AI desktop music assistant. Hum something, get music back. Whisper + Ollama + yt-dlp, fully offline, fully private.</div>
+        <div class="plat-stat">Electron · Python · React · macOS &amp; Linux</div>
+      </div>
+      <span class="plat-badge pb-built">Built</span>
+    </div>
+
+    <div class="plat-item">
+      <div class="plat-icon-wrap"><i class="ti ti-grid-dots"></i></div>
+      <div class="plat-body">
+        <div class="plat-name">Lattice</div>
+        <div class="plat-role">Founder — Decentralized P2P + on-chain coordination infrastructure layer exploring lattice cryptographic primitives for Web3 systems.</div>
+        <div class="plat-stat">Libp2p · Solidity · TypeScript · In development</div>
+      </div>
+      <span class="plat-badge pb-built">Built</span>
+    </div>
+
+    <div class="plat-item">
+      <div class="plat-icon-wrap"><i class="ti ti-chart-bar"></i></div>
+      <div class="plat-body">
+        <div class="plat-name">ChainPulse</div>
+        <div class="plat-role">Founder — EVM on-chain analytics dashboard surfacing MEV, gas anomalies, and contract events in real-time for developers and DeFi teams.</div>
+        <div class="plat-stat">Next.js · ethers.js · PostgreSQL · WebSockets</div>
+      </div>
+      <span class="plat-badge pb-built">Built</span>
+    </div>
+
+    <div class="plat-item">
+      <div class="plat-icon-wrap"><i class="ti ti-scale"></i></div>
+      <div class="plat-body">
+        <div class="plat-name">TrialBridge</div>
+        <div class="plat-role">Founder — Cross-chain dispute resolution and trial infrastructure bridging on-chain evidence with decentralized arbitration logic.</div>
+        <div class="plat-stat">Solidity · IPFS · TypeScript · In development</div>
+      </div>
+      <span class="plat-badge pb-built">Built</span>
+    </div>
+
+  </div>
+
+  <div class="sec-label">Open-Source Contributions</div>
+  <div class="plat-list">
+
+    <div class="plat-item">
+      <div class="plat-icon-wrap"><i class="ti ti-network"></i></div>
+      <div class="plat-body">
+        <div class="plat-name">Protocol Labs Dev Guild - Libp2p </div>
+        <div class="plat-role">PLDG Cohorts 2–6 · Frontend contributions to connectivity UX, onboarding flows, and developer documentation. Delivered "Universal Connectivity" workshop — curriculum, live sessions, hands-on demos.</div>
+        <div class="plat-stat">Jan 2025 – Mar 2026 · Remote · Global distributed team</div>
+      </div>
+      <span class="plat-badge pb-contrib">Contributor</span>
+    </div>
+
+    <div class="plat-item">
+      <div class="plat-icon-wrap"><i class="ti ti-database"></i></div>
+      <div class="plat-body">
+        <div class="plat-name">Storacha (console.storacha.network)</div>
+        <div class="plat-role">Built Console Toolkit, MCP-integrated and LLM-powered agentic tools on top of Storacha, bridging decentralized storage with AI-driven developer tooling. Reviewed PRs and co-authored contributor guides.</div>
+        <div class="plat-stat">UCAN · IPFS · MCP · ElizaOS plugin integration</div>
+      </div>
+      <span class="plat-badge pb-contrib">Maintainer & Contributor</span>
+    </div>
+
+    <div class="plat-item">
+      <div class="plat-icon-wrap"><i class="ti ti-lock"></i></div>
+      <div class="plat-body">
+        <div class="plat-name">Dcipher Network — BlockLock</div>
+        <div class="plat-role">Contributed significant frontend modules and encrypted media release demo using Dcipher's BlockLock encryption; integrated Solidity smart contracts and P2P connectivity.</div>
+        <div class="plat-stat">React · ethers.js · wagmi · Solidity · Libp2p · Docker</div>
+      </div>
+      <span class="plat-badge pb-contrib">Contributor</span>
+    </div>
+
+    <div class="plat-item">
+      <div class="plat-icon-wrap"><i class="ti ti-code-circle"></i></div>
+      <div class="plat-body">
+        <div class="plat-name">HacktoberFest 2024 &amp; 2025</div>
+        <div class="plat-role">Contributed across multiple open-source repos two consecutive years. Badge recipient both cycles. Consistent community contributor beyond Protocol Labs ecosystem.</div>
+        <div class="plat-stat">Oct–Nov 2024 · Oct–Nov 2025 · Remote</div>
+      </div>
+      <span class="plat-badge pb-contrib">Contributor</span>
+    </div>
+
+    <div class="plat-item">
+      <div class="plat-icon-wrap"><i class="ti ti-sun"></i></div>
+      <div class="plat-body">
+        <div class="plat-name">Google Summer of Code Extended — GSOC-Ext 2024</div>
+        <div class="plat-role">Contributed to open-source repositories during GSOC Extended 2024 — demonstrating consistent problem-solving and collaborative development in a structured open-source program.</div>
+        <div class="plat-stat">Oct–Nov 2024 · Remote</div>
+      </div>
+      <span class="plat-badge pb-contrib">Contributor</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════ HACKATHONS ═══════════════════════════ -->
+<div class="section" id="tab-hackathons">
+  <div class="sec-label">Hackathons &amp; Competitions</div>
+  <div class="hack-grid">
+
+    <div class="hack-card gold">
+      <div class="hack-rank" style="background:var(--amber-bg);font-size:22px">🏆</div>
+      <div class="hack-body">
+        <div class="hack-name">PLDG Frontiers Collaboration Hackathon</div>
+        <div class="hack-org">Protocol Labs Dev Guild · Ethereum Ecosystem · 2025</div>
+        <div class="hack-project">Built: <strong>Rachax402</strong> — Autonomous agent-to-agent coordination marketplace. AI agents discover on-chain, pay via x402, execute tasks, post verifiable reputation. Full agentic stack, no human in the loop.</div>
+        <div class="hack-prizes">
+          <span class="hack-prize hp-cash">$504 prize</span>
+          <span class="hack-prize hp-track">🥉 3rd · Agents with Receipts Track</span>
+          <span class="hack-prize hp-track">Ethereum Ecosystem</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hack-card gold">
+      <div class="hack-rank" style="background:var(--green-bg);font-size:22px">🏆</div>
+      <div class="hack-body">
+        <div class="hack-name">Loops Hacker House</div>
+        <div class="hack-org">Dcipher Network · September 2025 (21–25 Sep)</div>
+        <div class="hack-project">Built: <strong>GhostLock MEV Reaper</strong> — MEV-shielding DeFi interface encrypting transactional intents via drand VRF. Protects users from frontrunning and price manipulation through batch auction settlement.</div>
+        <div class="hack-prizes">
+          <span class="hack-prize hp-cash">$750 prize</span>
+          <span class="hack-prize hp-track">🥇 Won Dcipher's Track</span>
+          <span class="hack-prize hp-track">Dcipher Network</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hack-card">
+      <div class="hack-rank" style="background:var(--purple-bg);font-size:22px">🎓</div>
+      <div class="hack-body">
+        <div class="hack-name">Threshold Cryptography Bootcamp</div>
+        <div class="hack-org">Dcipher Network · August 2025</div>
+        <div class="hack-project">Completed intensive threshold cryptography bootcamp — exploring decentralized key management, multi-party computation, and encrypted access control primitives used in production Web3 systems.</div>
+        <div class="hack-prizes">
+          <span class="hack-prize hp-cash">$200 prize</span>
+          <span class="hack-prize hp-nft">NFT awarded</span>
+          <span class="hack-prize hp-track">Dcipher Network</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hack-card">
+      <div class="hack-rank" style="background:var(--blue-bg);font-size:22px">🥉</div>
+      <div class="hack-body">
+        <div class="hack-name">Libp2p × AI Hackathon</div>
+        <div class="hack-org">Protocol Labs · 2025</div>
+        <div class="hack-project">Built: <strong>LLMesh</strong> — Browser-based P2P chat mesh where an embedded LLM joins the network as its own peer node via Libp2p's GossipSub layer, weaving AI directly into decentralized infrastructure.</div>
+        <div class="hack-prizes">
+          <span class="hack-prize hp-cash">$50 prize</span>
+          <span class="hack-prize hp-place">🥉 3rd Place</span>
+          <span class="hack-prize hp-track">Protocol Labs</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════ HONORS ═══════════════════════════ -->
+<div class="section" id="tab-honors">
+  <div class="sec-label">Academic Honors &amp; Awards</div>
+  <div class="hon-grid">
+
+    <div class="hon-card" style="border-color:var(--amber-border)">
+      <div class="hon-icon">🏅</div>
+      <div class="hon-title">Navyug Ratna — All Rounder</div>
+      <div class="hon-issuer">Navyug Girls Degree College</div>
+      <div class="hon-date">April 2026 · NKMV Annual Function</div>
+      <div class="hon-desc">Awarded for excellence across academics, sports, social concern competitions, extracurricular activities, and achievements throughout 2022–2025. Felicitated by Prof. Manjula Upadhyay &amp; Shri Pawan Singh.</div>
+    </div>
+
+    <div class="hon-card" style="border-color:var(--amber-border)">
+      <div class="hon-icon">🥇</div>
+      <div class="hon-title">Gold Medal — Highest Marks</div>
+      <div class="hon-issuer">Navyug Girls Degree College</div>
+      <div class="hon-date">February 2025</div>
+      <div class="hon-desc">Gold medal for achieving highest marks [82.8%] in AIH, Philosophy and Political Science across the department.</div>
+    </div>
+
+    <div class="hon-card" style="border-color:var(--amber-border)">
+      <div class="hon-icon">⭐</div>
+      <div class="hon-title">Smt Tara Shukla Award — 1st</div>
+      <div class="hon-issuer">Navyug Girls Degree College</div>
+      <div class="hon-date">February 2025</div>
+      <div class="hon-desc">"Legends are made when the fire inside them burns brighter than their doubt." — 1st position with 87.5% marks in AIH across the institution.</div>
+    </div>
+
+    <div class="hon-card" style="border-color:var(--green-border)">
+      <div class="hon-icon">🏆</div>
+      <div class="hon-title">GyanMahakumbh Essay Finalist</div>
+      <div class="hon-issuer">UP Hindi Institute · Government of UP</div>
+      <div class="hon-date">2025</div>
+      <div class="hon-desc">Essay "Viksit Bharat through Indian Knowledge Tradition" awarded by UP Hindi Institute at GyanMahakumbh 2025 state contest.</div>
+    </div>
+
+    <div class="hon-card" style="border-color:var(--green-border)">
+      <div class="hon-icon">📜</div>
+      <div class="hon-title">Top Minor Research Project</div>
+      <div class="hon-issuer">Political Science Dept · Lucknow University</div>
+      <div class="hon-date">2025</div>
+      <div class="hon-desc">Top recognition for "Global Environment: An Interdisciplinary Lens" — featured in College Yearly publication.</div>
+    </div>
+
+    <div class="hon-card">
+      <div class="hon-icon">💡</div>
+      <div class="hon-title">MySQL DB Odyssey — 1st Star</div>
+      <div class="hon-issuer">HackerRank</div>
+      <div class="hon-date">February 2024</div>
+      <div class="hon-desc">Bagged 1st SQL Star on HackerRank — the first step into the developer world. "Igniting the fire of proclivity towards coding solutions." and Counting();…</div>
+    </div>
+
+    <div class="hon-card">
+      <div class="hon-icon">🎤</div>
+      <div class="hon-title">Debate Competition</div>
+      <div class="hon-issuer">RMPG College, Sitapur</div>
+      <div class="hon-date">November 2023</div>
+      <div class="hon-desc">Inter-college debate: "Is One Nation One Election in National Interest?" — represented Navyug Girls Degree College.</div>
+    </div>
+
+    <div class="hon-card">
+      <div class="hon-icon">🎙️</div>
+      <div class="hon-title">Xenium 6.0 Debate Competition</div>
+      <div class="hon-issuer">Lucknow Public College of Professional Studies</div>
+      <div class="hon-date">2024</div>
+      <div class="hon-desc">Inter-college Xenium 6.0 debate competition — represented Navyug Kanya Mahavidyalaya.</div>
+    </div>
+
+    <div class="hon-card" style="border-color:var(--purple-border)">
+      <div class="hon-icon">🌿</div>
+      <div class="hon-title">HacktoberFest Badge</div>
+      <div class="hon-issuer">Digital Ocean / GitHub</div>
+      <div class="hon-date">2024 &amp; 2025</div>
+      <div class="hon-desc">Awarded HacktoberFest participation and completion badges two consecutive years — consistent open-source contributor.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════ RESEARCH ═══════════════════════════ -->
+<div class="section" id="tab-research">
+  <div class="sec-label">Research Works &amp; Academic Papers</div>
+  <div class="paper-list">
+
+    <div class="paper-item">
+      <div class="paper-yr">2025</div>
+      <div class="paper-body">
+        <a href="https://bafybeiasueaw73ry7tmhakijwb6c7dkuwhlqtzhe64wte6klxyw4f7xxa4.ipfs.w3s.link/" target="_blank">
+        <div class="paper-title">Viksit Bharat through Indian Knowledge Tradition</div>
+        <div class="paper-venue">GyanMahakumbh 2025 Essay Contest · Awarded by UP Hindi Institute, Government of UP</div>
+        <div class="paper-award"><i class="ti ti-trophy"></i> Finalist Award — UP Hindi Institute</div>
+        <div class="paper-desc">Proposed revival of Gurukul-based ecological education, Ayurveda, and Vrikshayurveda — linking Indian philosophical thought with SDG-aligned development policies. Argues for decolonizing sustainability frameworks through indigenous wisdom.</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="paper-item">
+      <div class="paper-yr">2025</div>
+      <div class="paper-body">
+        <a href="https://bafybeibv3mwbuprseuvb2yguxruzdjsot46or56indnuk7khmzv67rpwle.ipfs.w3s.link/" target="_blank">
+        <div class="paper-title">Global Environment: An Interdisciplinary Lens</div>
+        <div class="paper-venue">Minor Project — Political Science Dept, Lucknow University · March 2025</div>
+        <div class="paper-award"><i class="ti ti-award"></i> Top Project Award · Featured in College Yearly</div>
+        <div class="paper-desc">Explored environmental change through historical, observational, and biological perspectives. Studied international treaties (Paris Agreement, IPCC reports), climate diplomacy, and structural imbalances in global environmental governance.</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="paper-item">
+      <div class="paper-yr">2025</div>
+      <div class="paper-body">
+        <a href="https://bafkreiepkv4cvfyyqua7yxwiiqbfqc2ndlw35jzxb3njqf6c5cro7dzosu.ipfs.w3s.link/" target="_blank">
+        <div class="paper-title">Environment and Our Responsibility</div>
+        <div class="paper-venue">Academic Research Work · Navyug Kanya Mahavidyalaya, Lucknow University</div>
+        <div class="paper-desc">Analyzed humanity's moral and civilizational debt to nature. Argued for a "comfort-zone surrender" as prerequisite for a genuine deep sustainability shift — beyond policy into cultural transformation.</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="paper-item">
+      <div class="paper-yr">2024</div>
+      <div class="paper-body">
+        <a href="https://bafybeidtfmt5fqn5stbfxdbc53va5mprn3yzxdta73kdtobqqqjnafn3f4.ipfs.w3s.link/" target="_blank">
+        <div class="paper-title">The Non-Aligned Movement &amp; Third World Order</div>
+        <div class="paper-venue">Term Paper · Semester 5 · November 2024 · Featured in College Yearly Publication</div>
+        <div class="paper-award"><i class="ti ti-file-check"></i> Featured in College Annual Publication</div>
+        <div class="paper-desc">Traced NAM's legacy and its potential for creating equitable climate negotiations. Suggested diplomatic frameworks for small and developing nations — arguing NAM's non-bloc philosophy as a template for a multipolar climate governance architecture.</div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sec-label" style="margin-top:1.5rem">Research Interests</div>
+  <div style="display:flex;flex-wrap:wrap;gap:6px;">
+    <span class="tag" style="font-size:12px;padding:4px 10px;">Indigenous Knowledge &amp; Climate Resilience</span>
+    <span class="tag" style="font-size:12px;padding:4px 10px;">Environmental Political Theory</span>
+    <span class="tag" style="font-size:12px;padding:4px 10px;">Global South–North Climate Dialogue</span>
+    <span class="tag" style="font-size:12px;padding:4px 10px;">Arctic Geopolitics &amp; Sustainability Ethics</span>
+    <span class="tag" style="font-size:12px;padding:4px 10px;">Cultural Decolonization in Environmental Ed</span>
+    <span class="tag" style="font-size:12px;padding:4px 10px;">Agentic AI Systems Design</span>
+    <span class="tag" style="font-size:12px;padding:4px 10px;">Decentralized P2P Infrastructure</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ BOOK ═══════════════════════════ -->
+<div class="section" id="tab-books">
+  <div class="sec-label">Published Book</div>
+  <div class="book-card">
+    <div class="book-spine"></div>
+    <div class="book-body">
+      <div class="book-title">Mindset</div>
+      <div class="book-pub">Amazon Kindle Direct Publishing · Self-published </div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px;">2025 · Available on Amazon India</div>
+      <div style="font-size:11.5px;color:var(--text2);margin-top:6px;line-height:1.5;">Being Humane.</div>
+      <a class="book-link" href="https://www.amazon.in/dp/B0GY85H7TZ" target="_blank">
+        <i class="ti ti-external-link"></i> Read / Buy on Amazon India
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ ROLES ═══════════════════════════ -->
+<div class="section" id="tab-roles">
+  <div class="sec-label">Roles Interested In</div>
+  <div class="open-badge" style="margin-bottom:1rem;width:fit-content"><span class="open-dot"></span> Open to opportunities · 2 weeks notice</div>
+  <div class="role-tags">
+    <div class="role-tag"><i class="ti ti-brain"></i>AI / Agentic Systems Engineer</div>
+    <div class="role-tag"><i class="ti ti-cube"></i>Web3 / Blockchain Developer</div>
+    <div class="role-tag"><i class="ti ti-code"></i>Full Stack Engineer</div>
+    <div class="role-tag"><i class="ti ti-server"></i>Backend / Node.js Developer</div>
+    <div class="role-tag"><i class="ti ti-users-group"></i>Developer Experience Engineer</div>
+    <div class="role-tag"><i class="ti ti-rocket"></i>Early-stage Startup Engineer</div>
+    <div class="role-tag"><i class="ti ti-microscope"></i>AI Research Engineer</div>
+    <div class="role-tag"><i class="ti ti-chart-bar"></i>Tech Advisor · Web3 Protocol</div>
+  </div>
+  <div class="sec-label" style="margin-top:1.25rem">Preferences</div>
+  <div class="pref-list">
+    <div class="pref-row"><span class="pref-k">Work type</span><span class="pref-v">Remote-first · Hybrid welcome</span></div>
+    <div class="pref-row"><span class="pref-k">Employment</span><span class="pref-v">Full-time · Contract · Fractional</span></div>
+    <div class="pref-row"><span class="pref-k">Location</span><span class="pref-v">India · US (open to SF relocation, visa req.) · EU · Remote</span></div>
+    <div class="pref-row"><span class="pref-k">Availability</span><span class="pref-v">1-2 weeks notice</span></div>
+    <div class="pref-row"><span class="pref-k">Excited by</span><span class="pref-v">Founding teams · Deep-tech · AI infra · DeFi protocols · Agent systems</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ RESUME ═══════════════════════════ -->
+<div class="section" id="tab-resume">
+  <div class="sec-label">Role-specific Resumes</div>
+  <div class="res-cards">
+
+    <div class="res-card">
+      <div class="res-icon"><i class="ti ti-layers-intersect"></i></div>
+      <div class="res-info">
+        <div class="res-title">Full Stack Developer Resume</div>
+        <div class="res-role">Web3 · Smart Contracts · DeFi · React · Node.js</div>
+        <div class="res-sub">Emphasis on Protocol Labs open-source, DApp builds, wallet integrations, and NFT infrastructure. 2 pages · May 2026</div>
+      </div>
+      <a class="res-btn" href="./assets/Neha_Kumari_CV.docx.pdf" target="_blank"><i class="ti ti-eye"></i>View</a>
+    </div>
+
+    <div class="res-card">
+      <div class="res-icon"><i class="ti ti-brain"></i></div>
+      <div class="res-info">
+        <div class="res-title">AI Systems / LLM Integration / Open Source Contribution</div>
+        <div class="res-role">Agentic Systems · MCP · ElizaOS · Claude · OpenRouter · LLM Integration</div>
+        <div class="res-sub">Emphasis on LLM orchestration, agentic architecture, Vercel/Langchain systems, ADK pipelines, and AI-native product builds. 2 pages · May 2026</div>
+      </div>
+      <a class="res-btn" href="./assets/Neha_Kumari_CV__ .pdf" target="_blank"><i class="ti ti-eye"></i>View</a>
+    </div>
+
+    <!-- <div class="res-card">
+      <div class="res-icon"><i class="ti ti-cube"></i></div>
+      <div class="res-info">
+        <div class="res-title">AI Systems / Web3 Infra Resume</div>
+        <div class="res-role">AI Systems Eng · DevEx · Libp2p · IPFS · Storacha · Solidity</div>
+        <div class="res-sub">Emphasis on infrastructure-layer work, developer tooling, and AI-agent systems for deep-tech/protocol roles. 2 pages · May 2026</div>
+      </div>
+      <a class="res-btn" href="Neha_Kumari_Resume__.pdf" target="_blank"><i class="ti ti-download"></i>Download</a>
+    </div> -->
+
+    <div class="res-card">
+      <div class="res-icon"><i class="ti ti-microscope"></i></div>
+      <div class="res-info">
+        <div class="res-title">Research Record &amp; Academic CV</div>
+        <div class="res-role">Political Ecology · Sustainability · Indigenous Knowledge Systems</div>
+        <div class="res-sub">Research works, policy papers, GyanMahakumbh award, and academic achievements. For research or interdisciplinary roles.</div>
+      </div>
+      <a class="res-btn" href="./assets/Neha_Kumari_Research_Record (1).pdf" target="_blank"><i class="ti ti-eye"></i>View</a>
+    </div>
+
+    <div class="res-card" style="border-color:var(--green-border)">
+      <div class="res-icon"><i class="ti ti-calendar"></i></div>
+      <div class="res-info">
+        <div class="res-title">Book a 10-min Intro Call</div>
+        <div class="res-role">For VCs, Founding Teams, Hiring Managers &amp; Protocol Teams</div>
+        <div class="res-sub">Remote · Async-friendly · Can discuss work/projects/ideas</div>
+      </div>
+      <a class="res-btn" href="https://cal.com/matrix-nk/intro-call" target="_blank" style="border-color:var(--green-border);color:#6ddeb4"><i class="ti ti-mail"></i>Contact</a>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- /.pf -->
+
+<script>
+  const btns = document.querySelectorAll('.nav-btn');
+  const sections = document.querySelectorAll('.section');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      sections.forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      const t = document.getElementById('tab-' + btn.dataset.tab);
+      if (t) t.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
