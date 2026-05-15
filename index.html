@@ -13,9 +13,25 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="./style.css">
+  <link rel="preload" as="image" href="./assets/optimized/ar-hero.webp" type="image/webp">
 </head>
 
 <body>
+  <div id="splash" class="splash" aria-hidden="false" aria-label="Welcome">
+    <div class="splash-bg">
+      <picture>
+        <source srcset="./assets/optimized/ar-hero.webp" type="image/webp">
+        <img src="./assets/ar.jpg" alt="" class="splash-bg-img" fetchpriority="high" decoding="async">
+      </picture>
+    </div>
+    <div class="splash-scrim"></div>
+    <div class="splash-content">
+      <p class="splash-eyebrow">Neha Kumari</p>
+      <h1 class="splash-title">Welcome to my dimension</h1>
+      <p class="splash-sub">spacetime curvature</p>
+    </div>
+  </div>
+
   <canvas id="starfield" aria-hidden="true"></canvas>
 
   <header class="shell">
@@ -31,6 +47,7 @@
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#open-source">Open Source</a></li>
+        <li><a href="./gallery/">Reputation</a></li>
         <li><a href="#contact">Signal</a></li>
       </ul>
     </nav>
@@ -38,16 +55,18 @@
 
   <main>
     <section id="hero" class="section hero">
-      <div class="hero-content">
+      <div class="hero-content hero-editorial">
         <div class="hero-text">
           <p class="eyebrow">Curious. Calm. Confident.</p>
           <h1><span id="typed"></span></h1>
+          <p class="microcopy hero-meta">Open Source · DeFi · Full-stack</p>
           <p class="lede">Levitating between the real & virtual world in the fabrics of spacetime curvature. Building thoughtful web and open-source experiences
             that feel like drifting through space, not scrolling a brochure.</p>
           <div class="hero-actions">
             <a class="button primary" href="./assets/Neha_Kumari_CV__ .pdf" target="_blank" rel="noopener">Download
               Resume</a>
             <a class="button ghost" href="#projects">Explore Projects</a>
+            <a class="button ghost" href="./gallery/">View Reputation</a>
             <a class="button ghost" href="./pldgfolio.html" rel="noopener">PLDG Portfolio</a>
           </div>
           <div class="social">
@@ -58,49 +77,49 @@
             <!-- <a href="https://www.instagram.com/nehakumari2593" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a> -->
           </div>
         </div>
-        <div class="hero-orbit">
-          <div class="orbital-card">
-            <div class="orbital-glow"></div>
-            <img src="./assets/A1.jpg" alt="Portrait of Neha Kumari" class="hero-avatar">
-            <p class="orbital-quote">“Programming the matrix of my existence.”</p>
+        <div class="hero-visual">
+          <div class="hero-visual-frame">
+            <picture>
+              <source srcset="./assets/optimized/ar-hero.webp" type="image/webp">
+              <img src="./assets/ar.jpg" alt="Neha Kumari presenting at a DeFi workshop" width="800" height="1067" loading="eager" decoding="async">
+            </picture>
+            <img src="./assets/A1.jpg" alt="" class="hero-visual-badge" width="64" height="64" loading="lazy">
           </div>
+          <p class="orbital-quote hero-visual-caption">“Programming the matrix of my existence.”</p>
         </div>
       </div>
       <div class="parallax-hints">
         <span>Levitate on the curvature of Portfolio Fabric.((π=C/d)=3)</span>
+        <a href="#identity" class="hero-scroll-hint">Explore ↓</a>
       </div>
     </section>
 
-    <!-- <section id="build-lab" class="section build-lab">
+    <section id="build-lab" class="section build-lab">
       <div class="section-header">
-        <p class="eyebrow">Build Lab</p>
-        <h2>Workspace snapshots</h2>
-        <p class="lede">Where ideas become systems: design, code, test, and ship with intent.</p>
+        <p class="eyebrow">Reputation</p>
+        <h2>On stage & in the field</h2>
+        <p class="lede">Talks, hackathons, and builder sessions—see the full gallery.</p>
       </div>
       <div class="lab-strip">
-        <article class="lab-card">
-          <img src="./assets/img1.jpg" alt="Dual monitor developer workstation" loading="lazy">
-          <p class="microcopy">Deep work zone for multi-repo and protocol-heavy sessions.</p>
-        </article>
-        <article class="lab-card">
-          <img src="./assets/img2.jpg" alt="Desk setup with dual displays and peripherals" loading="lazy">
-          <p class="microcopy">Debugging and architectural planning across frontend + backend.</p>
-        </article>
-        <article class="lab-card">
-          <img src="./assets/img3.jpg" alt="Clean desk with laptop showing code editor" loading="lazy">
-          <p class="microcopy">Rapid iteration loops for features, docs, and open-source fixes.</p>
-        </article>
-        <article class="lab-card">
-          <img src="./assets/img4.jpg" alt="Minimal laptop setup with sunlight and notebook" loading="lazy">
-          <p class="microcopy">Quiet shipping mode focused on polish, testing, and reliability.</p>
-        </article>
+        <a class="lab-card" href="./gallery/">
+          <img src="./assets/optimized/r5-sm.webp" alt="Presenting on DeFi transparency at Loops workshop" loading="lazy" width="600" height="400">
+          <p class="microcopy">Dday showcase, DeFi & protocol talks @Loops Hacker House.</p>
+        </a>
+        <a class="lab-card" href="./gallery/">
+          <img src="./assets/optimized/r7-sm.webp" alt="ETHGlobal New Delhi venue" loading="lazy" width="600" height="400">
+          <p class="microcopy">ETHGlobal New Delhi Sep' 2025.</p>
+        </a>
+        <a class="lab-card" href="./gallery/">
+          <img src="./assets/optimized/r8-sm.webp" alt="Speaking on stablecoin trilemma" loading="lazy" width="600" height="400">
+          <p class="microcopy">Workshop dive on Ethereum via tutorials by @Austin Griffith .</p>
+        </a>
       </div>
-    </section> -->
+    </section>
 
     <section id="identity" class="section identity">
       <div class="section-header">
         <p class="eyebrow">Identity Artifact</p>
-        <h2><a href="neha_kumari_portfolio.html" class="heading-inline-link" target="_blank">Devil is in the Details</a>.</h2>
+        <h2><a href="nk.html" class="heading-inline-link" target="_blank">Devil is in the Details</a>.</h2>
         <p class="lede">The tree that would grow to heaven must send its roots to hell.</p>
       </div>
       <div class="identity-grid">
@@ -257,7 +276,11 @@
         <h2>Transmit a calm message</h2>
         <p class="lede">I reply with clarity, not fireworks.</p>
       </div>
-      <form class="contact-form" id="contact-form">
+      <form class="contact-form" id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact">
+        <p class="hidden-field">
+          <label>Don’t fill this out: <input name="bot-field" type="text" tabindex="-1" autocomplete="off"></label>
+        </p>
         <div class="input-group">
           <label for="name">Name</label>
           <input id="name" name="name" type="text" placeholder="Your name" required>
@@ -285,7 +308,6 @@
     integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="./app.js" defer></script>
 </body>
 

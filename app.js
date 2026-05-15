@@ -50,6 +50,37 @@ navLinks.querySelectorAll('a').forEach(link => {
 })();
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const SPLASH_KEY = 'nk-portfolio-splash';
+
+(function initSplash() {
+  const splash = document.getElementById('splash');
+  if (!splash) return;
+
+  const dismiss = () => {
+    sessionStorage.setItem(SPLASH_KEY, '1');
+    splash.classList.add('is-hidden');
+    splash.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('splash-active');
+    runHeroEntrance();
+  };
+
+  if (sessionStorage.getItem(SPLASH_KEY)) {
+    splash.classList.add('is-hidden');
+    splash.setAttribute('aria-hidden', 'true');
+    runHeroEntrance();
+    return;
+  }
+
+  document.body.classList.add('splash-active');
+  const duration = 5000;
+  window.setTimeout(dismiss, duration);
+})();
+
+function runHeroEntrance() {
+  if (!window.gsap || prefersReducedMotion) return;
+  gsap.from('.hero-text > *', { y: 18, opacity: 0, stagger: 0.08, duration: 0.7, ease: 'power2.out' });
+  gsap.from('.hero-visual', { y: 24, opacity: 0, duration: 0.8, delay: 0.2, ease: 'power2.out' });
+}
 
 // Starfield background
 (function initStarfield() {
@@ -501,12 +532,15 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   }
 })();
 
-// Contact form with EmailJS (reuses existing service/template)
+// Contact form via Netlify Forms
 (function initContact() {
   const form = document.getElementById('contact-form');
   const status = document.getElementById('contact-status');
   const button = document.getElementById('contact-btn');
   if (!form) return;
+
+  const encodeForm = (data) =>
+    new URLSearchParams(data).toString();
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -523,15 +557,21 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
     }
 
     try {
-      if (!window.emailjs) throw new Error('Email service not loaded');
-      await emailjs.send('service_k6r5bm9', 'template_5zvwmti', {
-        username: name,
-        email,
-        message,
-      }, '6cpSKOFj-GdJ9gdD7');
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encodeForm({
+          'form-name': 'contact',
+          name,
+          email,
+          message,
+        }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       status.textContent = 'Signal received. I will respond shortly.';
       form.reset();
     } catch (err) {
+      console.warn('Contact form error:', err);
       status.textContent = 'Signal failed to send. Try again soon.';
     } finally {
       button.disabled = false;
@@ -539,8 +579,3 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   });
 })();
 
-// GSAP entrance if available
-if (window.gsap && !prefersReducedMotion) {
-  gsap.from('.hero-text > *', { y: 18, opacity: 0, stagger: 0.08, duration: 0.7, ease: 'power2.out' });
-  gsap.from('.hero-orbit', { y: 24, opacity: 0, duration: 0.8, delay: 0.2, ease: 'power2.out' });
-}
