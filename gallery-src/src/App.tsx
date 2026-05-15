@@ -23,13 +23,13 @@ export default function App() {
 
       <div className="pointer-events-none fixed inset-0 z-10 flex items-center justify-center px-4 text-center mix-blend-exclusion">
         <h1 className="font-display text-3xl font-semibold tracking-tight text-white md:text-6xl">
-          <span className="italic font-normal">I build;</span> therefore I am
+          <span className="italic font-normal">Said the Least;</span> Did the Most.
         </h1>
       </div>
 
       <div className="fixed bottom-8 left-0 right-0 z-20 text-center font-mono text-[11px] font-semibold uppercase tracking-wider text-muted">
-        <p>A picture speaks a thousand words.</p>
-        <p className="opacity-60">Envelops my heart-felt journey of upskilling, learning, building and evolving.</p>
+        <p>Ain't no problem when I'm the Equation.</p>
+        <p className="opacity-60">Prescence noted, Observation.</p>
       </div>
     </main>
   );
