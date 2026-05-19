@@ -1,5 +1,7 @@
 const { useState, useEffect, useRef } = React;
 
+const PLDG_RECOMMENDATION_PDF = './assets/PLDG Recommendation Neha Kumari.pdf';
+
 const INNER_PROJECTS = [
   {
     id: 'js-libp2p',
@@ -253,6 +255,7 @@ function PLDGPortfolio() {
   const [paused, setPaused] = useState(false);
   const [hovered, setHovered] = useState(null);
   const [panelTab, setPanelTab] = useState('overview');
+  const [recOpen, setRecOpen] = useState(false);
   const [viewportWidth, setViewportWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1280
   );
@@ -292,6 +295,19 @@ function PLDGPortfolio() {
         .catch(() => {});
     });
   }, []);
+
+  useEffect(() => {
+    if (!recOpen) return;
+    const onKey = (e) => {
+      if (e.key === 'Escape') setRecOpen(false);
+    };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [recOpen]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -416,6 +432,56 @@ function PLDGPortfolio() {
     @keyframes nebula-b { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-18px,22px) scale(1.06); } }
     @keyframes nebula-c { 0%,100% { transform: translate(0,0) scale(1.02); } 50% { transform: translate(12px,18px) scale(1); } }
     @keyframes fadeup { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes rec-modal-in { from { opacity: 0; transform: scale(0.96) translateY(12px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    @keyframes rec-shimmer { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+    .pldg-rec-btn {
+      font-family: 'Outfit', sans-serif;
+      font-size: inherit;
+      color: #e8fff9;
+      background: linear-gradient(120deg, rgba(0,212,170,0.2), rgba(14,165,233,0.14), rgba(0,212,170,0.2));
+      background-size: 200% 100%;
+      border: 1px solid rgba(0,212,170,0.42);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 4px 22px rgba(0,212,170,0.14), inset 0 1px 0 rgba(255,255,255,0.14);
+      cursor: pointer;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+      animation: rec-shimmer 6s ease infinite;
+      white-space: nowrap;
+    }
+    .pldg-rec-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(0,212,170,0.72);
+      box-shadow: 0 8px 32px rgba(0,212,170,0.28), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    .pldg-rec-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      background: rgba(3,10,20,0.72);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .pldg-rec-panel {
+      width: min(920px, 100%);
+      height: min(88vh, 900px);
+      display: flex;
+      flex-direction: column;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(0,212,170,0.35);
+      background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      box-shadow: 0 24px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06) inset;
+      animation: rec-modal-in 0.35s ease;
+    }
     .orbit-inner-ring { animation: spin-cw 26s linear infinite; }
     .orbit-outer-ring { animation: spin-ccw 42s linear infinite; }
     .node-inner { animation: ccw-inner 26s linear infinite; }
@@ -546,13 +612,22 @@ function PLDGPortfolio() {
             Neha Kumari · Cohort 2 → 6 || 1.3 yrs
           </span>
         </div>
-        <div style={{ display: 'flex', gap: 7, alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: 7, alignItems: 'center', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+          <button
+            type="button"
+            className="pldg-rec-btn"
+            style={{ fontSize: scaled(10) }}
+            onClick={() => setRecOpen(true)}
+            aria-label="Open PLDG Recommendation letter"
+          >
+            {isMobile ? 'PLDG Rec ↗' : 'PLDG Recommendation'}
+          </button>
           <a
             href="./index.html#projects"
             style={{
               fontSize: scaled(10),
-              color: 'rgba(255,255,255,0.62)',
-              border: '0.5px solid rgba(255,255,255,0.2)',
+              color: 'rgba(237, 233, 13, 0.9)',
+              border: '0.5px solid rgb(115, 234, 18)',
               borderRadius: 20,
               padding: '3px 11px',
               fontWeight: 600,
@@ -561,34 +636,6 @@ function PLDGPortfolio() {
           >
             Main Portfolio ←
           </a>
-          {/* {userStats.repos && (
-            <span
-              style={{
-                fontSize: 10,
-                color: 'rgba(255,255,255,0.38)',
-                background: 'rgba(255,255,255,0.06)',
-                borderRadius: 20,
-                padding: '3px 10px',
-                fontFamily: "'Space Mono', monospace",
-              }}
-            >
-              {userStats.repos} repos
-            </span>
-          )}
-          {userStats.followers != null && (
-            <span
-              style={{
-                fontSize: 10,
-                color: 'rgba(255,255,255,0.38)',
-                background: 'rgba(255,255,255,0.06)',
-                borderRadius: 20,
-                padding: '3px 10px',
-                fontFamily: "'Space Mono', monospace",
-              }}
-            >
-              {userStats.followers} followers
-            </span>
-          )} */}
           <a
             href="https://github.com/Nkovaturient"
             target="_blank"
@@ -1585,6 +1632,81 @@ function PLDGPortfolio() {
                 </div>
               </div>
             )}
+          </div>
+        </div>
+      )}
+
+      {recOpen && (
+        <div
+          className="pldg-rec-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label="PLDG Recommendation"
+          onClick={() => setRecOpen(false)}
+        >
+          <div className="pldg-rec-panel" onClick={(e) => e.stopPropagation()}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '12px 16px',
+                borderBottom: '0.5px solid rgba(255,255,255,0.1)',
+                background: 'rgba(0,212,170,0.06)',
+              }}
+            >
+              <span
+                style={{
+                  fontSize: scaled(12),
+                  fontWeight: 700,
+                  letterSpacing: '0.08em',
+                  color: '#00d4aa',
+                  textTransform: 'uppercase',
+                }}
+              >
+                PLDG Recommendation
+              </span>
+              <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                <a
+                  href={PLDG_RECOMMENDATION_PDF}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontSize: scaled(10),
+                    color: 'rgba(255,255,255,0.7)',
+                    border: '0.5px solid rgba(255,255,255,0.2)',
+                    borderRadius: 16,
+                    padding: '4px 10px',
+                    fontWeight: 600,
+                  }}
+                >
+                  Open in tab ↗
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setRecOpen(false)}
+                  aria-label="Close"
+                  style={{
+                    background: 'rgba(255,255,255,0.08)',
+                    border: '0.5px solid rgba(255,255,255,0.15)',
+                    color: 'rgba(255,255,255,0.65)',
+                    cursor: 'pointer',
+                    borderRadius: '50%',
+                    width: scaled(28),
+                    height: scaled(28),
+                    fontSize: scaled(16),
+                    lineHeight: 1,
+                  }}
+                >
+                  ×
+                </button>
+              </div>
+            </div>
+            <iframe
+              title="PLDG Recommendation — Neha Kumari"
+              src={`${encodeURI(PLDG_RECOMMENDATION_PDF)}#view=FitH`}
+              style={{ flex: 1, width: '100%', border: 'none', background: '#0a1018' }}
+            />
           </div>
         </div>
       )}

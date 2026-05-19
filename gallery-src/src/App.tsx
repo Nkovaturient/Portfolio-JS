@@ -9,7 +9,7 @@ export default function App() {
           href="../index.html#hero"
           className="font-display text-sm font-semibold tracking-wide text-white hover:text-cyan transition-colors"
         >
-          ← Neha Kumari
+          ← Back
         </a>
         <span className="font-display text-xs uppercase tracking-[0.2em] text-muted">Reputation</span>
       </header>
