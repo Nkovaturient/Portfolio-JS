@@ -7,16 +7,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #000000;
-  --surface: rgba(255,255,255,0.03);
-  --surface2: rgba(255,255,255,0.06);
-  --border: rgba(255,255,255,0.08);
-  --border2: rgba(255,255,255,0.14);
+  --bg: #06080f;
+  --bg-deep: #0c1018;
+  --surface: rgba(12, 18, 32, 0.55);
+  --surface2: rgba(16, 24, 42, 0.65);
+  --border: rgba(255,255,255,0.12);
+  --border2: rgba(140, 180, 255, 0.28);
   --text: #f5f5f5;
-  --muted: #888888;
+  --muted: #8a8f9a;
   --dim: #555555;
-  --accent: #a8b5a0;
-  --accent-bright: #c8d4bc;
+  --accent: #7eb8d4;
+  --accent-bright: #a8d8f0;
+  --glow-cyan: rgba(26, 120, 180, 0.45);
+  --glow-indigo: rgba(80, 60, 180, 0.4);
+  --glow-teal: rgba(40, 160, 200, 0.35);
   --warn: #e8a84a;
   --danger: #ff6b6b;
   --arb: #28a0f0;
@@ -37,7 +41,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ── ambient layers ── */
+/* ── glass studio ambient (CSS-only, zero image requests) ── */
 .ambient {
   position: fixed;
   inset: 0;
@@ -45,52 +49,101 @@ body {
   z-index: 0;
   overflow: hidden;
 }
-.ambient-blobs {
+.ambient-base {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 55% 45% at 20% 15%, rgba(255,255,255,0.04) 0%, transparent 55%),
-    radial-gradient(ellipse 45% 50% at 80% 70%, rgba(168,181,160,0.06) 0%, transparent 55%),
-    radial-gradient(ellipse 40% 35% at 55% 45%, rgba(120,120,120,0.03) 0%, transparent 60%);
+    linear-gradient(165deg, #06080f 0%, #0a0e18 45%, #06080f 100%);
+}
+.ambient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  will-change: transform;
+}
+.ambient-blob-1 {
+  width: min(55vw, 520px);
+  height: min(55vw, 520px);
+  top: -12%;
+  right: -8%;
+  background: radial-gradient(circle, var(--glow-cyan) 0%, transparent 70%);
+  animation: blobDrift1 32s ease-in-out infinite;
+}
+.ambient-blob-2 {
+  width: min(48vw, 440px);
+  height: min(48vw, 440px);
+  bottom: 5%;
+  left: -10%;
+  background: radial-gradient(circle, var(--glow-indigo) 0%, transparent 70%);
+  animation: blobDrift2 38s ease-in-out infinite;
+}
+.ambient-blob-3 {
+  width: min(36vw, 320px);
+  height: min(36vw, 320px);
+  top: 38%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, var(--glow-teal) 0%, transparent 70%);
+  opacity: 0.35;
+  animation: blobDrift3 28s ease-in-out infinite;
+}
+.ambient-ring {
+  position: absolute;
+  width: min(70vw, 640px);
+  height: min(70vw, 640px);
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  border: 1px solid rgba(120, 180, 255, 0.08);
+  box-shadow:
+    0 0 80px rgba(40, 120, 200, 0.06),
+    inset 0 0 60px rgba(40, 120, 200, 0.04);
+  opacity: 0.7;
+}
+.ambient-ring::after {
+  content: '';
+  position: absolute;
+  inset: 18%;
+  border-radius: 50%;
+  border: 1px solid rgba(155, 109, 255, 0.06);
 }
 .ambient-grid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-  background-size: 80px 80px;
-  opacity: 0.15;
+    linear-gradient(rgba(100, 140, 200, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 140, 200, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 20%, transparent 75%);
+  opacity: 0.9;
 }
-.ambient-streaks {
+.ambient-fade {
   position: absolute;
   inset: 0;
-  display: flex;
-  justify-content: center;
-  gap: 48px;
-  padding-top: 80px;
+  background: linear-gradient(180deg, transparent 0%, transparent 50%, rgba(6, 8, 15, 0.85) 88%, rgba(6, 8, 15, 0.98) 100%);
 }
-.streak {
-  width: 1px;
-  background: linear-gradient(180deg, transparent, rgba(255,255,255,0.12) 30%, rgba(255,255,255,0.06) 70%, transparent);
-  opacity: 0.5;
-}
-.streak:nth-child(1) { height: 45vh; margin-top: 5vh; }
-.streak:nth-child(2) { height: 60vh; opacity: 0.35; }
-.streak:nth-child(3) { height: 50vh; margin-top: 10vh; }
-.streak:nth-child(4) { height: 55vh; opacity: 0.25; }
-.streak:nth-child(5) { height: 40vh; margin-top: 15vh; }
 
-.particles {
-  position: absolute;
-  inset: 0;
+@keyframes blobDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-4%, 6%) scale(1.06); }
+  66% { transform: translate(3%, -3%) scale(0.96); }
 }
-.particle {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: rgba(255,255,255,0.25);
-  border-radius: 50%;
+@keyframes blobDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(5%, -4%) scale(1.05); }
+  70% { transform: translate(-3%, 5%) scale(0.97); }
+}
+@keyframes blobDrift3 {
+  0%, 100% { transform: translate(-50%, 0) scale(1); }
+  50% { transform: translate(-46%, -5%) scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-blob { animation: none; }
+  .ambient-blob-3 { transform: translateX(-50%); }
 }
 
 .page {
@@ -102,11 +155,14 @@ body {
 }
 
 .glass {
-  background: rgba(255,255,255,0.03);
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04);
+  backdrop-filter: blur(24px) saturate(1.3);
+  -webkit-backdrop-filter: blur(24px) saturate(1.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+    0 1px 0 rgba(255, 255, 255, 0.06) inset;
 }
 
 /* ── buttons ── */
@@ -292,7 +348,7 @@ body {
   letter-spacing: -0.03em;
   line-height: 1.08;
 }
-.hero-title .dim { color: var(--muted); font-weight: 500; }
+.hero-title .dim { color: rgba(200, 210, 220, 0.72); font-weight: 500; }
 .hero-sub {
   margin-top: 18px;
   font-size: 15px;
@@ -622,6 +678,9 @@ body {
 .tag-timed { background: rgba(255,180,80,0.1); color: #ffc878; border: 1px solid rgba(255,180,80,0.18); }
 .tag-vr { background: rgba(168,181,160,0.1); color: var(--accent-bright); border: 1px solid rgba(168,181,160,0.18); }
 .tag-nft2 { background: rgba(255,107,107,0.08); color: #ffaaaa; border: 1px solid rgba(255,107,107,0.15); }
+.tag-vrf { background: rgba(100,180,255,0.1); color: #8ec8ff; border: 1px solid rgba(100,180,255,0.2); }
+.tag-oracle { background: rgba(232,168,74,0.1); color: var(--warn); border: 1px solid rgba(232,168,74,0.2); }
+.tag-blocklock { background: rgba(168,181,160,0.12); color: var(--accent-bright); border: 1px solid rgba(168,181,160,0.22); }
 
 .contract-right {
   display: flex;
@@ -757,16 +816,13 @@ footer {
 <body>
 
 <div class="ambient" aria-hidden="true">
-  <div class="ambient-blobs"></div>
+  <div class="ambient-base"></div>
+  <div class="ambient-blob ambient-blob-1"></div>
+  <div class="ambient-blob ambient-blob-2"></div>
+  <div class="ambient-blob ambient-blob-3"></div>
+  <div class="ambient-ring"></div>
   <div class="ambient-grid"></div>
-  <div class="ambient-streaks">
-    <div class="streak"></div>
-    <div class="streak"></div>
-    <div class="streak"></div>
-    <div class="streak"></div>
-    <div class="streak"></div>
-  </div>
-  <div class="particles" id="particles"></div>
+  <div class="ambient-fade"></div>
 </div>
 
 <nav class="nav-float">
@@ -799,7 +855,7 @@ footer {
     <div class="stats-grid">
       <div class="stat-tile glass">
         <div class="stat-label">Contracts</div>
-        <div class="stat-num" id="stat-contracts">14</div>
+        <div class="stat-num" id="stat-contracts">20</div>
       </div>
       <div class="stat-tile glass">
         <div class="stat-label">Projects</div>
@@ -807,11 +863,11 @@ footer {
       </div>
       <div class="stat-tile glass">
         <div class="stat-label">Chains</div>
-        <div class="stat-num">4</div>
+        <div class="stat-num">3</div>
       </div>
       <div class="stat-tile glass">
         <div class="stat-label" id="stat-live-label">Live Testnet</div>
-        <div class="stat-num" id="stat-live">6</div>
+        <div class="stat-num" id="stat-live">20</div>
       </div>
     </div>
   </div>
@@ -1002,45 +1058,134 @@ footer {
         <div class="project-name">GhostLock — MEV Reaper</div>
         <div class="project-desc">Stealth MEV shield — encrypt, randomize, equalize · Sherlock Holmes of DeFi</div>
       </div>
-      <a href="https://github.com/Nkovaturient/GhostLock-MEV-Reaper/tree/main/contracts" target="_blank" rel="noopener" class="btn-pill btn-ghost btn-sm project-github">
+      <a href="https://github.com/Nkovaturient/GhostLock-MEV-Reaper" target="_blank" rel="noopener" class="btn-pill btn-ghost btn-sm project-github">
         GitHub
         <svg class="icon-ext" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9L9 3M9 3H4M9 3V8"/></svg>
       </a>
     </div>
     <div class="contracts-grid">
-      <a class="contract-card cc-poly glass" data-chain="polygon" data-net="testnet"
-         href="https://github.com/Nkovaturient/GhostLock-MEV-Reaper/tree/main/contracts" target="_blank" rel="noopener">
-        <div class="contract-icon" style="background:rgba(155,109,255,0.08);">🔒</div>
+      <a class="contract-card cc-arb glass" data-chain="arbitrum" data-net="testnet"
+         href="https://sepolia.arbiscan.io/address/0xB049f2a5E2aeEa5950675EA89d0DA79E5749fB5C" target="_blank" rel="noopener">
+        <div class="contract-icon" style="background:rgba(40,160,240,0.08);">📊</div>
         <div class="contract-info">
-          <div class="contract-name">GhostLock Core</div>
-          <div class="contract-addr pending">Address pending on-chain verification</div>
+          <div class="contract-name">PriceOracle</div>
+          <div class="addr-row">
+            <span class="contract-addr">0xB049f2a5E2aeEa5950675EA89d0DA79E5749fB5C</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0xB049f2a5E2aeEa5950675EA89d0DA79E5749fB5C')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
           <div class="contract-tags">
-            <span class="tag tag-mev">MEV Protection</span>
-            <span class="tag tag-defi">Commit-Reveal</span>
-            <span class="tag tag-defi">Stealth</span>
+            <span class="tag tag-oracle">Pyth</span>
+            <span class="tag tag-chainlink">Chainlink</span>
+            <span class="tag tag-defi">Price Feeds</span>
           </div>
         </div>
         <div class="contract-right">
-          <div class="chain-badge badge-poly"><span class="chain-dot dot-poly"></span>Polygon Mumbai</div>
-          <div class="status-badge status-pending">Verifying</div>
-          <span class="card-explorer">View repo ↗</span>
+          <div class="chain-badge badge-arb"><span class="chain-dot dot-arb"></span>Arb Sepolia · 421614</div>
+          <div class="status-badge status-testnet">Testnet</div>
+          <span class="card-explorer">View on Arbiscan ↗</span>
         </div>
       </a>
-      <a class="contract-card cc-poly glass" data-chain="polygon" data-net="testnet"
-         href="https://github.com/Nkovaturient/GhostLock-MEV-Reaper/tree/main/contracts" target="_blank" rel="noopener">
-        <div class="contract-icon" style="background:rgba(155,109,255,0.08);">⚖️</div>
+      <a class="contract-card cc-arb glass" data-chain="arbitrum" data-net="testnet"
+         href="https://sepolia.arbiscan.io/address/0xE8901D9f2f262f4F09E30344aA8470eCEbc64CBD" target="_blank" rel="noopener">
+        <div class="contract-icon" style="background:rgba(40,160,240,0.08);">📋</div>
         <div class="contract-info">
-          <div class="contract-name">MEV Equalizer</div>
-          <div class="contract-addr pending">Address pending on-chain verification</div>
+          <div class="contract-name">SolverRegistry</div>
+          <div class="addr-row">
+            <span class="contract-addr">0xE8901D9f2f262f4F09E30344aA8470eCEbc64CBD</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0xE8901D9f2f262f4F09E30344aA8470eCEbc64CBD')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
           <div class="contract-tags">
-            <span class="tag tag-mev">Fair Settling</span>
-            <span class="tag tag-amm">Trade Encryption</span>
+            <span class="tag tag-mev">Solver Stake</span>
+            <span class="tag tag-defi">Slashing</span>
+            <span class="tag tag-defi">Registry</span>
           </div>
         </div>
         <div class="contract-right">
-          <div class="chain-badge badge-poly"><span class="chain-dot dot-poly"></span>Polygon Mumbai</div>
-          <div class="status-badge status-pending">Verifying</div>
-          <span class="card-explorer">View repo ↗</span>
+          <div class="chain-badge badge-arb"><span class="chain-dot dot-arb"></span>Arb Sepolia · 421614</div>
+          <div class="status-badge status-testnet">Testnet</div>
+          <span class="card-explorer">View on Arbiscan ↗</span>
+        </div>
+      </a>
+      <a class="contract-card cc-arb glass" data-chain="arbitrum" data-net="testnet"
+         href="https://sepolia.arbiscan.io/address/0x6a0e6F76Db61985bCB4e31C71226Ba1B35dBbF1A" target="_blank" rel="noopener">
+        <div class="contract-icon" style="background:rgba(40,160,240,0.08);">🎲</div>
+        <div class="contract-info">
+          <div class="contract-name">GhostLockEpochRNG</div>
+          <div class="addr-row">
+            <span class="contract-addr">0x6a0e6F76Db61985bCB4e31C71226Ba1B35dBbF1A</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0x6a0e6F76Db61985bCB4e31C71226Ba1B35dBbF1A')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
+          <div class="contract-tags">
+            <span class="tag tag-vrf">Epoch RNG</span>
+            <span class="tag tag-blocklock">dcipher Randomness</span>
+          </div>
+        </div>
+        <div class="contract-right">
+          <div class="chain-badge badge-arb"><span class="chain-dot dot-arb"></span>Arb Sepolia · 421614</div>
+          <div class="status-badge status-testnet">Testnet</div>
+          <span class="card-explorer">View on Arbiscan ↗</span>
+        </div>
+      </a>
+      <a class="contract-card cc-arb glass" data-chain="arbitrum" data-net="testnet"
+         href="https://sepolia.arbiscan.io/address/0x056B39F4fd80C86E44D2Fc6153A3e9F3d20a2C6C" target="_blank" rel="noopener">
+        <div class="contract-icon" style="background:rgba(40,160,240,0.08);">🔒</div>
+        <div class="contract-info">
+          <div class="contract-name">GhostLockLiveness</div>
+          <div class="addr-row">
+            <span class="contract-addr">0x056B39F4fd80C86E44D2Fc6153A3e9F3d20a2C6C</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0x056B39F4fd80C86E44D2Fc6153A3e9F3d20a2C6C')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
+          <div class="contract-tags">
+            <span class="tag tag-mev">Encrypted Intents</span>
+            <span class="tag tag-blocklock">Blocklock</span>
+            <span class="tag tag-defi">Commit-Reveal</span>
+          </div>
+        </div>
+        <div class="contract-right">
+          <div class="chain-badge badge-arb"><span class="chain-dot dot-arb"></span>Arb Sepolia · 421614</div>
+          <div class="status-badge status-testnet">Testnet</div>
+          <span class="card-explorer">View on Arbiscan ↗</span>
+        </div>
+      </a>
+      <a class="contract-card cc-arb glass" data-chain="arbitrum" data-net="testnet"
+         href="https://sepolia.arbiscan.io/address/0x64593911b86889F45d1CbEaF40397c4807505EB8" target="_blank" rel="noopener">
+        <div class="contract-icon" style="background:rgba(40,160,240,0.08);">⚖️</div>
+        <div class="contract-info">
+          <div class="contract-name">GhostLockBatchSettlement</div>
+          <div class="addr-row">
+            <span class="contract-addr">0x64593911b86889F45d1CbEaF40397c4807505EB8</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0x64593911b86889F45d1CbEaF40397c4807505EB8')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
+          <div class="contract-tags">
+            <span class="tag tag-amm">Batch Settlement</span>
+            <span class="tag tag-mev">Markets</span>
+            <span class="tag tag-oracle">Oracle-Linked</span>
+          </div>
+        </div>
+        <div class="contract-right">
+          <div class="chain-badge badge-arb"><span class="chain-dot dot-arb"></span>Arb Sepolia · 421614</div>
+          <div class="status-badge status-testnet">Testnet</div>
+          <span class="card-explorer">View on Arbiscan ↗</span>
+        </div>
+      </a>
+      <a class="contract-card cc-arb glass" data-chain="arbitrum" data-net="testnet"
+         href="https://sepolia.arbiscan.io/address/0x1e457f34Bdccf28258Cd30956bb6F2df614ddBEF" target="_blank" rel="noopener">
+        <div class="contract-icon" style="background:rgba(40,160,240,0.08);">🏛️</div>
+        <div class="contract-info">
+          <div class="contract-name">SolverBoard</div>
+          <div class="addr-row">
+            <span class="contract-addr">0x1e457f34Bdccf28258Cd30956bb6F2df614ddBEF</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0x1e457f34Bdccf28258Cd30956bb6F2df614ddBEF')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
+          <div class="contract-tags">
+            <span class="tag tag-mev">Batch Auction</span>
+            <span class="tag tag-defi">Solver Bids</span>
+          </div>
+        </div>
+        <div class="contract-right">
+          <div class="chain-badge badge-arb"><span class="chain-dot dot-arb"></span>Arb Sepolia · 421614</div>
+          <div class="status-badge status-testnet">Testnet</div>
+          <span class="card-explorer">View on Arbiscan ↗</span>
         </div>
       </a>
     </div>
@@ -1051,48 +1196,96 @@ footer {
       <div class="project-dot" style="background:rgba(120,200,150,0.1);">🤝</div>
       <div>
         <div class="project-name">Rachax402</div>
-        <div class="project-desc">Decentralized A2A service discovery · ERC-8004 agents · x402 payment-gated tasks · Storacha storage</div>
+        <div class="project-desc">Decentralized A2A service discovery · ERC-8004 agents · x402 payment-gated tasks · Coinbase Agentkit · IPFS storage </div>
       </div>
-      <a href="https://github.com/Nkovaturient/Rachax402/tree/main/antiphon/contracts/rachax402" target="_blank" rel="noopener" class="btn-pill btn-ghost btn-sm project-github">
+      <a href="https://github.com/Nkovaturient/Rachax402" target="_blank" rel="noopener" class="btn-pill btn-ghost btn-sm project-github">
         GitHub
         <svg class="icon-ext" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9L9 3M9 3H4M9 3V8"/></svg>
       </a>
     </div>
     <div class="contracts-grid">
       <a class="contract-card cc-base glass" data-chain="base" data-net="testnet"
-         href="https://github.com/Nkovaturient/Rachax402/tree/main/antiphon/contracts/rachax402" target="_blank" rel="noopener">
+         href="https://sepolia.basescan.org/address/0x1352abA587fFbbC398d7ecAEA31e2948D3aFE4Fb" target="_blank" rel="noopener">
         <div class="contract-icon" style="background:rgba(77,124,255,0.08);">🧩</div>
         <div class="contract-info">
-          <div class="contract-name">AgentRegistry</div>
-          <div class="contract-addr pending">Address pending on-chain verification</div>
+          <div class="contract-name">AgentIdentityRegistry</div>
+          <div class="addr-row">
+            <span class="contract-addr">0x1352abA587fFbbC398d7ecAEA31e2948D3aFE4Fb</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0x1352abA587fFbbC398d7ecAEA31e2948D3aFE4Fb')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
           <div class="contract-tags">
             <span class="tag tag-agent">ERC-8004</span>
             <span class="tag tag-agent">Agent Discovery</span>
-            <span class="tag tag-defi">x402 Payment</span>
+            <span class="tag tag-ipfs">Agent Card CID</span>
           </div>
         </div>
         <div class="contract-right">
-          <div class="chain-badge badge-base"><span class="chain-dot dot-base"></span>Base Sepolia</div>
-          <div class="status-badge status-pending">Verifying</div>
-          <span class="card-explorer">View repo ↗</span>
+          <div class="chain-badge badge-base"><span class="chain-dot dot-base"></span>Base Sepolia · 84532</div>
+          <div class="status-badge status-testnet">Testnet</div>
+          <span class="card-explorer">View on Basescan ↗</span>
         </div>
       </a>
       <a class="contract-card cc-base glass" data-chain="base" data-net="testnet"
-         href="https://github.com/Nkovaturient/Rachax402/tree/main/antiphon/contracts/rachax402" target="_blank" rel="noopener">
-        <div class="contract-icon" style="background:rgba(77,124,255,0.08);">💳</div>
+         href="https://sepolia.basescan.org/address/0x3FdD300147940a35F32AdF6De36b3358DA682B5c" target="_blank" rel="noopener">
+        <div class="contract-icon" style="background:rgba(77,124,255,0.08);">⭐</div>
         <div class="contract-info">
-          <div class="contract-name">PaymentGate</div>
-          <div class="contract-addr pending">Address pending on-chain verification</div>
+          <div class="contract-name">AgentReputationRegistry</div>
+          <div class="addr-row">
+            <span class="contract-addr">0x3FdD300147940a35F32AdF6De36b3358DA682B5c</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0x3FdD300147940a35F32AdF6De36b3358DA682B5c')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
           <div class="contract-tags">
-            <span class="tag tag-agent">x402 Protocol</span>
-            <span class="tag tag-defi">Task Execution</span>
-            <span class="tag tag-ipfs">Storacha</span>
+            <span class="tag tag-agent">ERC-8004</span>
+            <span class="tag tag-defi">Reputation</span>
+            <span class="tag tag-defi">Rate Limited</span>
           </div>
         </div>
         <div class="contract-right">
-          <div class="chain-badge badge-base"><span class="chain-dot dot-base"></span>Base Sepolia</div>
-          <div class="status-badge status-pending">Verifying</div>
-          <span class="card-explorer">View repo ↗</span>
+          <div class="chain-badge badge-base"><span class="chain-dot dot-base"></span>Base Sepolia · 84532</div>
+          <div class="status-badge status-testnet">Testnet</div>
+          <span class="card-explorer">View on Basescan ↗</span>
+        </div>
+      </a>
+      <a class="contract-card cc-base glass" data-chain="base" data-net="mainnet"
+         href="https://basescan.org/address/0x2Ad463E1f6783e610504A1027D6AdE8b2DcF10b2" target="_blank" rel="noopener">
+        <div class="contract-icon" style="background:rgba(77,124,255,0.08);">🧩</div>
+        <div class="contract-info">
+          <div class="contract-name">AgentIdentityRegistry</div>
+          <div class="addr-row">
+            <span class="contract-addr">0x2Ad463E1f6783e610504A1027D6AdE8b2DcF10b2</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0x2Ad463E1f6783e610504A1027D6AdE8b2DcF10b2')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
+          <div class="contract-tags">
+            <span class="tag tag-agent">ERC-8004</span>
+            <span class="tag tag-agent">Agent Discovery</span>
+            <span class="tag tag-ipfs">Agent Card CID</span>
+          </div>
+        </div>
+        <div class="contract-right">
+          <div class="chain-badge badge-base"><span class="chain-dot dot-base"></span>Base · 8453</div>
+          <div class="status-badge status-live">Mainnet</div>
+          <span class="card-explorer">View on Basescan ↗</span>
+        </div>
+      </a>
+      <a class="contract-card cc-base glass" data-chain="base" data-net="mainnet"
+         href="https://basescan.org/address/0x96EE446A832b7AdcF598C4B2340131f622677c25" target="_blank" rel="noopener">
+        <div class="contract-icon" style="background:rgba(77,124,255,0.08);">⭐</div>
+        <div class="contract-info">
+          <div class="contract-name">AgentReputationRegistry</div>
+          <div class="addr-row">
+            <span class="contract-addr">0x96EE446A832b7AdcF598C4B2340131f622677c25</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0x96EE446A832b7AdcF598C4B2340131f622677c25')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
+          <div class="contract-tags">
+            <span class="tag tag-agent">ERC-8004</span>
+            <span class="tag tag-defi">Reputation</span>
+            <span class="tag tag-defi">Rate Limited</span>
+          </div>
+        </div>
+        <div class="contract-right">
+          <div class="chain-badge badge-base"><span class="chain-dot dot-base"></span>Base · 8453</div>
+          <div class="status-badge status-live">Mainnet</div>
+          <span class="card-explorer">View on Basescan ↗</span>
         </div>
       </a>
     </div>
@@ -1103,7 +1296,7 @@ footer {
       <div class="project-dot" style="background:rgba(68,170,255,0.1);">🌐</div>
       <div>
         <div class="project-name">Lattice</div>
-        <div class="project-desc">Decentralized data infrastructure on-chain</div>
+        <div class="project-desc">EIP-712 intent settlement · solver registry with stake &amp; slashing · Uniswap v3 execution on Arbitrum Sepolia</div>
       </div>
       <a href="https://github.com/Nkovaturient/Lattice/tree/main/contracts" target="_blank" rel="noopener" class="btn-pill btn-ghost btn-sm project-github">
         GitHub
@@ -1112,20 +1305,45 @@ footer {
     </div>
     <div class="contracts-grid">
       <a class="contract-card cc-arb glass" data-chain="arbitrum" data-net="testnet"
-         href="https://github.com/Nkovaturient/Lattice/tree/main/contracts" target="_blank" rel="noopener">
-        <div class="contract-icon" style="background:rgba(40,160,240,0.08);">🔗</div>
+         href="https://sepolia.arbiscan.io/address/0x57b68c7595b8de5376d7b3c6cdafcc415cb597d4" target="_blank" rel="noopener">
+        <div class="contract-icon" style="background:rgba(40,160,240,0.08);">📋</div>
         <div class="contract-info">
-          <div class="contract-name">LatticeCore</div>
-          <div class="contract-addr pending">Address pending on-chain verification</div>
+          <div class="contract-name">SolverRegistry</div>
+          <div class="addr-row">
+            <span class="contract-addr">0x57b68c7595b8de5376d7b3c6cdafcc415cb597d4</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0x57b68c7595b8de5376d7b3c6cdafcc415cb597d4')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
           <div class="contract-tags">
-            <span class="tag tag-defi">On-chain Data</span>
-            <span class="tag tag-defi">Infrastructure</span>
+            <span class="tag tag-defi">Solver Stake</span>
+            <span class="tag tag-defi">EIP-712</span>
+            <span class="tag tag-mev">Slash</span>
           </div>
         </div>
         <div class="contract-right">
-          <div class="chain-badge badge-arb"><span class="chain-dot dot-arb"></span>Arbitrum Sepolia</div>
-          <div class="status-badge status-pending">Verifying</div>
-          <span class="card-explorer">View repo ↗</span>
+          <div class="chain-badge badge-arb"><span class="chain-dot dot-arb"></span>Arb Sepolia · 421614</div>
+          <div class="status-badge status-testnet">Testnet</div>
+          <span class="card-explorer">View on Arbiscan ↗</span>
+        </div>
+      </a>
+      <a class="contract-card cc-arb glass" data-chain="arbitrum" data-net="testnet"
+         href="https://sepolia.arbiscan.io/address/0x438b7889a1428f63f6450d3c1c2bab39f80edaca" target="_blank" rel="noopener">
+        <div class="contract-icon" style="background:rgba(40,160,240,0.08);">🔗</div>
+        <div class="contract-info">
+          <div class="contract-name">IntentSettlement</div>
+          <div class="addr-row">
+            <span class="contract-addr">0x438b7889a1428f63f6450d3c1c2bab39f80edaca</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0x438b7889a1428f63f6450d3c1c2bab39f80edaca')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
+          <div class="contract-tags">
+            <span class="tag tag-amm">Uniswap v3</span>
+            <span class="tag tag-defi">Intent Settlement</span>
+            <span class="tag tag-defi">Nonce Passthrough</span>
+          </div>
+        </div>
+        <div class="contract-right">
+          <div class="chain-badge badge-arb"><span class="chain-dot dot-arb"></span>Arb Sepolia · 421614</div>
+          <div class="status-badge status-testnet">Testnet</div>
+          <span class="card-explorer">View on Arbiscan ↗</span>
         </div>
       </a>
     </div>
@@ -1136,7 +1354,7 @@ footer {
       <div class="project-dot" style="background:rgba(180,120,255,0.1);">🏥</div>
       <div>
         <div class="project-name">TrialBridge / medullAI</div>
-        <div class="project-desc">AI-powered medical trial data bridge on-chain · decentralized health data layer</div>
+        <div class="project-desc">Append-only on-chain audit log for patient-trial matches &amp; consent · no PII on-chain · x402-gated backbone on Base Sepolia</div>
       </div>
       <a href="https://github.com/Nkovaturient/TrialBridge/tree/main/medullAI/contracts" target="_blank" rel="noopener" class="btn-pill btn-ghost btn-sm project-github">
         GitHub
@@ -1144,22 +1362,46 @@ footer {
       </a>
     </div>
     <div class="contracts-grid">
-      <a class="contract-card cc-poly glass" data-chain="polygon" data-net="testnet"
-         href="https://github.com/Nkovaturient/TrialBridge/tree/main/medullAI/contracts" target="_blank" rel="noopener">
-        <div class="contract-icon" style="background:rgba(155,109,255,0.08);">🧠</div>
+      <a class="contract-card cc-base glass" data-chain="base" data-net="testnet"
+         href="https://sepolia.basescan.org/address/0x40cAD144A2Dc503FdFFcbc84aBBeb0007924fc08" target="_blank" rel="noopener">
+        <div class="contract-icon" style="background:rgba(77,124,255,0.08);">🧠</div>
         <div class="contract-info">
-          <div class="contract-name">medullAI Bridge</div>
-          <div class="contract-addr pending">Address pending on-chain verification</div>
+          <div class="contract-name">TrialRegistry</div>
+          <div class="addr-row">
+            <span class="contract-addr">0x40cAD144A2Dc503FdFFcbc84aBBeb0007924fc08</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0x40cAD144A2Dc503FdFFcbc84aBBeb0007924fc08')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
           <div class="contract-tags">
-            <span class="tag tag-bridge">Bridge</span>
-            <span class="tag tag-agent">AI-Oracle</span>
-            <span class="tag tag-defi">Healthcare Data</span>
+            <span class="tag tag-defi">Audit Log</span>
+            <span class="tag tag-agent">AI Match Events</span>
+            <span class="tag tag-defi">Healthcare</span>
           </div>
         </div>
         <div class="contract-right">
-          <div class="chain-badge badge-poly"><span class="chain-dot dot-poly"></span>Polygon Amoy</div>
-          <div class="status-badge status-pending">Verifying</div>
-          <span class="card-explorer">View repo ↗</span>
+          <div class="chain-badge badge-base"><span class="chain-dot dot-base"></span>Base Sepolia · 84532</div>
+          <div class="status-badge status-testnet">Testnet</div>
+          <span class="card-explorer">View on Basescan ↗</span>
+        </div>
+      </a>
+      <a class="contract-card cc-poly glass" data-chain="polygon" data-net="testnet"
+         href="https://amoy.polygonscan.com/address/0x96EE446A832b7AdcF598C4B2340131f622677c25" target="_blank" rel="noopener">
+        <div class="contract-icon" style="background:rgba(155,109,255,0.08);">📜</div>
+        <div class="contract-info">
+          <div class="contract-name">TrialRegistry</div>
+          <div class="addr-row">
+            <span class="contract-addr">0x96EE446A832b7AdcF598C4B2340131f622677c25</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0x96EE446A832b7AdcF598C4B2340131f622677c25')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
+          <div class="contract-tags">
+            <span class="tag tag-defi">Audit Log</span>
+            <span class="tag tag-defi">Consent Events</span>
+            <span class="tag tag-bridge">Fallback Testnet</span>
+          </div>
+        </div>
+        <div class="contract-right">
+          <div class="chain-badge badge-poly"><span class="chain-dot dot-poly"></span>Polygon Amoy · 80002</div>
+          <div class="status-badge status-testnet">Testnet</div>
+          <span class="card-explorer">View on Polygonscan ↗</span>
         </div>
       </a>
     </div>
@@ -1170,7 +1412,7 @@ footer {
       <div class="project-dot" style="background:rgba(255,180,80,0.1);">⏱️</div>
       <div>
         <div class="project-name">BlockLock — Timed Media Release</div>
-        <div class="project-desc">Time-locked on-chain media release · Filecoin / FVM storage integration</div>
+        <div class="project-desc">AES-GCM + Blocklock time-lock media release · IPFS via Lighthouse · verified on Base Sepolia</div>
       </div>
       <a href="https://github.com/Nkovaturient/blocklock-frontend-kit/tree/feat/timed-release-media" target="_blank" rel="noopener" class="btn-pill btn-ghost btn-sm project-github">
         GitHub
@@ -1178,22 +1420,25 @@ footer {
       </a>
     </div>
     <div class="contracts-grid">
-      <a class="contract-card cc-fil glass" data-chain="filecoin" data-net="testnet"
-         href="https://github.com/Nkovaturient/blocklock-frontend-kit/blob/feat/timed-release-media/app/media-release/MediaRelease.sol" target="_blank" rel="noopener">
-        <div class="contract-icon" style="background:rgba(68,170,255,0.08);">🎬</div>
+      <a class="contract-card cc-base glass" data-chain="base" data-net="testnet"
+         href="https://sepolia.basescan.org/address/0x95E30B7f27D5a5B4719A9E4eB708cB4f5e1b72a1" target="_blank" rel="noopener">
+        <div class="contract-icon" style="background:rgba(77,124,255,0.08);">🎬</div>
         <div class="contract-info">
-          <div class="contract-name">MediaRelease</div>
-          <div class="contract-addr pending">Address pending on-chain verification</div>
+          <div class="contract-name">PublicTimedMediaRelease</div>
+          <div class="addr-row">
+            <span class="contract-addr">0x95E30B7f27D5a5B4719A9E4eB708cB4f5e1b72a1</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0x95E30B7f27D5a5B4719A9E4eB708cB4f5e1b72a1')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
           <div class="contract-tags">
+            <span class="tag tag-blocklock">Blocklock</span>
             <span class="tag tag-timed">Time-Lock</span>
-            <span class="tag tag-nft">NFT Gate</span>
-            <span class="tag tag-ipfs">Filecoin FVM</span>
+            <span class="tag tag-ipfs">IPFS / Lighthouse</span>
           </div>
         </div>
         <div class="contract-right">
-          <div class="chain-badge badge-fil"><span class="chain-dot dot-fil"></span>Filecoin Calibnet</div>
-          <div class="status-badge status-pending">Verifying</div>
-          <span class="card-explorer">View repo ↗</span>
+          <div class="chain-badge badge-base"><span class="chain-dot dot-base"></span>Base Sepolia · 84532</div>
+          <div class="status-badge status-testnet">Testnet</div>
+          <span class="card-explorer">View on Basescan ↗</span>
         </div>
       </a>
     </div>
@@ -1204,7 +1449,7 @@ footer {
       <div class="project-dot" style="background:rgba(168,181,160,0.1);">🥽</div>
       <div>
         <div class="project-name">VRForge</div>
-        <div class="project-desc">Decentralized VR asset marketplace · NFT-gated virtual worlds</div>
+        <div class="project-desc">Verifiable randomness demo · MockRandomnessReceiver on dcipher threshold network · direct funding &amp; subscription model</div>
       </div>
       <a href="https://github.com/Nkovaturient/VRForge/blob/main/src/contract/contract.js" target="_blank" rel="noopener" class="btn-pill btn-ghost btn-sm project-github">
         GitHub
@@ -1212,22 +1457,25 @@ footer {
       </a>
     </div>
     <div class="contracts-grid">
-      <a class="contract-card cc-poly glass" data-chain="polygon" data-net="testnet"
-         href="https://github.com/Nkovaturient/VRForge/blob/main/src/contract/contract.js" target="_blank" rel="noopener">
-        <div class="contract-icon" style="background:rgba(155,109,255,0.08);">🎮</div>
+      <a class="contract-card cc-base glass" data-chain="base" data-net="testnet"
+         href="https://sepolia.basescan.org/address/0x96EE446A832b7AdcF598C4B2340131f622677c25" target="_blank" rel="noopener">
+        <div class="contract-icon" style="background:rgba(77,124,255,0.08);">🎲</div>
         <div class="contract-info">
-          <div class="contract-name">VRForge Marketplace</div>
-          <div class="contract-addr pending">Address pending on-chain verification</div>
+          <div class="contract-name">MockRandomnessReceiver</div>
+          <div class="addr-row">
+            <span class="contract-addr">0x96EE446A832b7AdcF598C4B2340131f622677c25</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0x96EE446A832b7AdcF598C4B2340131f622677c25')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
           <div class="contract-tags">
-            <span class="tag tag-nft2">NFT Marketplace</span>
-            <span class="tag tag-vr">VR Assets</span>
-            <span class="tag tag-erc">ERC-721</span>
+            <span class="tag tag-vrf">VRF</span>
+            <span class="tag tag-blocklock">dcipher Randomness</span>
+            <span class="tag tag-defi">Subscription</span>
           </div>
         </div>
         <div class="contract-right">
-          <div class="chain-badge badge-poly"><span class="chain-dot dot-poly"></span>Polygon Amoy</div>
-          <div class="status-badge status-pending">Verifying</div>
-          <span class="card-explorer">View repo ↗</span>
+          <div class="chain-badge badge-base"><span class="chain-dot dot-base"></span>Base Sepolia · 84532</div>
+          <div class="status-badge status-testnet">Testnet</div>
+          <span class="card-explorer">View on Basescan ↗</span>
         </div>
       </a>
     </div>
@@ -1251,36 +1499,13 @@ footer {
 let currentNet = 'testnet';
 let currentChain = 'all';
 
-(function initParticles() {
-  const container = document.getElementById('particles');
-  if (!container) return;
-  const positions = [
-    [8,12],[15,28],[22,8],[35,45],[42,18],[55,62],[68,25],[72,78],[12,55],[88,15],
-    [92,42],[5,72],[48,88],[62,5],[78,52],[25,38],[58,72],[38,22],[82,68],[18,82]
-  ];
-  positions.forEach(([l, t]) => {
-    const p = document.createElement('span');
-    p.className = 'particle';
-    p.style.left = l + '%';
-    p.style.top = t + '%';
-    container.appendChild(p);
-  });
-})();
-
 function setNetwork(net) {
   currentNet = net;
   document.getElementById('btn-testnet').classList.toggle('active', net === 'testnet');
   document.getElementById('btn-mainnet').classList.toggle('active', net === 'mainnet');
   applyFilters();
-  const liveEl = document.getElementById('stat-live');
-  const labelEl = document.getElementById('stat-live-label');
-  if (net === 'testnet') {
-    liveEl.textContent = '6';
-    labelEl.textContent = 'Live Testnet';
-  } else {
-    liveEl.textContent = '0';
-    labelEl.textContent = 'Live Mainnet';
-  }
+  document.getElementById('stat-live-label').textContent =
+    net === 'testnet' ? 'Live Testnet' : 'Live Mainnet';
 }
 
 function filterChain(chain) {
@@ -1355,7 +1580,8 @@ function applyFilters() {
     if (netOk && chainOk) {
       card.classList.remove('hidden');
       visible++;
-      if (!firstHref && card.href && card.href.startsWith('http') && card.href.includes('scan')) {
+      if (!firstHref && card.href && card.href.startsWith('http') &&
+          /scan|arbiscan|basescan|polygonscan/i.test(card.href)) {
         firstHref = card.href;
       }
     } else {
@@ -1369,6 +1595,7 @@ function applyFilters() {
   });
 
   document.getElementById('stat-contracts').textContent = visible;
+  document.getElementById('stat-live').textContent = visible;
   updateProjectCounts();
 
   const explorerCta = document.getElementById('explorer-cta');
