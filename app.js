@@ -261,6 +261,14 @@ function runHeroEntrance() {
 
   const projects = [
     {
+      name: 'Lattice',
+      description: 'Private solver mesh on js-libp2p. EIP-712 intents settle on Arbitrum One through Uniswap v3, with a staked solver registry and pull withdrawal.',
+      stack: ['JavaScript', 'js-libp2p', 'Solidity', 'EIP-712', 'Uniswap v3', 'Arbitrum', 'GossipSub'],
+      url: 'https://github.com/Nkovaturient/Lattice',
+      image: './assets/img4.jpg',
+      highlight: true
+    },
+    {
       name: 'Muse-onic',
       description: 'Local music assistant that finds and plays tracks with drand randomness and LLM hints.',
       stack: ['Python', 'Javascript', 'Electron', 'Whisper', 'Ollama', 'Local Assistant', 'n8n', 'Libp2p', 'Audio', 'mpv', 'yt-dlp'],

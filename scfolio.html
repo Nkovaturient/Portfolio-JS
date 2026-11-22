@@ -884,9 +884,9 @@ footer {
     <button class="chain-filter" onclick="filterChain('base')" id="f-base" type="button">
       <span class="chain-dot dot-base"></span>Base
     </button>
-    <button class="chain-filter" onclick="filterChain('polygon')" id="f-poly" type="button">
+    <!-- <button class="chain-filter" onclick="filterChain('polygon')" id="f-poly" type="button">
       <span class="chain-dot dot-poly"></span>Polygon
-    </button>
+    </button> -->
     <button class="chain-filter" onclick="filterChain('filecoin')" id="f-fil" type="button">
       <span class="chain-dot dot-fil"></span>Filecoin
     </button>
@@ -894,6 +894,106 @@ footer {
 </div>
 
 <main class="main">
+
+  <div class="project-block" data-project="lattice">
+    <div class="project-header">
+      <div class="project-dot" style="background:rgba(68,170,255,0.1);">🌐</div>
+      <div>
+        <div class="project-name">Lattice</div>
+        <div class="project-desc">Private solver mesh · EIP-712 intent settlement on Uniswap v3 · staked registry with pull withdrawal · live on Arbitrum One, earlier pair on Arbitrum Sepolia</div>
+      </div>
+      <a href="https://github.com/Nkovaturient/Lattice/tree/main/contracts" target="_blank" rel="noopener" class="btn-pill btn-ghost btn-sm project-github">
+        GitHub
+        <svg class="icon-ext" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9L9 3M9 3H4M9 3V8"/></svg>
+      </a>
+    </div>
+    <div class="contracts-grid">
+      <a class="contract-card cc-arb glass" data-chain="arbitrum" data-net="mainnet" data-explorer="Arbiscan"
+         href="https://arbiscan.io/address/0xdaB66B53c1041Ac60cD238beAe885f8741415025" target="_blank" rel="noopener">
+        <div class="contract-icon" style="background:rgba(40,160,240,0.08);">🔗</div>
+        <div class="contract-info">
+          <div class="contract-name">IntentSettlement</div>
+          <div class="addr-row">
+            <span class="contract-addr">0xdaB66B53c1041Ac60cD238beAe885f8741415025</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0xdaB66B53c1041Ac60cD238beAe885f8741415025')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
+          <div class="contract-tags">
+            <span class="tag tag-amm">Uniswap v3</span>
+            <span class="tag tag-defi">Binding Bid</span>
+            <span class="tag tag-defi">5% Surplus Fee</span>
+          </div>
+        </div>
+        <div class="contract-right">
+          <div class="chain-badge badge-arb"><span class="chain-dot dot-arb"></span>Arbitrum One · 42161</div>
+          <div class="status-badge status-live">Mainnet</div>
+          <span class="card-explorer">View on Arbiscan ↗</span>
+        </div>
+      </a>
+      <a class="contract-card cc-arb glass" data-chain="arbitrum" data-net="mainnet" data-explorer="Arbiscan"
+         href="https://arbiscan.io/address/0x469e747e4bEe661989DC7b1C988E0fBC87d5826d" target="_blank" rel="noopener">
+        <div class="contract-icon" style="background:rgba(40,160,240,0.08);">📋</div>
+        <div class="contract-info">
+          <div class="contract-name">SolverRegistry</div>
+          <div class="addr-row">
+            <span class="contract-addr">0x469e747e4bEe661989DC7b1C988E0fBC87d5826d</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0x469e747e4bEe661989DC7b1C988E0fBC87d5826d')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
+          <div class="contract-tags">
+            <span class="tag tag-defi">Solver Stake</span>
+            <span class="tag tag-defi">EIP-712</span>
+            <span class="tag tag-defi">Pull Withdraw</span>
+          </div>
+        </div>
+        <div class="contract-right">
+          <div class="chain-badge badge-arb"><span class="chain-dot dot-arb"></span>Arbitrum One · 42161</div>
+          <div class="status-badge status-live">Mainnet</div>
+          <span class="card-explorer">View on Arbiscan ↗</span>
+        </div>
+      </a>
+      <a class="contract-card cc-arb glass" data-chain="arbitrum" data-net="testnet" data-explorer="Arbiscan"
+         href="https://sepolia.arbiscan.io/address/0x438b7889a1428f63f6450d3c1c2bab39f80edaca" target="_blank" rel="noopener">
+        <div class="contract-icon" style="background:rgba(40,160,240,0.08);">🔗</div>
+        <div class="contract-info">
+          <div class="contract-name">IntentSettlement</div>
+          <div class="addr-row">
+            <span class="contract-addr">0x438b7889a1428f63f6450d3c1c2bab39f80edaca</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0x438b7889a1428f63f6450d3c1c2bab39f80edaca')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
+          <div class="contract-tags">
+            <span class="tag tag-amm">Uniswap v3</span>
+            <span class="tag tag-defi">Intent Settlement</span>
+            <span class="tag tag-mev">Earlier Deploy</span>
+          </div>
+        </div>
+        <div class="contract-right">
+          <div class="chain-badge badge-arb"><span class="chain-dot dot-arb"></span>Arb Sepolia · 421614</div>
+          <div class="status-badge status-testnet">Testnet</div>
+          <span class="card-explorer">View on Arbiscan ↗</span>
+        </div>
+      </a>
+      <a class="contract-card cc-arb glass" data-chain="arbitrum" data-net="testnet" data-explorer="Arbiscan"
+         href="https://sepolia.arbiscan.io/address/0x57b68c7595b8de5376d7b3c6cdafcc415cb597d4" target="_blank" rel="noopener">
+        <div class="contract-icon" style="background:rgba(40,160,240,0.08);">📋</div>
+        <div class="contract-info">
+          <div class="contract-name">SolverRegistry</div>
+          <div class="addr-row">
+            <span class="contract-addr">0x57b68c7595b8de5376d7b3c6cdafcc415cb597d4</span>
+            <button type="button" class="copy-btn" onclick="copyAddr(event,'0x57b68c7595b8de5376d7b3c6cdafcc415cb597d4')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+          </div>
+          <div class="contract-tags">
+            <span class="tag tag-defi">Solver Stake</span>
+            <span class="tag tag-defi">EIP-712</span>
+            <span class="tag tag-mev">Earlier Deploy</span>
+          </div>
+        </div>
+        <div class="contract-right">
+          <div class="chain-badge badge-arb"><span class="chain-dot dot-arb"></span>Arb Sepolia · 421614</div>
+          <div class="status-badge status-testnet">Testnet</div>
+          <span class="card-explorer">View on Arbiscan ↗</span>
+        </div>
+      </a>
+    </div>
+  </div>
 
   <div class="project-block" data-project="goalpha">
     <div class="project-header">
@@ -1291,69 +1391,11 @@ footer {
     </div>
   </div>
 
-  <div class="project-block" data-project="lattice">
-    <div class="project-header">
-      <div class="project-dot" style="background:rgba(68,170,255,0.1);">🌐</div>
-      <div>
-        <div class="project-name">Lattice</div>
-        <div class="project-desc">EIP-712 intent settlement · solver registry with stake &amp; slashing · Uniswap v3 execution on Arbitrum Sepolia</div>
-      </div>
-      <a href="https://github.com/Nkovaturient/Lattice/tree/main/contracts" target="_blank" rel="noopener" class="btn-pill btn-ghost btn-sm project-github">
-        GitHub
-        <svg class="icon-ext" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9L9 3M9 3H4M9 3V8"/></svg>
-      </a>
-    </div>
-    <div class="contracts-grid">
-      <a class="contract-card cc-arb glass" data-chain="arbitrum" data-net="testnet"
-         href="https://sepolia.arbiscan.io/address/0x57b68c7595b8de5376d7b3c6cdafcc415cb597d4" target="_blank" rel="noopener">
-        <div class="contract-icon" style="background:rgba(40,160,240,0.08);">📋</div>
-        <div class="contract-info">
-          <div class="contract-name">SolverRegistry</div>
-          <div class="addr-row">
-            <span class="contract-addr">0x57b68c7595b8de5376d7b3c6cdafcc415cb597d4</span>
-            <button type="button" class="copy-btn" onclick="copyAddr(event,'0x57b68c7595b8de5376d7b3c6cdafcc415cb597d4')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
-          </div>
-          <div class="contract-tags">
-            <span class="tag tag-defi">Solver Stake</span>
-            <span class="tag tag-defi">EIP-712</span>
-            <span class="tag tag-mev">Slash</span>
-          </div>
-        </div>
-        <div class="contract-right">
-          <div class="chain-badge badge-arb"><span class="chain-dot dot-arb"></span>Arb Sepolia · 421614</div>
-          <div class="status-badge status-testnet">Testnet</div>
-          <span class="card-explorer">View on Arbiscan ↗</span>
-        </div>
-      </a>
-      <a class="contract-card cc-arb glass" data-chain="arbitrum" data-net="testnet"
-         href="https://sepolia.arbiscan.io/address/0x438b7889a1428f63f6450d3c1c2bab39f80edaca" target="_blank" rel="noopener">
-        <div class="contract-icon" style="background:rgba(40,160,240,0.08);">🔗</div>
-        <div class="contract-info">
-          <div class="contract-name">IntentSettlement</div>
-          <div class="addr-row">
-            <span class="contract-addr">0x438b7889a1428f63f6450d3c1c2bab39f80edaca</span>
-            <button type="button" class="copy-btn" onclick="copyAddr(event,'0x438b7889a1428f63f6450d3c1c2bab39f80edaca')" aria-label="Copy address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
-          </div>
-          <div class="contract-tags">
-            <span class="tag tag-amm">Uniswap v3</span>
-            <span class="tag tag-defi">Intent Settlement</span>
-            <span class="tag tag-defi">Nonce Passthrough</span>
-          </div>
-        </div>
-        <div class="contract-right">
-          <div class="chain-badge badge-arb"><span class="chain-dot dot-arb"></span>Arb Sepolia · 421614</div>
-          <div class="status-badge status-testnet">Testnet</div>
-          <span class="card-explorer">View on Arbiscan ↗</span>
-        </div>
-      </a>
-    </div>
-  </div>
-
   <div class="project-block" data-project="trialbridge">
     <div class="project-header">
       <div class="project-dot" style="background:rgba(180,120,255,0.1);">🏥</div>
       <div>
-        <div class="project-name">TrialBridge / medullAI</div>
+        <div class="project-name">TrialBridge</div>
         <div class="project-desc">Append-only on-chain audit log for patient-trial matches &amp; consent · no PII on-chain · x402-gated backbone on Base Sepolia</div>
       </div>
       <a href="https://github.com/Nkovaturient/TrialBridge/tree/main/medullAI/contracts" target="_blank" rel="noopener" class="btn-pill btn-ghost btn-sm project-github">
