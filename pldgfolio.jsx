@@ -240,6 +240,96 @@ const OUTER_PROJECTS = [
     ],
   },
 ];
+
+const LATEST_PROJECTS = [
+  {
+    id: 'lattice',
+    name: 'Lattice',
+    shortName: 'Lattice',
+    fullName: 'Nkovaturient/Lattice',
+    color: '#7AA2FF',
+    glow: 'rgba(122,162,255,0.6)',
+    emoji: '🌐',
+    description:
+      'Private solver mesh on js-libp2p. Users sign EIP-712 intents, solvers compete off the public mempool, and the winner settles on Arbitrum One through Uniswap v3.',
+    tags: ['js-libp2p', 'Solidity', 'EIP-712', 'Arbitrum', 'Uniswap v3'],
+    contributions: [
+      'IntentSettlement on Arbitrum One',
+      'Staked SolverRegistry with pull withdrawal',
+      'Uniswap v3 execution at the signed bid',
+      'GossipSub solver mesh',
+    ],
+  },
+  {
+    id: 'chainpulse',
+    name: 'ChainPulse',
+    shortName: 'ChainPulse',
+    fullName: 'Nkovaturient/ChainPulse',
+    color: '#FF9F43',
+    glow: 'rgba(255,159,67,0.6)',
+    emoji: '📡',
+    description:
+      'Agentic mediator for crypto intel. Pulls EVM and Solana signals from news, CoinGecko, and Etherscan into one TypeScript service.',
+    tags: ['TypeScript', 'EVM', 'Solana', 'CoinGecko', 'Etherscan'],
+    contributions: [
+      'Agentic crypto-intel mediation',
+      'EVM and Solana news signals',
+      'CoinGecko and Etherscan sources',
+    ],
+  },
+  {
+    id: 'bluegram',
+    name: 'Bluegram',
+    shortName: 'Bluegram',
+    fullName: 'Nkovaturient/Bluegram',
+    color: '#3DDC97',
+    glow: 'rgba(61,220,151,0.6)',
+    emoji: '🌍',
+    description:
+      'Instagram for Earth systems. A 3D globe that detects, visualizes, and statistically checks environmental trends from NASA mission data, with ESA, JAXA, and ISRO sources where noted.',
+    tags: ['TypeScript', 'NASA', 'Earth observation', '3D globe'],
+    contributions: [
+      '3D globe for Earth-system trends',
+      'NASA mission data, plus ESA, JAXA, and ISRO where noted',
+      'Mann-Kendall and Theil-Sen trend checks',
+    ],
+  },
+  {
+    id: 'agent-fill',
+    name: 'agent-fill',
+    shortName: 'agent-fill',
+    fullName: 'Nkovaturient/agent-fill',
+    color: '#F6D365',
+    glow: 'rgba(246,211,101,0.6)',
+    emoji: '⏱️',
+    description:
+      'Temporal grounding for LLM agents. Date-anchored search, staleness scoring, and provenance on every claim an agent says it knows.',
+    tags: ['Python', 'Agents', 'Provenance', 'Staleness'],
+    contributions: [
+      'Date-anchored search',
+      'Staleness scoring',
+      'Provenance on every claim',
+    ],
+  },
+  {
+    id: 'agentrust',
+    name: 'agentrust-libp2p',
+    shortName: 'agentrust',
+    fullName: 'Nkovaturient/agentrust-libp2p',
+    color: '#C084FC',
+    glow: 'rgba(192,132,252,0.6)',
+    emoji: '🛡️',
+    description:
+      'Agentic trust structures for libp2p. How autonomous nodes establish verifiable trust, bind a PeerId, and keep that trust checkable.',
+    tags: ['JavaScript', 'libp2p', 'PeerId', 'Trust'],
+    contributions: [
+      'Verifiable trust between autonomous nodes',
+      'PeerId binding',
+      'libp2p trust structures',
+    ],
+  },
+];
+
 const COHORT_COLORS = {
   'Cohort 2': '#4ECDC4',
   'Cohort 3': '#45B7D1',
@@ -259,6 +349,9 @@ function PLDGPortfolio() {
   const [viewportWidth, setViewportWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1280
   );
+  const [viewportHeight, setViewportHeight] = useState(
+    typeof window !== 'undefined' ? window.innerHeight : 800
+  );
   const canvasRef = useRef(null);
   const animRef = useRef(null);
 
@@ -276,7 +369,7 @@ function PLDGPortfolio() {
       )
       .catch(() => setUserStats({ name: 'Neha Kumari', avatar: null }));
 
-    [...INNER_PROJECTS, ...OUTER_PROJECTS].forEach((p) => {
+    [...INNER_PROJECTS, ...OUTER_PROJECTS, ...LATEST_PROJECTS].forEach((p) => {
       fetch(`https://api.github.com/repos/${p.fullName}`)
         .then((r) => r.json())
         .then((d) =>
@@ -353,7 +446,10 @@ function PLDGPortfolio() {
   }, []);
 
   useEffect(() => {
-    const handleResize = () => setViewportWidth(window.innerWidth);
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+      setViewportHeight(window.innerHeight);
+    };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -398,18 +494,42 @@ function PLDGPortfolio() {
   const isMobile = viewportWidth < 900;
   const isTablet = viewportWidth >= 900 && viewportWidth < 1280;
   const uiScale = isMobile ? 1.24 : isTablet ? 1.12 : 1;
-  const orbitScale = isMobile ? 0.82 : isTablet ? 0.92 : 1;
   const scaled = (v) => Math.round(v * uiScale);
 
-  const outerOrbitSize = Math.round(600 * orbitScale);
-  const innerOrbitSize = Math.round(376 * orbitScale);
-  const outerOrbitRadius = Math.round(300 * orbitScale);
-  const innerOrbitRadius = Math.round(188 * orbitScale);
   const panelWidth = Math.min(
     scaled(380),
     Math.max(300, viewportWidth - (isMobile ? 24 : 52))
   );
   const panelRightInset = isMobile ? 12 : 20;
+  const sidePad = isMobile ? 18 : 56;
+  const topPad = isMobile ? 62 : 70;
+  const bottomPad = isMobile ? 92 : 104;
+  const titleSpace = isMobile ? 0 : 28;
+  const rightClear = selected
+    ? panelWidth + panelRightInset + 20
+    : sidePad;
+  const reach = Math.max(
+    150,
+    Math.min(
+      viewportWidth / 2 - sidePad,
+      viewportWidth / 2 - rightClear,
+      viewportHeight / 2 - topPad - titleSpace,
+      viewportHeight / 2 - bottomPad
+    )
+  );
+
+  const orbitScale = reach / 400;
+  const latestNode = Math.round(78 * orbitScale);
+  const outerNode = Math.round(66 * orbitScale);
+  const innerNode = Math.round(66 * orbitScale);
+  const latestOrbitRadius = Math.round(354 * orbitScale);
+  const outerOrbitRadius = Math.round(252 * orbitScale);
+  const innerOrbitRadius = Math.round(158 * orbitScale);
+  const innerOrbitSize = innerOrbitRadius * 2;
+  const outerOrbitSize = outerOrbitRadius * 2;
+  const latestOrbitSize = latestOrbitRadius * 2;
+  const hubSize = Math.round(100 * orbitScale);
+  const showRingTitles = titleSpace > 0;
   const journeyRight = selected
     ? panelWidth + panelRightInset + 12
     : isMobile
@@ -484,10 +604,13 @@ function PLDGPortfolio() {
     }
     .orbit-inner-ring { animation: spin-cw 26s linear infinite; }
     .orbit-outer-ring { animation: spin-ccw 42s linear infinite; }
+    .orbit-latest-ring { animation: spin-cw 64s linear infinite; }
     .node-inner { animation: ccw-inner 26s linear infinite; }
     .node-outer { animation: cw-outer 42s linear infinite; }
-    .paused .orbit-inner-ring, .paused .orbit-outer-ring,
-    .paused .node-inner, .paused .node-outer { animation-play-state: paused; }
+    .node-latest { animation: ccw-latest 64s linear infinite; }
+    @keyframes ccw-latest { to { transform: rotate(-360deg); } }
+    .paused .orbit-inner-ring, .paused .orbit-outer-ring, .paused .orbit-latest-ring,
+    .paused .node-inner, .paused .node-outer, .paused .node-latest { animation-play-state: paused; }
     .proj-node { transition: filter 0.2s, transform 0.2s; cursor: pointer; }
     .proj-node:hover { filter: brightness(1.2); }
     .panel-tab { background: none; border: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; transition: all 0.2s; }
@@ -495,6 +618,86 @@ function PLDGPortfolio() {
     ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 4px; }
     a { color: inherit; text-decoration: none; }
   `;
+
+  const renderProjectOrbit = (projects, orbit) => (
+    <div
+      className={orbit.ringClass}
+      style={{
+        position: 'absolute',
+        width: orbit.size,
+        height: orbit.size,
+        borderRadius: '50%',
+        overflow: 'visible',
+        pointerEvents: 'none',
+      }}
+    >
+      {projects.map((p, i) => {
+        const nodeStyle = getNodeStyle(i, projects.length, orbit.radius, orbit.nodeSize);
+        const isSelected = selected?.id === p.id;
+        const isHovered = hovered === p.id;
+        return (
+          <div
+            key={p.id}
+            className={orbit.nodeClass}
+            style={{ ...nodeStyle, pointerEvents: 'auto' }}
+          >
+            <div
+              className="proj-node"
+              onClick={() => handleNodeClick(p)}
+              onMouseEnter={() => setHovered(p.id)}
+              onMouseLeave={() => setHovered(null)}
+              style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: '50%',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 3,
+                pointerEvents: 'auto',
+                cursor: 'pointer',
+                background: isSelected
+                  ? `${p.color}${orbit.selectedAlpha}`
+                  : isHovered
+                  ? orbit.hoverBg
+                  : orbit.idleBg,
+                border: `${orbit.borderWidth} solid ${
+                  isSelected
+                    ? p.color
+                    : isHovered
+                    ? `${p.color}${orbit.hoverBorderAlpha}`
+                    : orbit.idleBorder
+                }`,
+                boxShadow: isSelected
+                  ? orbit.selectedShadow(p)
+                  : isHovered
+                  ? `0 0 ${orbit.hoverGlow}px ${p.glow}`
+                  : 'none',
+                backdropFilter: orbit.blur,
+                transition: 'all 0.28s ease',
+              }}
+            >
+              <span style={{ fontSize: Math.max(13, Math.round(orbit.nodeSize * 0.32)), lineHeight: 1 }}>{p.emoji}</span>
+              <span
+                style={{
+                  fontSize: Math.max(8, Math.round(orbit.nodeSize * 0.15)),
+                  fontWeight: 700,
+                  color: p.color,
+                  textAlign: 'center',
+                  maxWidth: Math.round(orbit.nodeSize * 0.86),
+                  lineHeight: 1.15,
+                  letterSpacing: '0.02em',
+                }}
+              >
+                {p.shortName}
+              </span>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
 
   return (
     <div
@@ -683,7 +886,17 @@ function PLDGPortfolio() {
           justifyContent: 'center',
         }}
       >
-        {/* Ring decorations */}
+        <div
+          style={{
+            position: 'absolute',
+            width: latestOrbitSize,
+            height: latestOrbitSize,
+            borderRadius: '50%',
+            border: '0.5px solid rgba(122,162,255,0.16)',
+            animation: 'ring-breathe 6s ease-in-out infinite 0.4s',
+            pointerEvents: 'none',
+          }}
+        />
         <div
           style={{
             position: 'absolute',
@@ -707,212 +920,79 @@ function PLDGPortfolio() {
           }}
         />
 
-        {/* PLDG label on inner ring */}
-        <div
-          style={{
-            position: 'absolute',
-            top: `calc(50% - ${Math.round(214 * orbitScale)}px)`,
-            fontSize: scaled(10),
-            color: 'rgba(0,212,170,0.55)',
-            letterSpacing: '0.16em',
-            textTransform: 'uppercase',
-            fontWeight: 700,
-            pointerEvents: 'none',
-          }}
-        >
-          ✦ PLDG Tech Partners ✦
-        </div>
-        <div
-          style={{
-            position: 'absolute',
-            top: `calc(50% - ${Math.round(328 * orbitScale)}px)`,
-            fontSize: scaled(10),
-            color: 'rgba(255,255,255,0.25)',
-            letterSpacing: '0.14em',
-            textTransform: 'uppercase',
-            fontWeight: 600,
-            pointerEvents: 'none',
-          }}
-        >
-          ✦ Open Source ✦
-        </div>
+        {showRingTitles && (
+          <div
+            style={{
+              position: 'absolute',
+              top: `calc(50% - ${latestOrbitRadius + latestNode / 2 + 16}px)`,
+              fontSize: scaled(10),
+              color: 'rgba(122,162,255,0.78)',
+              letterSpacing: '0.16em',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+              pointerEvents: 'none',
+              zIndex: 6,
+            }}
+          >
+            ✦ Latest builds ✦
+          </div>
+        )}
 
-        {/* Inner orbit */}
-        <div
-          className="orbit-inner-ring"
-          style={{
-            position: 'absolute',
-            width: innerOrbitSize,
-            height: innerOrbitSize,
-            borderRadius: '50%',
-            overflow: 'visible',
-            pointerEvents: 'none',
-          }}
-        >
-          {INNER_PROJECTS.map((p, i) => {
-            const nodeSize = Math.round(78 * orbitScale);
-            const nodeStyle = getNodeStyle(
-              i,
-              INNER_PROJECTS.length,
-              innerOrbitRadius,
-              nodeSize
-            );
-            const isSelected = selected?.id === p.id;
-            const isHovered = hovered === p.id;
-            return (
-              <div
-                key={p.id}
-                className="node-inner"
-                style={{ ...nodeStyle, pointerEvents: 'auto' }}
-              >
-                <div
-                  className="proj-node"
-                  onClick={() => handleNodeClick(p)}
-                  onMouseEnter={() => setHovered(p.id)}
-                  onMouseLeave={() => setHovered(null)}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 3,
-                    pointerEvents: 'auto',
-                    cursor: 'pointer',
-                    background: isSelected
-                      ? `${p.color}22`
-                      : isHovered
-                      ? 'rgba(255,255,255,0.07)'
-                      : 'rgba(255,255,255,0.04)',
-                    border: `1px solid ${
-                      isSelected
-                        ? p.color
-                        : isHovered
-                        ? `${p.color}60`
-                        : 'rgba(255,255,255,0.14)'
-                    }`,
-                    boxShadow: isSelected
-                      ? `0 0 22px ${p.glow}, inset 0 0 12px ${p.color}18`
-                      : isHovered
-                      ? `0 0 14px ${p.glow}`
-                      : 'none',
-                    backdropFilter: 'blur(14px)',
-                    transition: 'all 0.28s ease',
-                  }}
-                >
-                  <span style={{ fontSize: scaled(24), lineHeight: 1 }}>{p.emoji}</span>
-                  <span
-                    style={{
-                      fontSize: scaled(8.5),
-                      fontWeight: 700,
-                      color: p.color,
-                      textAlign: 'center',
-                      maxWidth: Math.round(64 * orbitScale),
-                      lineHeight: 1.25,
-                      letterSpacing: '0.04em',
-                    }}
-                  >
-                    {p.shortName}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Outer orbit */}
-        <div
-          className="orbit-outer-ring"
-          style={{
-            position: 'absolute',
-            width: outerOrbitSize,
-            height: outerOrbitSize,
-            borderRadius: '50%',
-            overflow: 'visible',
-            pointerEvents: 'none',
-          }}
-        >
-          {OUTER_PROJECTS.map((p, i) => {
-            const nodeSize = Math.round(72 * orbitScale);
-            const nodeStyle = getNodeStyle(
-              i,
-              OUTER_PROJECTS.length,
-              outerOrbitRadius,
-              nodeSize
-            );
-            const isSelected = selected?.id === p.id;
-            const isHovered = hovered === p.id;
-            return (
-              <div
-                key={p.id}
-                className="node-outer"
-                style={{ ...nodeStyle, pointerEvents: 'auto' }}
-              >
-                <div
-                  className="proj-node"
-                  onClick={() => handleNodeClick(p)}
-                  onMouseEnter={() => setHovered(p.id)}
-                  onMouseLeave={() => setHovered(null)}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 3,
-                    pointerEvents: 'auto',
-                    cursor: 'pointer',
-                    background: isSelected
-                      ? `${p.color}18`
-                      : isHovered
-                      ? 'rgba(255,255,255,0.05)'
-                      : 'rgba(255,255,255,0.025)',
-                    border: `0.5px solid ${
-                      isSelected
-                        ? p.color
-                        : isHovered
-                        ? `${p.color}50`
-                        : 'rgba(255,255,255,0.1)'
-                    }`,
-                    boxShadow: isSelected
-                      ? `0 0 18px ${p.glow}`
-                      : isHovered
-                      ? `0 0 10px ${p.glow}`
-                      : 'none',
-                    backdropFilter: 'blur(12px)',
-                    transition: 'all 0.28s ease',
-                  }}
-                >
-                  <span style={{ fontSize: scaled(22), lineHeight: 1 }}>{p.emoji}</span>
-                  <span
-                    style={{
-                      fontSize: scaled(8),
-                      fontWeight: 700,
-                      color: p.color,
-                      textAlign: 'center',
-                      maxWidth: Math.round(58 * orbitScale),
-                      lineHeight: 1.3,
-                      letterSpacing: '0.03em',
-                    }}
-                  >
-                    {p.shortName}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        {renderProjectOrbit(INNER_PROJECTS, {
+          ringClass: 'orbit-inner-ring',
+          nodeClass: 'node-inner',
+          size: innerOrbitSize,
+          radius: innerOrbitRadius,
+          nodeSize: innerNode,
+          selectedAlpha: '22',
+          hoverBg: 'rgba(255,255,255,0.07)',
+          idleBg: 'rgba(255,255,255,0.04)',
+          borderWidth: '1px',
+          hoverBorderAlpha: '60',
+          idleBorder: 'rgba(255,255,255,0.14)',
+          selectedShadow: (p) => `0 0 22px ${p.glow}, inset 0 0 12px ${p.color}18`,
+          hoverGlow: 14,
+          blur: 'blur(14px)',
+        })}
+        {renderProjectOrbit(OUTER_PROJECTS, {
+          ringClass: 'orbit-outer-ring',
+          nodeClass: 'node-outer',
+          size: outerOrbitSize,
+          radius: outerOrbitRadius,
+          nodeSize: outerNode,
+          selectedAlpha: '18',
+          hoverBg: 'rgba(255,255,255,0.05)',
+          idleBg: 'rgba(255,255,255,0.025)',
+          borderWidth: '0.5px',
+          hoverBorderAlpha: '50',
+          idleBorder: 'rgba(255,255,255,0.1)',
+          selectedShadow: (p) => `0 0 18px ${p.glow}`,
+          hoverGlow: 10,
+          blur: 'blur(12px)',
+        })}
+        {renderProjectOrbit(LATEST_PROJECTS, {
+          ringClass: 'orbit-latest-ring',
+          nodeClass: 'node-latest',
+          size: latestOrbitSize,
+          radius: latestOrbitRadius,
+          nodeSize: latestNode,
+          selectedAlpha: '28',
+          hoverBg: 'rgba(122,162,255,0.1)',
+          idleBg: 'rgba(122,162,255,0.06)',
+          borderWidth: '1px',
+          hoverBorderAlpha: '80',
+          idleBorder: 'rgba(122,162,255,0.28)',
+          selectedShadow: (p) => `0 0 26px ${p.glow}, inset 0 0 14px ${p.color}22`,
+          hoverGlow: 18,
+          blur: 'blur(16px)',
+        })}
 
         {/* Center hub */}
         <div
           onClick={closePanel}
           style={{
-            width: Math.round(138 * orbitScale),
-            height: Math.round(138 * orbitScale),
+            width: hubSize,
+            height: hubSize,
             borderRadius: '50%',
             position: 'relative',
             zIndex: 5,
@@ -934,8 +1014,8 @@ function PLDGPortfolio() {
               src={userStats.avatar}
               alt="Neha"
               style={{
-                width: Math.round(50 * orbitScale),
-                height: Math.round(50 * orbitScale),
+                width: Math.round(hubSize * 0.36),
+                height: Math.round(hubSize * 0.36),
                 borderRadius: '50%',
                 border: '2px solid rgba(0,212,170,0.45)',
                 objectFit: 'cover',
@@ -944,8 +1024,8 @@ function PLDGPortfolio() {
           ) : (
             <div
               style={{
-                width: Math.round(50 * orbitScale),
-                height: Math.round(50 * orbitScale),
+                width: Math.round(hubSize * 0.36),
+                height: Math.round(hubSize * 0.36),
                 borderRadius: '50%',
                 background: 'rgba(0,212,170,0.2)',
                 border: '2px solid rgba(0,212,170,0.45)',
@@ -969,7 +1049,7 @@ function PLDGPortfolio() {
             >
               NEHA
             </div>
-            <div
+            {/* <div
               style={{
                 fontSize: scaled(8.5),
                 color: 'rgba(255,255,255,0.38)',
@@ -977,7 +1057,7 @@ function PLDGPortfolio() {
               }}
             >
               PLDG C2→C6
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -1025,6 +1105,20 @@ function PLDGPortfolio() {
             }}
           >
             Platforms Built at PLDG — outer orbit
+          </span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div
+            style={{ width: 28, height: 1.5, background: 'rgba(122,162,255,0.7)' }}
+          />
+          <span
+            style={{
+              fontSize: scaled(11.5),
+              color: 'rgba(255,255,255,0.35)',
+              letterSpacing: '0.05em',
+            }}
+          >
+            Latest builds — outermost orbit
           </span>
         </div>
       </div>

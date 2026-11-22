@@ -28,7 +28,33 @@
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script type="text/babel" data-presets="react" src="./pldgfolio.jsx"></script>
+  <script>
+    (function () {
+      var root = document.getElementById('pldg-root');
+      if (!window.Babel || !window.React || !window.ReactDOM) {
+        root.textContent = 'Portfolio scripts failed to load.';
+        return;
+      }
+      fetch('./pldgfolio.jsx', { cache: 'no-cache' })
+        .then(function (response) {
+          if (!response.ok) throw new Error('pldgfolio.jsx ' + response.status);
+          return response.text();
+        })
+        .then(function (src) {
+          var out = Babel.transform(src, {
+            filename: 'pldgfolio.jsx',
+            sourceType: 'script',
+            presets: [['react', { runtime: 'classic' }]],
+          });
+          var script = document.createElement('script');
+          script.text = out.code;
+          document.body.appendChild(script);
+        })
+        .catch(function (err) {
+          root.textContent = 'Portfolio failed to compile: ' + err.message;
+        });
+    })();
+  </script>
 </body>
 
 </html>
